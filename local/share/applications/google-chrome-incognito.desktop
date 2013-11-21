@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Google Chrome Incognito
+Exec=/opt/google/chrome/google-chrome --incognito
+Icon=/home/anup/data/image-files/icons/launcher-icons/google-chrome-faneza-variant.svg
+Categories=Network;WebBrowser;

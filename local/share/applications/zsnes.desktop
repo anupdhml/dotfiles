@@ -1,0 +1,14 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=ZSNES Emulator
+Name[ru_RU]=Эмулятор ZSNES
+Comment=Play Super Nintendo (SNES) games
+Comment[ru_RU]=Запуск игр для Super Nintendo (SNES)
+Exec=zsnes
+Icon=zsnes
+Terminal=false
+Type=Application
+Categories=Game;Emulator;
+MimeType=application/x-snes-rom;
+FilePattern=smc;fig;SMC;FIG;sfc;SFC;
+Icon[en_US]=/home/anup/data/image-files/icons/launcher-icons/zsnes-faneza-games.svg

@@ -1,0 +1,22 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Name=Guayadeque Music Player
+Name[es]=Guayadeque - Reproductor de Música
+Name[fr]=Guayadeque - Lecteur de musique et de radios
+Name[de]=Guayadeque - Musik-Wiedergabeprogramm
+Name[it]=Guayadeque - Riproduttore musicale
+Comment=Play music songs
+Comment[es]=Reproduce canciones
+Comment[fr]=Permet de lire, organiser, trier nos musiques et radios numériques
+Comment[de]=Ihre Musiksammlung wiedergeben und organisieren
+Comment[it]=lettore di file audio che legge ed organizza file musicali i stazioni radio
+Exec=guayadeque
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;AudioVideo;Audio;Player;
+MimeType=application/ogg;application/x-flac;audio/mp4;audio/mpeg;audio/mpegurl;audio/ogg;audio/x-ape;audio/x-flac;audio/x-m4a;audio/x-mod;audio/x-mp3;audio/x-mpeg;audio/x-mpegurl;audio/x-ms-asf;audio/x-ms-asx;audio/x-ms-wax;audio/x-ms-wma;
+Icon=guayadeque
+X-GNOME-Autostart-Phase=Desktop
+X-GNOME-Autostart-Notify=true
+Icon[en_US]=/home/anup/data/image-files/icons/launcher-icons/guayadeque-faenza.svg

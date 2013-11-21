@@ -1,0 +1,13 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=Spotify
+GenericName=Music Player
+Comment=Listen to music using Spotify
+Icon=spotify-client
+Exec=spotify %U
+TryExec=spotify
+Terminal=false
+Type=Application
+Categories=Qt;Audio;Music;Player;AudioVideo
+MimeType=x-scheme-handler/spotify
+Icon[en_US]=/home/anup/data/image-files/icons/launcher-icons/spotify.svg

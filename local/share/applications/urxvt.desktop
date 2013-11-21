@@ -1,0 +1,11 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=URxvt 
+Comment=Use the command line
+TryExec=urxvt
+Exec=urxvt
+#Exec=urxvt -e bash -c "(tmux -q has-session && exec tmux attach-session -d) || (exec tmux new-session)"
+Icon=/home/anup/data/image-files/icons/launcher-icons/terminal-faneza.svg
+Type=Application
+Categories=Utility;TerminalEmulator;
+StartupNotify=true
