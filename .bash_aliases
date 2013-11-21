@@ -227,12 +227,14 @@ alias wgetspeed='wget --output-document=/dev/null http://speedtest.wdc01.softlay
 
 ## Git stuff          
 alias gitouch='find . \( -type d -empty \) -and \( -not -regex ./\.git.* \) -exec touch {}/.gitignore \;'
-alias gitup='git pull'
-alias gitci='git commit -a -m'
-alias gitco='git clone'
+alias gitp='git pull'
 alias gita='git add'
 alias gitb='git branch'
-alias gitc='git checkout'
+alias gitc='git commit'
+alias gitca='git commit -a -m'
+alias gitch='git checkout'
+alias gitcl='git clone'
+alias gits='git status'
 
 ## svn stuff
 #alias svnaddall='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add'
