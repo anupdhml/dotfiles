@@ -1,0 +1,378 @@
+! Xft settings ---------------------------------------------------------------
+
+!Xft.dpi:        96
+!Xft.antialias:  true
+!Xft.rgba:       rgb
+!Xft.hinting:    true
+!Xft.hintstyle:  hintslight
+
+###############
+## For xterm ##
+###############
+
+*customization: -color
+XTerm*termName:  xterm-256color
+
+###############
+## For urxvt ##
+###############
+
+! perl extensions
+!URxvt.perl-ext-common: default,tabbed,matcher
+URxvt.perl-ext-common: default,matcher,clipboard
+!URxvt.perl-ext-common: default,tabbed,matcher,clipboard,keyboard-select,url-select
+!URxvt.perl-ext-common: default,tabbed,tabbedex,matcher
+
+! URL Launching
+URxvt*urlLauncher: google-chrome
+URxvt*matcher.button: 1
+!URxvt*colorUL: #86a2b
+
+! scrollback buffer lines - 65535 is max (64 is default)
+URxvt*saveLines:12000
+!URxvt*saveLines:32767
+
+! commands as login shell
+URxvt*loginShell:true
+
+! xterm
+!urxvt*termName: rxvt-unicode
+urxvt*termName: rxvt-unicode-256color
+!urxvt*termName: rxvt-256color
+!urxvt*termName: xterm
+
+! icon file
+URxvt*iconFile: $HOME/data/image-files/icons/launcher-icons/terminal-faneza.svg
+
+#############################################
+
+! geometry
+!URxvt*geometry: 80x40
+!tipping point
+!URxvt*geometry: 159x45
+!URxvt*geometry: 200x50
+!choice
+URxvt*geometry: 160x46
+!
+!URxvt*geometry: 160x45
+
+! border
+URxvt.internalBorder:   1
+!URxvt*borderLess:true 
+
+! scrollbar - true (default) or false
+URxvt*scrollBar:false
+
+! scrollbar position - left=false (default) or right=true
+URxvt*scrollBar_right:true
+
+! scrollbar style - rxvt (default), plain, next, or xterm
+URxvt*scrollstyle:plain
+URxvt.secondaryScroll:  true
+
+! transparent scrollbar
+URxvt*transpscrollbar:true
+
+! title name
+!URxvt.title: Terminal
+!URxvt.title: अनुपको टर्मिनल
+
+#############################################
+
+! background color (prior to tinting) (default is white)
+!URxvt*background:white
+!URxvt*background:	#F0F0F0
+urxvt*depth: 32
+!URxvt.background: rgba:f000/f000/f000/eeee
+URxvt.background: rgba:f0f0/f0f0/f0f0/eeee
+
+! transparency - true or false (default)
+!URxvt*transparent:true
+!URxvt*inheritPixmap: true
+
+! tint with any color; i.e., blue, red, tomato4, olivedrab2, etc.
+!   some nice listings are at:
+!     http://www.nisrv.com/modules.php?name=Hex_Colors
+!     http://www.htmlgoodies.com/tutorials/colors/article.php/3478921
+!URxvt*tintColor:blue
+!URxvt*tintColor: white
+
+! shading - 0 to 99 darkens, 101 to 200 lightens.
+! Dont use with tintColor; use a darker or lighter color instead.
+!URxvt*shading:190
+
+! font color (default is black)
+!URxvt*foreground:black
+URxvt*foreground:	#323232
+
+#############################################
+
+! Color Scheme
+! black
+URxvt*color0  : #2E3436
+URxvt*color8  : #6C6C6C
+!URxvt*color8  : #8EA5A9
+!URxvt*color8  : #555753
+! red
+URxvt*color1  : #CC0000
+URxvt*color9  : #EF2929
+! green
+URxvt*color2  : #4E9A06
+URxvt*color10 : #8AE234
+! yellow
+URxvt*color3  : #C4A000
+URxvt*color11 : #FCE94F
+! blue
+URxvt*color4  : #3465A4
+URxvt*color12 : #729FCF
+! magenta
+URxvt*color5  : #75507B
+URxvt*color13 : #AD7FA8
+! cyan
+URxvt*color6  : #06989A
+URxvt*color14 : #34E2E2
+! white
+!URxvt*color7  : #D3D7CF
+URxvt*color7  : #D6D6D6
+URxvt*color15 : #EEEEEC
+!URxvt*color15 : #FFFFFF
+
+!XTerm*background:  #000000
+!XTerm*foreground:  #9f9f9f
+!XTerm*color0:      #000000
+!XTerm*color1:      #9e1828
+!XTerm*color2:      #aece92
+!XTerm*color3:      #968a38
+!XTerm*color4:      #414171
+!XTerm*color5:      #963c59
+!XTerm*color6:      #418179
+!XTerm*color7:      #bebebe
+!XTerm*color8:      #666666
+!XTerm*color9:      #cf6171
+!XTerm*color10:     #c5f779
+!XTerm*color11:     #fff796
+!XTerm*color12:     #4186be
+!XTerm*color13:     #cf9ebe
+!XTerm*color14:     #71bebe
+!XTerm*color15:     #ffffff
+
+! Replace blue folder colors with a lighter shade for clarity. To
+! set colored folders and files within urxvt, xterm, and aterm, add
+! the following line to your ~/.bashrc ($HOME/.bashrc) file under
+! the heading "# User specific aliases and functions":
+!   alias ls="ls -h --color=auto"
+!URxvt*color4:RoyalBlue
+!URxvt*color12:RoyalBlue
+
+! man colors??
+!green
+!URxvt.colorIT:      #87af5f
+!grey
+!URxvt.colorBD:      #d7d7d7
+!blue
+!URxvt.colorUL:      #87afd7
+
+#############################################
+
+! tab color light
+!URxvt.tabbed.tabbar-fg: 0
+!URxvt.tabbed.tabbar-bg: 7
+!URxvt.tabbed.tab-fg:    0
+!URxvt.tabbed.tab-bg:    15
+!URxvt.tabbed.title-fg:    0
+!URxvt.tabbed.title-bg:    7
+! not preferred
+!URxvt.tabbed.tabbar-fg: 0
+!URxvt.tabbed.tabbar-bg: 15
+!URxvt.tabbed.tab-fg:    0
+!URxvt.tabbed.tab-bg:    7
+!URxvt.tabbed.title-fg:    0
+!URxvt.tabbed.title-bg:    15
+
+! tab color dark
+URxvt.tabbed.tabbar-fg: 8 
+URxvt.tabbed.tab-fg:   15
+URxvt.tabbed.title-fg:   15
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-bg:    0
+URxvt.tabbed.title-bg:    0
+! not preferred
+!URxvt.tabbed.tabbar-fg: 15
+!URxvt.tabbed.tabbar-bg: 8
+!URxvt.tabbed.tab-fg:    15
+!URxvt.tabbed.tab-bg:    0
+!URxvt.tabbed.title-fg:    15
+!URxvt.tabbed.title-bg:    8
+
+! tab bar matrix style..
+!URxvt.tabbed.tabbar-fg: 2
+!URxvt.tabbed.tabbar-bg: 0
+!URxvt.tabbed.tab-fg:    3
+!URxvt.tabbed.tab-bg:    0
+
+! tabbed-new
+!URxvt.tabbed_new.tabren-bg: 3
+!URxvt.tabbed_new.tabdiv-fg: 8
+!URxvt.tabbed_new.tabbar-fg: 8
+!URxvt.tabbed_new.tabbar-bg: 0
+!URxvt.tabbed_new.tabsel-fg: 1
+!URxvt.tabbed_new.tabsel-bg: 8
+!URxvt.tabbed_new.tab-fg:    0
+!URxvt.tabbed_new.tab-bg:    8
+
+! cursor and pointer
+URxvt.cursorColor: 8
+!URxvt.cursorColor: 0
+!URxvt.cursorColor: #6C6C6C
+!URxvt.cursorColor: #323232
+!URxvt.pointerColor: #323232
+
+! border color. border needs to be set
+!URxvt.borderColor:      #000030
+!URxvt.borderColor:      8
+URxvt.borderColor:      0
+
+! other colors
+!URxvt.colorBD:          #ffffff
+!URxvt.throughColor:     #8080f0
+!URxvt.highlightColor:   #323232
+!URxvt.underlineColor:   yellow
+
+#############################################
+
+! xft fonts - anti-aliased xft font setup is nice, but can be choppy
+!URxvt*font:		xft:Bitstream Vera Sans Mono:style=Regular:pixelsize=13
+!urxvt*font:             xft:Droid Sans Mono:style=Regular:size=11:antialias=true:hinting=true
+!urxvt*font:             xft:Anonymous Pro:style=Regular:size=12:antialias=true:hinting=true
+
+!consolas
+!urxvt*font:             xft:Consolas:style=Regular:size=12:antialias=true:hinting=true
+!urxvt*Boldfont:             xft:Consolas:style=Bold:size=12:antialias=true:hinting=true
+!urxvt*Italicfont:             xft:Consolas:style=Italic:size=12:antialias=true:hinting=true
+
+!Inconsolata
+!urxvt*font:             xft:Inconsolata:style=Medium:size=12:antialias=true:hinting=true
+!urxvt*Boldfont:             xft:Inconsolata:style=Bold:size=12:antialias=true:hinting=true
+!urxvt*Italicfont:             xft:Inconsolata:style=Italic:size=12:antialias=true:hinting=true
+!urxvt*font:             xft:Inconsolata-dz:style=dz:size=12:antialias=true:hinting=true
+!urxvt*Italicfont:             xft:Inconsolata:style=Italic:size=12:autohint=true
+!urxvt*BoldItalicfont:             xft:Inconsolata:style=BoldItalic:size=12:antialias=true:hinting=true
+
+!Dejavu Sans
+!urxvt*font:             xft:Dejavu Sans Mono:style=Book:size=10:antialias=true:hinting=true,xft:Sanskrit2003:style=Regular:size=15:antialias=true:hinting=true
+!
+!choice font
+!urxvt*font:             xft:Dejavu Sans Mono:style=Book:size=10:antialias=true:hinting=true,xft:Sanskrit2003
+!urxvt*Boldfont:             xft:Dejavu Sans Mono:style=Bold:size=10:antialias=true:hinting=true
+!urxvt*Italicfont:             xft:Dejavu Sans Mono:style=Oblique:size=10:antialias=true:hinting=true
+!urxvt*font:             xft:Monospace:style=Book:size=6:antialias=true:hinting=true,xft:Sanskrit2003
+!
+!urxvt*font:             xft:Dejavu Sans Mono:style=Book:size=11:antialias=true:hinting=true,xft:Sanskrit2003
+!urxvt*Boldfont:             xft:Dejavu Sans Mono:style=Bold:size=11:antialias=true:hinting=true
+!urxvt*Italicfont:             xft:Dejavu Sans Mono:style=Oblique:size=11:antialias=true:hinting=true
+!
+! for vim powerline
+urxvt*font:             xft:Dejavu Sans Mono for Powerline:style=Book:size=11:antialias=true:hinting=true,xft:Sanskrit2003
+urxvt*Boldfont:             xft:Dejavu Sans Mono for Powerline:style=Bold:size=11:antialias=true:hinting=true
+urxvt*Italicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=11:antialias=true:hinting=true
+
+
+! traditional fonts - a more traditional font setup in lieu of xft
+!URxvt*font:-*-courier-medium-r-normal-*-*-140-*-*-*-*-iso8859-1
+!URxvt*boldFont:-*-courier-bold-r-normal-*-*-140-*-*-*-*-iso8859-1
+!URxvt*font:*-*-fixed-medium-r-normal--*-110-*-*-*-*-iso8859-1
+!URxvt*boldFont:*-*-fixed-bold-r-normal--*-*-110-*-*-*-*-iso8859-1
+
+! fix font width
+URxvt*letterSpace: -1
+!URxvt*lineSpace: -1
+
+#############################################
+
+! selection patterns
+URxvt.selection.pattern-0: ([[:word:]]+)
+
+!keyboard shortcuts
+!URxvt.keysym.C-slash:       \033<C-/>
+!URxvt.keysym.C-semicolon:   \033<C-;>
+!URxvt.keysym.C-grave:       \033<C-`>
+!URxvt.keysym.C-comma:       \033<C-,>
+!URxvt.keysym.C-period:      \033<C-.>
+!URxvt.keysym.C-0x60:        \033<C-`>
+!URxvt.keysym.C-Tab:         \033<C-Tab>
+!URxvt.keysym.C-Return:      \033<C-Return>
+!URxvt.keysym.S-Return:      \033<S-Return>
+!URxvt.keysym.S-space:       \033<S-Space>
+!ight>.keysym.M-Up:          \033<M-Up>
+!ight>.keysym.M-Down:        \033<M-Down>
+!URxvt.keysym.M-Left:        \033<M-Left>
+!URxvt.keysym.M-Right:       \033<M-Right>
+!URxvt.keysym.M-C-0:         list \033<M-C- 0123456789 >
+!URxvt.keysym.M-C-a:         list \033<M-C- abcdefghijklmnopqrstuvwxyz >
+!URxvt.keysym.F12:           command:\033]701;zh_CN.GBK\007
+!
+URxvt.keysym.C-C: perl:clipboard:copy
+URxvt.keysym.C-V: perl:clipboard:paste
+URxvt.keysym.C-A-V: perl:clipboard:paste_escaped
+!URxvt.keysym.M-c:   perl:clipboard:copy
+!URxvt.keysym.M-v:   perl:clipboard:paste
+!URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+!URxvt.keysym.M-u: perl:url-select:select_next
+!URxvt.keysym.M-Escape: perl:keyboard-select:activate
+
+!fix these keys in urxvt
+!!commented out on new installation
+!URxvt.keysym.M-Up:          \033[1;3A
+!URxvt.keysym.M-Down:        \033[1;3B
+!URxvt.keysym.M-Right:       \033[1;3C
+!URxvt.keysym.M-Left:        \033[1;3D
+!URxvt.keysym.Control-Up:    \033[1;5A
+!URxvt.keysym.Control-Down:  \033[1;5B
+!URxvt.keysym.Control-Right: \033[1;5C
+!URxvt.keysym.Control-Left:  \033[1;5D
+!!
+!URxvt.keysym.C-Prior:  \033[5;5~
+!URxvt.keysym.C-Next:   \033[6;5~
+!URxvt.keysym.C-Home:   \033[7;5~
+!URxvt.keysym.C-End:    \033[8;5~
+!!
+!URxvt.keysym.S-F1:      \033[O1;2P
+!URxvt.keysym.S-F2:      \033[O1;2Q
+!URxvt.keysym.S-F3:      \033[O1;2R
+!URxvt.keysym.S-F4:      \033[O1;2S
+!URxvt.keysym.S-F5:      \033[15;2~
+!URxvt.keysym.S-F6:      \033[17;2~
+!URxvt.keysym.S-F7:      \033[18;2~
+!URxvt.keysym.S-F8:      \033[19;2~
+!URxvt.keysym.S-F9:      \033[20;2~ 
+!URxvt.keysym.S-F10:      \033[21;2~
+!URxvt.keysym.S-F11:      \033[23;2~ 
+!URxvt.keysym.S-F12:      \033[24;2~
+!!
+!URxvt.keysym.C-F1:      \033[O1;5P
+!URxvt.keysym.C-F2:      \033[O1;5Q
+!URxvt.keysym.C-F3:      \033[O1;5R
+!URxvt.keysym.C-F4:      \033[O1;5S
+!URxvt.keysym.C-F5:      \033[15;5~
+!URxvt.keysym.C-F6:      \033[17;5~
+!URxvt.keysym.C-F7:      \033[18;5~
+!URxvt.keysym.C-F8:      \033[19;5~
+!URxvt.keysym.C-F9:      \033[20;5~ 
+!URxvt.keysym.C-F10:      \033[21;5~
+!URxvt.keysym.C-F11:      \033[23;5~ 
+!URxvt.keysym.C-F12:      \033[24;5~
+!!
+!URxvt.keysym.A-F12:      \033[24;3~
+!end of fix these keys in urxvt
+
+!visual bell
+!URxvt.visualBell:       true
+!
+!Disables the insanely annoying Ctrl+Shift shortcut that enters ISO14755 mode
+!URxvt*iso14755_52: false
+URxvt.iso14755: false
+
+!tabbar customization
+URxvt.autohide:  yes
+URxvt.new-button:  no
+

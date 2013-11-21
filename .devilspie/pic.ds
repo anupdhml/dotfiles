@@ -1,0 +1,11 @@
+; generated_rule gpicview
+( if 
+( and 
+( matches ( window_class ) "Eog" )
+( matches ( application_name ) "Image Viewer" )
+) 
+( begin 
+( maximize )
+( println "match" )
+)
+)

@@ -1,0 +1,16 @@
+.calcurse
+.calendar
+.config/autostart
+.config/google-chrome
+.fonts
+.guayadeque
+.local/share/gnome-shell
+.mozilla
+.ssh
+.themes
+
+.bash_history
+.full_history
+.gmrun_history
+.history_full
+.mysql_history

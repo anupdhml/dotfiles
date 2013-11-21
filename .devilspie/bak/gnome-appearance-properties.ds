@@ -1,0 +1,11 @@
+; generated_rule gvim
+( if 
+( and 
+( matches ( application_name ) "gnome-appearance-properties" )
+( matches ( window_name ) "Appearance Preferences" )
+) 
+( begin 
+(geometry "664x556")
+( println "match" )
+)
+)

@@ -1,0 +1,11 @@
+; generated_rule terminal
+( if 
+( and 
+( is ( application_name ) "Google Chrome" )
+( matches ( window_name ) "Grooveshark" )
+) 
+( begin 
+( set_workspace 2 )
+( println "match" )
+)
+)

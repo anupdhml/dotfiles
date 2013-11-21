@@ -1,0 +1,10 @@
+; generated_rule lastfm
+( if 
+( begin 
+( is ( window_class ) "Last.fm" )
+) 
+( begin 
+( set_viewport 2 )
+( println "match" )
+)
+)

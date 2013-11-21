@@ -1,0 +1,13 @@
+; generated_rule gvim
+( if 
+( and 
+( matches ( application_name ) "gmrun" )
+; ( matches ( window_name ) "Execute program feat. completion" )
+) 
+( begin 
+;(geometry "508x54+2052+373")
+;(geometry "+425+350")
+(center)
+( println "match" )
+)
+)

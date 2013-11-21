@@ -1,0 +1,8 @@
+[user]
+	email = anupdhml+git@gmail.com
+	name = anupdhml
+
+[color]
+	ui = true
+[core]
+	excludesfile = /home/anup/.gitignore_global

@@ -1,0 +1,466 @@
+" My Vimperator customization file
+" vim: ft=vimperator sw=2 sts=2 fdm=marker
+
+" preliminaries                                                             {{{
+
+" load all plugins
+loadplugins
+
+" check for other rc files
+source! /home/mel/.vimperatorrc.local
+
+" let otions
+let mapleader = ","
+
+" }}}
+
+" set                                                                       {{{
+
+" set the runtime path
+set runtimepath=/home/mel/.vimperator
+
+" set browser preferences
+set! browser.download.manager.showWhenStarting=false
+set! browser.download.dir='/home/mel/Desktop/Downloads'
+set! browser.download.lastDir='/home/mel/Desktop/Downloads'
+
+"Set default search as google
+set defsearch=google
+"set defsearch=duckduckgo
+set suggestengines=google
+"set suggestengines=duckduckgo
+"set suggestengines=google,w
+
+"Show bottom scrollbar only
+"set guioptions=b
+
+" Show numbers in tab.
+"set guioptions=n
+
+" Gui options for the new vimperator
+set toolbars=noaddons,nobookmarks,nomenu,nonavigation,tabs
+"set toolbars=noaddons,nobookmarks,nomenu,nonavigation
+
+" Enable menubar, toolbar, bookmark bar and scroll bars.
+"set guioptions=mTBrb
+
+" no beeps
+set visualbell
+
+"what to complete in the commandline
+set complete=sl
+
+" for searches
+set ignorecase
+
+" Stay in normal mode after loading webpage
+set focuscontent
+
+" enable auto completion on command line
+"set wildoptions=auto
+"set wildmode=list:full
+
+" disable autocomplete
+set autocomplete=false
+
+" animations in vimperator
+set animations=true
+
+" highlight all matches
+set hlsearch
+
+" using mainecoon. shows the statusline by default
+"set mainecoon=mu
+
+" disable the scrollbars
+set scrollbars=false
+
+" show numbers in tab
+set tabnumbers=true
+
+" disable the link info
+set showstatuslinks=0
+
+" message timeout
+set messagetimeout=3000
+"set messagetimeout=0
+" }}}
+
+" autocmd                                                                   {{{
+
+" Enable pass-through mode on all Google sites:
+" autocmd LocationChange .* js modes.passAllKeys = /google\.com/.test(buffer.URL)
+
+" Disable vimperator keys on Google mail and Google reader                
+"autocmd LocationChange .* :js modes.passAllKeys = /mail\.google\.com|www\.google\.com\/reader\/view/.test(buffer.URL)
+"autocmd LocationChange .* :js modes.passAllKeys = /www\.feedly\.com\/home|mail\.google\.com|www\.google\.com\/reader\/view/.test(buffer.URL)
+autocmd LocationChange .* :js modes.passAllKeys = /www\.feedly\.com\/home|mail\.google\.com|www\.google\.com\/calendar|www\.google\.com\/reader\/play|www\.google\.com\/reader\/view/.test(buffer.URL)
+"autocmd LocationChange .* :js modes.passAllKeys = /feedly\.com\/home/.test(buffer.URL)
+
+" feedSomeKeys_2.js
+"autocmd LocationChange .* fmapc
+" Gmail
+"autocmd LocationChange mail\.google\.com/(mail|a)/ :fmap -d 4 c / j k n p o u e x s r a # [ ] z ? gi gs gt gd ga gc
+
+" Google Reader
+"autocmd LocationChange www\.google\.(co\.jp|com)/reader :fmap! -v i j k n p m s v A r S N P X O gh ga gs gt gu u / ? t 
+
+" Auto-pin
+autocmd PageLoad listen.grooveshark.com js if(!getBrowser().mCurrentTab.pinned) getBrowser().pinTab(getBrowser().mCurrentTab);
+
+" Get my damn focus back
+autocmd PageLoad (www\\.youtube|groups.google)\\.com :normal <Esc>
+" }}}
+
+" plugin specific settings                                                  {{{
+
+" instapaper
+let g:instapaper_username = "anupdhml+instapaper@gmail.com"
+let g:instapaper_password = "amrakala"
+
+"buftab settings
+"let g:buftabs_showCurrentUrl = 1
+""style * .buftab_selected { font-weight: bold; }
+
+" }}}
+
+
+" look and feel                                                              {{{
+"colorscheme vimPgrayCustom
+"colorscheme default
+
+" change the status line color
+"default
+"hi StatusLine color: white; background: black;
+" desert
+"hi StatusLine -append font-family: monospace; font-size: 10pt; font-weight: normal; color: black; background: #D9D9D9;
+" mine
+"hi StatusLine color: black; background: #D9D9D9;
+"hi StatusLine color: black; background: #E5ECF9;
+"hi StatusLine color: white; background: black;
+""hi StatusLine color: white; background: #252525;
+
+"hi CmdLine background: #dedede; color: black; -moz-transition: all 0.25s;
+"hi ModeMsg color: purple; background: #dedede; border-radius: 1px; padding: 0px 5px;
+"hi StatusLine color: gray; background: #dedede; font-weight: normal;
+
+hi StatusLine background: transparent; color: gray;
+hi CmdLine background: white; color: black; -moz-transition: all 0.25s;
+hi ModeMsg color: green; background: transparent; border-radius: 1px; padding: 0px 5px;
+
+"hi StatusLine color: gray; background: #dedede; font-weight: normal;
+"hi ModeMsg color: purple; background: #dedede;
+
+" change the hint colors..
+" default
+"hi Hint font-family: monospace; font-size: 10px; font-weight: bold; color: white; background-color: red; border-color: ButtonShadow; border-width: 0px; border-style: solid; padding: 0px 1px 0px 1px;
+" desert
+"hi Hint font-family: monospace; font-size: 12pt; font-weight: normal; color: #fff; background-color: #666; padding: 0px 1px; border: 1px solid #FFFFFF;
+" mine
+"--hi Hint font-family: monospace; font-size: 12px; font-weight: bold; color: black; background-color: yellow; padding: 0px 1px 0px 1px; border: 1px solid orange;
+" mine extra
+"--hi HintActive background-color: #88FF00; color: black;
+"--hi HintElem background-color: none; color: none;
+"hi HintElem background-color: white; color: black;
+
+hi Hint						color: white; background-color: #800; border-color: ButtonShadow; font-family: Inconsolata; font-size: 12px; border-width: 0px; border-style: solid; padding 0 1px;
+hi Hint::after				content: attr(number);
+hi HintActive				color: black; background: #480;
+hi HintElem					color: black; background-color: #880; 
+hi HintImage				opacity: .5;
+
+" }}}
+
+
+" functions, javascript                                                     {{{
+
+" embedded JavaScript is possible:
+" move the RSS icon from the now-hidden location bar to the status bar instead
+"javascript <<EOF
+"(function(){
+    "var feedPanel = document.createElement("statusbarpanel");
+    "feedPanel.setAttribute("id", "feed-panel-clone");
+    "feedPanel.appendChild(document.getElementById("feed-button"));
+    "feedPanel.firstChild.setAttribute("style", "padding: 0; max-height: 16px;");
+    "document.getElementById("status-bar")
+            ".insertBefore(feedPanel, document.getElementById("security-button"));
+"})();
+"EOF
+
+" you can even add new functions which are then available to the :js command
+js <<EOF
+    toggle_element = function (name) {
+        document.getElementById(name).collapsed ^= 1;
+    }
+EOF
+
+:js << EOF
+function toggle_bottombar() {
+    var bb = document.getElementById('liberator-bottombar');
+    if (!bb)
+        return;
+    bb.style.height = (bb.style.height == '') ? '0px' : '';
+    bb.style.overflow = (bb.style.height == '') ? '' : 'hidden';
+    }
+EOF
+
+""scrapbook functions
+"javascript <<EOF
+"vimperator.commands.add(new Command(['sc[rap]'],
+  "function(){
+		"sbBrowserOverlay.execCapture(0, null, true , 'urn:scrapbook:root');
+  "},{
+    "usage: ['sc[rap]'],
+    "short_help: 'scrap this page',
+    "help: 'sc[rap]'
+  "}
+"));
+"EOF
+
+":js << EOF
+"function my_bookmark_adder() {
+  "// stolen from Vimperator source code:
+  "// http://code.google.com/p/vimperator-labs/source/browse/common/content/bookmarks.js
+  "let options = {};
+
+  "let bmarks = bookmarks.get(buffer.URL).filter(function (bmark) bmark.url == buffer.URL);
+
+  "if (bmarks.length == 1)   {
+    "let bmark = bmarks[0];
+
+    "options["-title"] = bmark.title;
+    "if (bmark.keyword)
+      "options["-keyword"] = bmark.keyword;
+    "if (bmark.tags.length > 0)
+      "options["-tags"] = bmark.tags.join(", ");
+    "}
+  "else {
+    "if (buffer.title != buffer.URL)
+      "options["-title"] = buffer.title;
+    "}
+
+  "// Doing some stuff you need
+  "if (buffer.URL.indexOf('http://stackoverflow.com') >= 0) {
+    "let d = new Date();
+    "let timetag = '[' + d.getFullYear() + '-' + d.getMonth() + '-' + (d.getDate() < 10 ? '0' : '') + d.getDate() + ']'
+    "options["-title"] = timetag + ' ' + options["-title"].replace(' - Stack Overflow', '');
+
+    "let mytags = ['StackOverflow']
+    "if (getBrowser().contentDocument.body.innerHTML.indexOf('vote-accepted-on') >= 0)
+      "mytags.push('Answered');
+
+    "if (options["-tags"])
+      "options["-tags"] = options["-tags"] + ", " + mytags.join(", ");
+    "else
+      "options["-tags"] = mytags.join(", ");
+    "}
+
+  "commandline.open(":",
+    "commands.commandToString({ command: "bmark", options: options, arguments: [buffer.URL], bang: bmarks.length == 1 }),
+    "modes.EX);
+  "}
+"EOF
+
+"# map a :js my_bookmark_adder()<CR>
+"map a :js setTimeout(my_bookmark_adder, 0)<CR>
+
+" }}}
+
+" commands, javascript                                                      {{{
+
+" make reading articles much easier with readability
+command readabilitynew open javascript:(%28function%28%29%7Bwindow.baseUrl%3D%27https%3A//www.readability.com%27%3Bwindow.readabilityToken%3D%27%27%3Bvar%20s%3Ddocument.createElement%28%27script%27%29%3Bs.setAttribute%28%27type%27%2C%27text/javascript%27%29%3Bs.setAttribute%28%27charset%27%2C%27UTF-8%27%29%3Bs.setAttribute%28%27src%27%2CbaseUrl%2B%27/bookmarklet/read.js%27%29%3Bdocument.documentElement.appendChild%28s%29%3B%7D%29%28%29)
+
+" make reading articles much easier
+command viewtext open javascript:%20(function%20()%20{window.location%20=%20'http://viewtext.org/article?url='%20+%20encodeURIComponent(window.location.href);})()
+
+" scrapbook like feature, but online
+command instapapertxt open javascript:function%20iptxt(){var%20d=document;try{if(!d.body)throw(0);window.location='http://www.instapaper.com/text?u='+encodeURIComponent(d.location.href);}catch(e){alert('Please%20wait%20until%20the%20page%20has%20loaded.');}}iptxt();void(0)
+
+
+" implement the instapaper bookmarklet as a command
+command instapapersave open javascript:function%20iprl5(){var%20d=document,z=d.createElement('scr'+'ipt'),b=d.body,l=d.location;try{if(!b)throw(0);d.title='(Saving...)%20'+d.title;z.setAttribute('src',l.protocol+'//www.instapaper.com/j/B8DQXJDOBEmn?u='+encodeURIComponent(l.href)+'&t='+(new%20Date().getTime()));b.appendChild(z);}catch(e){alert('Please%20wait%20until%20the%20page%20has%20loaded.');}}iprl5();void(0)
+
+
+" subscribe feeds with google-reader
+command subfeed open javascript:var%20b=document.body;var%20GR________bookmarklet_domain='http://www.google.com';if(b&&!document.xmlVersion){void(z=document.createElement('script'));void(z.src='http://www.google.com/reader/ui/subscribe-bookmarklet.js');void(b.appendChild(z));}else{location='http://www.google.com/reader/view/feed/'+encodeURIComponent(location.href)}
+
+" launch a google search for the current webpage
+command search open javascript:(function(){%20p=prompt('Search%20term:','');%20if(p){%20document.location.href='http://www.google.com/search?q=site:'+document.location.href.split('/')[2]+'%20'+escape(p)}%20})();
+
+" mini-game to help you procastinate 
+command kickass open javascript:var%20s%20=%20document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='http://erkie.github.com/asteroids.min.js';void(0);
+
+
+" }}}
+
+" commands, others                                                          {{{
+
+" bookmark all open tabs
+"command bmarkallt emenu Bookmarks.Bookmark All Tabs...
+
+" edit the webpage
+command edit open javascript:document.body.contentEditable='true'; document.designMode='on'; void 0
+command unedit open javascript:document.body.contentEditable='false'; document.designMode='false'; void 0
+
+" }}}
+
+" alias                                                                     {{{
+
+" for instapaper
+alias txt instapapertxt
+
+"  }}}
+
+
+" keyboard mappings                                                          {{{
+
+" map jk (in normal mode) for smooth scrolling.
+"map j <Down>
+"map k <Up>
+nnoremap j <Down>
+nnoremap k <Up>
+
+" map h and l for tab navigation
+"noremap h <C-p>
+"noremap l <C-n>
+"map <silent> <C-h> :tabmove! -1<CR>
+"map <silent> <C-l> :tabmove! +1<CR>
+noremap <S-Left> <C-p>
+noremap <S-Right> <C-n>
+noremap <silent> <S-Up> :tabduplicate<CR>
+noremap <silent> <S-Down> :tabnew<CR>
+map <silent> <S-A-Left> :tabmove! -1<CR>
+map <silent> <S-A-Right> :tabmove! +1<CR>
+map <C-S-PageUp> :tabm -1<CR>
+map <C-S-PageDown> :tabm +1<CR>
+map <S-A-Up> <C-S-e>
+
+" shortcuts for scrapbook
+noremap s :sbcap<CR>
+noremap <S-s> :emenu ScrapBook.Save All Tabs...<CR>
+
+" a shortcut to stop loading a page
+noremap x :stop<CR>
+
+" for emenu
+map e :emenu 
+
+"fix fire fm conflict
+"map <C-S-o> <C-S-o> 
+
+" better shortcuts for copy and paste
+"noremap <C-a> <C-v><C-a>
+"noremap <C-c> <C-v><C-c>
+"noremap <C-v> <C-v><C-v>
+"noremap <C-x> <C-v><C-x>
+"nnoremap <C-a> <C-v><C-a>
+"nnoremap <C-c> <C-v><C-c>
+"nnoremap <C-v> <C-v><C-v>
+"nnoremap <C-x> <C-v><C-x>
+"vnoremap <C-a> <C-v><C-a>
+"vnoremap <C-c> <C-v><C-c>
+"vnoremap <C-v> <C-v><C-v>
+"vnoremap <C-x> <C-v><C-x>
+
+" from the user defined instapaper command
+"noremap ` :instapapertxt<CR>
+nnoremap <Leader>` :instapapertxt<CR>
+
+" }}}
+
+" keyboard mappings, function keys.                                         {{{
+
+" map F1 for help (command-line), and Shift-F1 to help-all.
+noremap <F1> :help 
+noremap <S-F1> :help-all<CR>
+
+" map F2 to print.
+noremap <silent> <F2> :hardcopy<CR>
+noremap <silent> <S-F2> :hardcopy!<CR>
+
+"map F3 to handle pass-through mode
+"map <F1> <S-Esc>
+"noremap <F3> :emenu Tools.Vacuum places.sqlite<CR>
+"noremap <S-F3> :emenu Tools.Vacuum places.sqlite<CR>
+
+" map shift-F4 to toggle the status bar. F4 toggles the sidebar.
+noremap <S-F4> :js toggle_element('addon-bar')<CR>
+noremap <C-S-F4> :js toggle_element('status-bar')<CR>
+noremap <C-F4> :js toggle_bottombar()<CR>
+
+" map shift-F5 to source the rc file. F5 refreshes the page.
+noremap <S-F5> :source ~/.vimperatorrc<CR>
+
+" map F6 to control session manager.
+noremap <F6> :emenu Tools.Session Manager.
+noremap <S-F6> :emenu Tools.Session Manager.Save This Window…<CR>
+
+" map F7 to manage down them all.
+noremap <F7> :emenu Tools.Manager<CR>
+noremap <S-F7> :emenu Tools.DownThemAll!...<CR>
+
+" map F8 and Shift-F8 to toggle the bars. (toggle_element defined here in file.)
+"map <silent> <C-F8> :js toggle_element('toolbar-menubar')<CR>
+map <silent> <F8> :js toggle_element('PersonalToolbar')<CR>
+map <silent> <Leader><F8> :set gui=noaddons,bookmarks,nomenu,nonavigation,tabs<CR>
+map <silent> <S-F8> :js toggle_element('nav-bar')<CR>
+
+"map F9 for noscript functions.
+map <F9> :noscript popup<CR>
+map <S-F9> :noscript toggletemp<CR>
+
+"map F10.
+
+" map F11 for a better fullscreen. (F10 is for the menus...)
+"noremap <F11> :fullscreen<CR>
+"noremap <S-F11> :fullscreen<CR>
+
+" map F12 to toggle the tabbar
+"noremap <silent> <F12> :js options.showtabline = 1<CR>
+"noremap <silent> <S-F12> :js options.showtabline = 0<CR>
+" map F12 for fire.fm functions
+"map <F12> :emenu Tools.Fire.fm.Station.Start a station<CR>
+map <silent> <F12> :emenu Tools.Fire.fm.Station.<CR>
+map <S-F12> <C-S-f>
+"map <S-F12> :emenu Tools.Fire.fm.Stop<CR>
+map <C-F12> :emenu Tools.Fire.fm.Skip<CR>
+
+" }}}
+
+" keyboard mappings, plugins                                              {{{
+
+"for instapaper
+noremap <A-s> :instapapersave<CR>
+"noremap <A-s> :instapaper<CR>
+"noremap <A-s> :instapaper;sbcap<CR>
+
+" for readcatlater
+"noremap <A-s> :readcatlater<CR>
+
+" hotkeys for searching the current site with the default search engine
+" :search => :s
+"command! s -nargs=+ :search <args>
+" hotkey gs. Take request from clipboard and search in current site
+"map gs :js commandline.open(":", "search " + util.readFromClipboard(), modes.EX)<CR><CR>
+" hotkey gS. Same as last command, but open search engine in new tab
+"map gS :js liberator.open(gURLBar.textValue, liberator["NEW_TAB"]);commandline.open(":", "search " + util.readFromClipboard(), modes.EX)<CR><CR>
+
+" buff tab enable/disable
+"map <Leader><S-b> :set<Space>nobuftabs<CR>
+"map <Leader>b :set<Space>buftabs<CR>
+
+" the old readabilty.
+nnoremap <Leader>r :<C-u>js<Space>Readability.enableREADABILITY({target: {id: 'readability-statusbar-icon'}})<CR>
+" the new readability.
+"nnoremap <Leader>` :readabilitynew<CR>
+
+" }}}
+
+
+" miscellany                                                                {{{
+
+"echo "vimperatorrc sourced"
+
+" }}}
+

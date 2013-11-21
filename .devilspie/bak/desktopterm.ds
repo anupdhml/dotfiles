@@ -1,0 +1,10 @@
+; generated_rule desktopterm
+( if 
+( begin 
+( is ( window_name ) "DesktopTerm" )
+) 
+( begin 
+( set_viewport 4 )
+( println "match" )
+)
+)

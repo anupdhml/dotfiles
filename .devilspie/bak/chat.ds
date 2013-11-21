@@ -1,0 +1,12 @@
+; generated_rule chat
+( if 
+( and 
+( is ( application_name ) "Pidgin" )
+( is ( window_name ) "NickServ" )
+) 
+( begin 
+;( pin )
+( maximize )
+( println "match" )
+)
+)

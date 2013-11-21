@@ -1,0 +1,10 @@
+; generated_rule guayadeque
+( if 
+( begin 
+( is ( window_class ) "Guayadeque" )
+) 
+( begin 
+( set_workspace 2 )
+( println "match" )
+)
+)

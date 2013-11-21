@@ -1,0 +1,36 @@
+# Set window geometry
+#Top = 250
+#Left = 350
+Width = 400
+
+TabTimeout = 500
+ShowDotFiles = 1
+
+Terminal = urxvt
+TermExec = urxvt -e
+
+EXT:html = firefox file://%s
+
+URL_top = ${TermExec} '%s'                    #type [command] ctrl-enter
+URL_mc = ${TermExec} '%s'
+
+#You can make aliases withing gmrun, for example:
+# My second firefox profile (made with `firefox -ProfileManager`)
+#URL_ff =`/usr/bin/firefox -P 2`                         #type ff:
+
+# Google Desktop-esque search. Just type 'g:keyword' to use.
+URL_g = x-www-browser 'http://www.google.com.ph/search?q=%s'
+
+#URL_mailto = claws-mail '%s'
+URL_mailto = x-www-browser https://mail.google.com/mail?view=cm&tf=0&to=%s
+URL_mail = /usr/bin/google-chrome https://mail.google.com/    #type mail://
+
+URL_gc = /usr/bin/google-chrome --incognito %U
+URL_gs = /usr/bin/google-chrome --app-id="ipmhoehjioleannhdgjkpdmkcdlaagek"
+URL_gm = /opt/google/chrome/google-chrome --app-id="bipkofeecdgnmeienhfhdkiickajbpmf"
+URL_uf = /usr/bin/google-chrome http://ubuntuforums.org/      #type uf://
+URL_wr = wallpaper-random.sh
+URL_ws = wallpaper-show.sh
+
+URL_file = /usr/bin/nautilus %u
+

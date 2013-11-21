@@ -1,0 +1,10 @@
+; generated_rule
+( if 
+( begin 
+( is ( window_class ) "Stickynotes_applet" )
+) 
+( begin 
+( set_viewport 4 )
+( println "match" )
+)
+)
