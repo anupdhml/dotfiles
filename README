@@ -3,6 +3,7 @@ dotfiles from my linux setup.
 Some of these files are quite messy, and contain stuff I have gathered 
 over the years. I will sort them out one day. Maybe.
 
-Run the script provided to symlink each dotfile to home dir. 
+Just copy the dotfile to your home folder and tweak. Or you may choose to run 
+the script provided and symlink each dotfile to your home folder.
 But be careful, the script is very basic and it may cause problems. It worked
 for me though.
