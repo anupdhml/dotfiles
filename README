@@ -1,0 +1,8 @@
+dotfiles from my linux setup.
+
+Some of these files are quite messy, and contain stuff I have gathered 
+over the years. I will sort them out one day. Maybe.
+
+Run the script provided to symlink each dotfile to home dir. 
+But be careful, the script is very basic and it may cause problems. It worked
+for me though.
