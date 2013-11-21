@@ -198,13 +198,33 @@ smileyfunct() {
     fi
 }
 
+ps1_path_length=35
+shortpath() {
+    local PRE= NAME="$1" LENGTH=$ps1_path_length;
+    [[ "$NAME" != "${NAME#$HOME/}" || -z "${NAME#$HOME}" ]] &&
+        PRE+='~' NAME="${NAME#$HOME}" LENGTH=$[LENGTH-1];
+    ((${#NAME}>$LENGTH)) && NAME="/...${NAME:$[${#NAME}-LENGTH+4]}";
+    echo "$PRE$NAME"
+}
+
+# for showing git related stuff in the prompt
+source ~/bin/git-prompt.sh
+GIT_PS1_SHOWDIRTYSTATE=yes
+GIT_PS1_SHOWSTASHSTATE=yes
+#GIT_PS1_SHOWCOLORHINTS=yes 
+#GIT_PS1_SHOWUPSTREAM="auto"
+#GIT_PS1_SHOWUNTRACKEDFILES=yes 
+
 # Change the prompt color and style.
 if [ $LOGNAME = anup ]; then
+    true
     #PS1='\n\[\033[01;34m\]\w\[\033[00m\]\$ '
+    #PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;${namecol}m\]$name:\[\033[01;${dircol}m\]\w\[\033[00m\]\$ '
-    PS1="${debian_chroot:+($debian_chroot)}\$(smileyfunct)\[\033[01;${namecol}m\]$name:\[\033[01;${dircol}m\]\w\[\033[00m\]\$ "
-    #PS1="${debian_chroot:+($debian_chroot)}\$(smileyfunct)\[\033[01;${namecol}m\]$name:\[\033[01;${dircol}m\]\w\[\033[00m\]\$(__git_ps1)\$ "
     #PS1="${debian_chroot:+($debian_chroot)}\[\`if [[ \$? = "0" ]]; then echo '\e[0;${namecol}m\]$smiley'; else echo '\e[0;31m\]$frown'; fi\`\]\[\033[01;${namecol}m\]$name:\[\033[01;${dircol}m\]\w\[\033[00m\]\$ "
+    #PS1="${debian_chroot:+($debian_chroot)}\$(smileyfunct)\[\033[01;${namecol}m\]$name:\[\033[01;${dircol}m\]\w\[\033[01;30m\]\$(__git_ps1 \"(%s)\")\[\033[00m\]\$ "
+    #" # this line is here to fix the syntax highligthing. above PS1 is valid but too many quotes garbled the highlighting
+    PS1='$(smileyfunct)\[\033[01;${namecol}m\]$name:\[\033[01;${dircol}m\]$(shortpath "$PWD")\[\033[01;30m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
 elif [ $(id -u) -eq 0 ]; then
     PS1="\\[$(tput setaf 1)\\]\\u@\\h:\\w# \\[$(tput sgr0)\\]" # you are root, set red colour prompt
 else 
@@ -393,9 +413,6 @@ export LESS=' -R '
 #}
 
 #export PROMPT_COMMAND="_update_ps1"
-
-#source ~/bin/git-prompt.sh
-#PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 
 ###############################################################################
 #  Customize BASH PS1 prompt to show current GIT repository and branch.
