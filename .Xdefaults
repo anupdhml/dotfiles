@@ -42,7 +42,7 @@ urxvt*termName: rxvt-unicode-256color
 !urxvt*termName: xterm
 
 ! icon file
-URxvt*iconFile: $HOME/data/image-files/icons/launcher-icons/terminal-faneza.svg
+URxvt*iconFile: /home/anup/data/image-files/icons/launcher-icons/terminal-faneza.svg
 
 #############################################
 
