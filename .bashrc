@@ -217,7 +217,6 @@ GIT_PS1_SHOWSTASHSTATE=yes
 
 # Change the prompt color and style.
 if [ $LOGNAME = anup ]; then
-    true
     #PS1='\n\[\033[01;34m\]\w\[\033[00m\]\$ '
     #PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;${namecol}m\]$name:\[\033[01;${dircol}m\]\w\[\033[00m\]\$ '

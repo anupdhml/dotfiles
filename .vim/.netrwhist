@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/mel/textfiles'
-let g:netrw_dirhist_2='/media/DATA/.Personal/Documents/Notes'
-let g:netrw_dirhist_3='/home/anup/text'
-let g:netrw_dirhist_4='/media/DATA/.Personal/Documents/Notes'
-let g:netrw_dirhist_5='/usr/share/dict'
-let g:netrw_dirhist_6='/home/anup/public_html/tf/anup-mgame-nov/www/protected/modules/games/views/pyramid'

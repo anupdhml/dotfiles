@@ -13,7 +13,8 @@ set lines=999 columns=159
 
 " font for gui
 "set guifont=Times\ New\ Roman\ 12
-set guifont=Dejavu\ Sans\ Mono\ 10
+"set guifont=Dejavu\ Sans\ Mono\ 10
+set guifont=Dejavu\ Sans\ Mono\ For\ Powerline\ 11
 
 " colorscheme work
 hi Normal guifg=#323232 guibg=#f0f0f0

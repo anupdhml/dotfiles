@@ -521,19 +521,22 @@ vmap <F7> <Plug>TransliterateApply
 let g:ctrlp_map = '<c-\>'
 let g:ctrlp_cmd = 'CtrlP'
 
-" powerline
 set noshowmode " now that we have powerline, no need for this
 
-let g:Powerline_symbols = 'fancy'
-let g:Powerline_stl_path_style = 'relative'
+" old powerline
+""let g:Powerline_symbols = 'fancy'
+""let g:Powerline_stl_path_style = 'relative'
 "let Powerline_stl_path_style = 'filename'
 "let g:Powerline_stl_path_style = 'short'
 "let g:Powerline_stl_path_style = 'full'
 "let g:Powerline_colorscheme = 'skwp'
 "call Pl#Theme#InsertSegment('currhigroup', 'before', 'fileformat')
 "Shows a segment indicating that the current buffer has trailing white spaces.
-call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
-"
+""call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
+
+" new powerline
+set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim
+
 " Instantly leave insert mode when pressing <Esc> {{{
     set ttimeoutlen=10
     augroup FastEscape
