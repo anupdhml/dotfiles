@@ -119,7 +119,7 @@ export HISTCONTROL=erasedups:ignoreboth
 
 # Show date in the history command
 #export HISTTIMEFORMAT="%d/%m/%y %T "
-export HISTTIMEFORMAT='%F %T '
+#export HISTTIMEFORMAT='%F %T '
 
 # large histfilesize
 #export HISTSIZE=9999
@@ -136,12 +136,18 @@ export HISTIGNORE="&:[bf]g:ls:ll:la:exit:fortune:clear:history"
 #bind '"\e[A"':history-search-backward
 #bind '"\e[B"':history-search-forward
 
+# function from here will be called from $PROMPT_COMMAND
+source $HOME/bin/loghistory.sh
+
 # Managing history
 # right before prompting for the next command, save the previous command in a file.
 hF()
 {
-  #echo "$(date +%Y-%m-%d--%H-%M-%S) $(hostname) $PWD $(history 1)" >> ~/.full_history
-  echo "$(hostname) $PWD $(history 1)"  >> ~/.full_history
+  unset HISTTIMEFORMAT
+  histentry="$(date +%Y-%m-%d--%H:%M:%S) ~~~ $(hostname):$PWD ~~~ $(history 1)" 
+  echo "$histentry" >> ~/.full_history || echo "hF: file error." ; return 1
+  #echo "$(date +%Y-%m-%d--%H:%M:%S) $PWD $(history 1)" >> ~/.full_history
+  #echo "$(hostname) $PWD $(history 1)"  >> ~/.full_history
 }
 #PROMPT_COMMAND=histFunc
 
@@ -243,14 +249,15 @@ fi
 case "$TERM" in
 xterm*|rxvt*)
     #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
-    #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"'
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"; history -a; history -n; hF'
+    #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"; history -a; history -n; hF'
+    #PROMPT_COMMAND='history -a;history -n;hF'
+    export PROMPT_COMMAND="history -a; history -c; history -r; hF; _loghistory -h; $PROMPT_COMMAND"
+
     # Show the currently running command in the terminal title:
     # http://www.davidpashley.com/articles/xterm-titles-with-bash.html
     show_command_in_title_bar()
     {
         case "$BASH_COMMAND" in
-            #*\033]0*)
             *\033]0*)
                 # The command is trying to set the title bar as well;
                 # this is most likely the execution of $PROMPT_COMMAND.
@@ -258,7 +265,7 @@ xterm*|rxvt*)
                 # output them.
                 ;;
             *)
-                echo -ne "\033]0;${USER}@${HOSTNAME}: ${BASH_COMMAND}\007"
+                echo -ne "\033]0;${USER}@${HOSTNAME}:${PWD}: ${BASH_COMMAND}\007"
                 ;;
         esac
     }
