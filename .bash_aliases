@@ -85,6 +85,7 @@ alias vi="vim"
 #############
 
 # handy stuff
+alias p='pwd'
 alias h='history'
 alias j='jobs -l'
 alias rd='cd "`pwd -P`"'                # if in directory containing symlink in path, change to "real" path
@@ -153,6 +154,15 @@ alias cd-tf="cd $HOME/public_html/tf/"
 alias clear-assets-mcontent="rm -rfv $HOME/public_html/anup-mcontent-nov/www/assets/*"
 alias clear-assets-mgame="rm -rfv $HOME/public_html/anup-mgame-nov/www/assets/*"
 alias cd-tiltfactor="cd $HOME/Desktop/tiltfactor/"
+
+# dump enhanced history log
+alias hhh="cat $HOME/.bash_log"
+# dump history of directories visited
+#alias histdirs="cat $HOME/.bash_log | awk -F ' ~~~ ' '{print $2}' | uniq"
+hh () {
+    #cat $HOME/.bash_log | awk -F ' ~~~ ' '{print $2}' | uniq
+    cat $HOME/.bash_log | awk -F ' ~~~ ' '{print $2}' | cut -d':' -f2 | uniq
+}
 
 #############################################################################################
 
@@ -230,10 +240,10 @@ alias gitouch='find . \( -type d -empty \) -and \( -not -regex ./\.git.* \) -exe
 alias gitp='git pull'
 alias gita='git add'
 alias gitb='git branch'
-alias gitc='git commit'
-alias gitca='git commit -a -m'
-alias gitch='git checkout'
+alias gitc='git checkout'
 alias gitcl='git clone'
+alias gitco='git commit'
+alias gitca='git commit -a -m'
 alias gits='git status'
 
 ## svn stuff
