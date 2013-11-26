@@ -272,7 +272,9 @@ URxvt.borderColor:      0
 !urxvt*Italicfont:             xft:Dejavu Sans Mono:style=Oblique:size=11:antialias=true:hinting=true
 !
 ! for vim powerline
-urxvt*font:             xft:Dejavu Sans Mono for Powerline:style=Book:size=11:antialias=true:hinting=true,xft:Sanskrit2003
+!urxvt*font:             xft:Dejavu Sans Mono for Powerline:style=Book:size=11:antialias=true:hinting=true,xft:Sanskrit2003
+!urxvt*font:             xft:Dejavu Sans Mono for Powerline:style=Book:size=11:antialias=true:hinting=true,xft:kalimati
+urxvt*font:             xft:Dejavu Sans Mono for Powerline:style=Book:size=11:antialias=true:hinting=true,xft:sarai
 urxvt*Boldfont:             xft:Dejavu Sans Mono for Powerline:style=Bold:size=11:antialias=true:hinting=true
 urxvt*Italicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=11:antialias=true:hinting=true
 urxvt*boldItalicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=11:antialias=true:hinting=true
