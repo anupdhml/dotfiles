@@ -25,7 +25,8 @@ shopt -s checkwinsize
 #set -o xtrace -o errexit # Debug
 #shopt -s nullglob
 #set -o noclobber -o nounset -o pipefail
-set -o noclobber -o pipefail
+#set -o noclobber -o pipefail
+set -o pipefail
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
