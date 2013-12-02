@@ -174,10 +174,10 @@ if [ -z "$DISPLAY" ]; then
     smiley=""
     frown="!"
 else
-    #name="ανουπ-$kernel_version"
-    #name="अनुप"
+    name_list=(anup अनुप ανουπ)
+    no_of_names=${#name_list[@]}
+    name=${name_list[RANDOM%$no_of_names]}
     #name=""
-    name="ανουπ"
     smiley="|^◡^|"
     frown="|T_T|"
     #frown="|ಠ_ಠ|"
