@@ -159,9 +159,12 @@ alias cd-tiltfactor="cd $HOME/Desktop/tiltfactor/"
 alias hhh="cat $HOME/.bash_log"
 # dump history of directories visited
 #alias histdirs="cat $HOME/.bash_log | awk -F ' ~~~ ' '{print $2}' | uniq"
-hh () {
+hhf () {
     #cat $HOME/.bash_log | awk -F ' ~~~ ' '{print $2}' | uniq
     cat $HOME/.bash_log | awk -F ' ~~~ ' '{print $2}' | cut -d':' -f2 | uniq
+}
+hh () {
+    hhf | tail
 }
 
 #############################################################################################
