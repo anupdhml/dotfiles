@@ -86,6 +86,7 @@ alias vi="vim"
 
 # handy stuff
 alias p='pwd'
+alias c='clear'
 alias h='history'
 alias j='jobs -l'
 alias rd='cd "`pwd -P`"'                # if in directory containing symlink in path, change to "real" path

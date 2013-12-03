@@ -564,7 +564,7 @@ let g:SuperTabMappingBackward = '<tab>'
 ""let g:SuperTabCrMapping=1
 
 " for markdown files. disable folding
-"let g:vim_markdown_folding_disabled=1
+let vim_markdown_folding_disabled=1
 
 
 "==============================================================================
