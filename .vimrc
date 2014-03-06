@@ -12,18 +12,19 @@ call pathogen#infect()
 
 " text options
 syntax on   " syntax highlight
-"set wrap    " Wrap too long lines
+set wrap    " Wrap too long lines
 "set nowrap    " do not Wrap too long lines
-"set textwidth=80   " text width
+set textwidth=200   " text width
 "set textwidth=0   " don't wrap words
 
 " indent options
 filetype plugin indent on   " auto-detect the filetype
-set tabstop=4   " Tabs are 4 characters
-"set tabstop=2   " Tabs are 2 characters
+"set tabstop=4   " Tabs are 4 characters
+set tabstop=2   " Tabs are 2 characters
 "setlocal softtabstop=4
-set shiftwidth=4    " (Auto)indent uses 4 characters
-"set shiftwidth=2    " (Auto)indent uses 2 characters
+set softtabstop=2
+"set shiftwidth=4    " (Auto)indent uses 4 characters
+set shiftwidth=2    " (Auto)indent uses 2 characters
 set expandtab   " spaces instead of tabs
 set smarttab
 set autoindent   " guess indentation
@@ -51,6 +52,7 @@ set lcs=tab:>-,eol:$,nbsp:X,trail:#    " strings to use in 'list' mode
 "set popt=left:8pc,right:3pc     " print options
 "set foldmethod=marker   " Fold using markers {{{ like this }}}
 "set foldmethod=manual
+"set foldmethod=indent
 
 " other options
 set autowrite " write before hiding a buffer
@@ -390,8 +392,8 @@ nmap <Return> o<Esc>
 "noremap <silent> <S-o> o
 "
 " typos
-cmap Q q
-cmap W w
+"cmap Q q
+"cmap W w
 "
 " After shifting a visual block, select it again
 vnoremap < <gv
@@ -518,8 +520,16 @@ vmap <F7> <Plug>TransliterateApply
 "vmap <Leader>t <Plug>TransliterateApply
 
 " for ctrlp
-let g:ctrlp_map = '<c-\>'
+let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+"let g:ctrlp_custom_ignore = {
+  "\ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  "\ 'file': '\v\.(exe|so|dll)$',
+  "\ 'link': 'some_bad_symbolic_links',
+  "\ }
+"let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
 
 set noshowmode " now that we have powerline, no need for this
 

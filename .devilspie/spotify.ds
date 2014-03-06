@@ -4,7 +4,7 @@
 ( is ( window_class ) "Spotify" )
 ) 
 ( begin 
-( set_workspace 2 )
+( set_workspace 3 )
 ( println "match" )
 )
 )

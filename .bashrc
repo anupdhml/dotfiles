@@ -7,6 +7,10 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+#if [ -d "$HOME/.local/bin" ]; then
+    #PATH="$HOME/.local/bin:$PATH"
+#fi
+
 #export JAVA_HOME="/usr/lib/jvm/java-6-openjdk"
 export JAVA_HOME="/usr/lib/jvm/java-6-sun"
 
@@ -138,7 +142,7 @@ export HISTIGNORE="&:[bf]g:ls:ll:la:exit:fortune:clear:history"
 #bind '"\e[B"':history-search-forward
 
 # function from here will be called from $PROMPT_COMMAND
-source $HOME/bin/loghistory.sh
+#source $HOME/bin/loghistory.sh
 
 # Managing history
 # right before prompting for the next command, save the previous command in a file.
@@ -252,7 +256,7 @@ xterm*|rxvt*)
     #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
     #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"; history -a; history -n; hF'
     #PROMPT_COMMAND='history -a;history -n;hF'
-    export PROMPT_COMMAND="history -a; history -c; history -r; hF; _loghistory -h; $PROMPT_COMMAND"
+    export PROMPT_COMMAND="history -a; history -c; history -r; hF; $PROMPT_COMMAND"
 
     # Show the currently running command in the terminal title:
     # http://www.davidpashley.com/articles/xterm-titles-with-bash.html
@@ -532,3 +536,6 @@ export LESS=' -R '
 
 # passing bash aliases to sudo
 alias sudo='sudo '
+
+# solve ssh issues in tmux
+. ~/bin/ssh-find-agent.bash

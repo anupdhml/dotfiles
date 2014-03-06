@@ -1,3 +1,33 @@
+! xscreensaver ---------------------------------------------------------------
+
+!font settings
+xscreensaver.Dialog.headingFont:        -*-dina-bold-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.bodyFont:           -*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.labelFont:          -*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.unameFont:          -*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.buttonFont:         -*-dina-bold-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.dateFont:           -*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.passwd.passwdFont:         -*-dina-bold-r-*-*-10-*-*-*-*-*-*-*
+!general dialog box (affects main hostname, username, password text)
+xscreensaver.Dialog.foreground:         #EDEDED
+xscreensaver.Dialog.background:         #202020
+xscreensaver.Dialog.topShadowColor:     #202024
+xscreensaver.Dialog.bottomShadowColor:  #202024
+xscreensaver.Dialog.Button.foreground:  #EDEDFF
+xscreensaver.Dialog.Button.background:  #444
+!username/password input box and date text colour
+xscreensaver.Dialog.text.foreground:    #EDEDFF
+xscreensaver.Dialog.text.background:    #444
+xscreensaver.Dialog.internalBorderWidth:24
+xscreensaver.Dialog.borderWidth:        20
+xscreensaver.Dialog.shadowThickness:    2
+!timeout bar (background is actually determined by Dialog.text.background)
+xscreensaver.passwd.thermometer.foreground:  #A9B7C4
+xscreensaver.passwd.thermometer.background:  #202020
+xscreensaver.passwd.thermometer.width:       8
+!datestamp format--see the strftime(3) manual page for details
+xscreensaver.dateFormat:    %I:%M%P %a %b %d, %Y
+
 ! Xft settings ---------------------------------------------------------------
 
 !Xft.dpi:        96
@@ -42,7 +72,8 @@ urxvt*termName: rxvt-unicode-256color
 !urxvt*termName: xterm
 
 ! icon file
-URxvt*iconFile: /home/anup/data/image-files/icons/launcher-icons/terminal-faneza.svg
+!URxvt*iconFile: /home/anup/data/image-files/icons/launcher-icons/terminal-faneza.svg
+URxvt*iconFile: /usr/share/icons/elementary-xfce/apps/64/xfce-terminal.png
 
 #############################################
 
@@ -52,7 +83,8 @@ URxvt*iconFile: /home/anup/data/image-files/icons/launcher-icons/terminal-faneza
 !URxvt*geometry: 159x45
 !URxvt*geometry: 200x50
 !choice
-URxvt*geometry: 160x46
+!URxvt*geometry: 160x46
+URxvt*geometry: 100x63
 !
 !URxvt*geometry: 160x45
 
@@ -274,10 +306,11 @@ URxvt.borderColor:      0
 ! for vim powerline
 !urxvt*font:             xft:Dejavu Sans Mono for Powerline:style=Book:size=11:antialias=true:hinting=true,xft:Sanskrit2003
 !urxvt*font:             xft:Dejavu Sans Mono for Powerline:style=Book:size=11:antialias=true:hinting=true,xft:kalimati
-urxvt*font:             xft:Dejavu Sans Mono for Powerline:style=Book:size=11:antialias=true:hinting=true,xft:sarai
-urxvt*Boldfont:             xft:Dejavu Sans Mono for Powerline:style=Bold:size=11:antialias=true:hinting=true
-urxvt*Italicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=11:antialias=true:hinting=true
-urxvt*boldItalicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=11:antialias=true:hinting=true
+!
+urxvt*font:             xft:Dejavu Sans Mono for Powerline:style=Book:size=10:antialias=true:hinting=true,xft:sarai
+urxvt*Boldfont:             xft:Dejavu Sans Mono for Powerline:style=Bold:size=10:antialias=true:hinting=true
+urxvt*Italicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=10:antialias=true:hinting=true
+urxvt*boldItalicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=10:antialias=true:hinting=true
 
 ! traditional fonts - a more traditional font setup in lieu of xft
 !URxvt*font:-*-courier-medium-r-normal-*-*-140-*-*-*-*-iso8859-1
@@ -286,7 +319,7 @@ urxvt*boldItalicfont:             xft:Dejavu Sans Mono for Powerline:style=Obliq
 !URxvt*boldFont:*-*-fixed-bold-r-normal--*-*-110-*-*-*-*-iso8859-1
 
 ! fix font width
-URxvt*letterSpace: -1
+!URxvt*letterSpace: -1
 !URxvt*lineSpace: -1
 
 #############################################

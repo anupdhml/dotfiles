@@ -70,7 +70,7 @@
 ####################################################################
 
 ##Use the thinkvantage button productively...
-"nautilus ~/Desktop/current"
+"thunar ~/Desktop/current"
  XF86Launch1
 
 "gmrun"
@@ -87,15 +87,15 @@
  #Shift + Control + Escape
 
 ##Open the dropbox folder
-"nautilus ~/Dropbox"
+"thunar ~/Dropbox"
  Control + Alt + j
 
 ##Open the DATA folder
-"nautilus /media/DATA"
+"thunar /media/DATA"
  Control + Alt + p
 
 ##Open the Downloads folder
-"nautilus ~/Downloads"
+"thunar ~/Downloads"
  Control + Alt + o
 
 ##Multimedia keys that work on most common programs
@@ -122,7 +122,7 @@
  Control + Alt + Shift + t
 "firefox"
  Control + Alt + w
-"nautilus"
+"thunar"
  Control + Alt + h
 "gnome-system-monitor"
  Control + Alt + End

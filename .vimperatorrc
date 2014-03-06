@@ -336,9 +336,10 @@ map <C-S-PageUp> :tabm -1<CR>
 map <C-S-PageDown> :tabm +1<CR>
 map <S-A-Up> <C-S-e>
 
-" shortcuts for scrapbook
-noremap s :sbcap<CR>
-noremap <S-s> :emenu ScrapBook.Save All Tabs...<CR>
+" shortcuts for scrapbook, pocket
+noremap s :open saveWithPocket<CR>
+"noremap s :scrap<CR>
+"noremap <S-s> :emenu ScrapBook.Save All Tabs...<CR>
 
 " a shortcut to stop loading a page
 noremap x :stop<CR>
@@ -421,10 +422,10 @@ map <S-F9> :noscript toggletemp<CR>
 "noremap <silent> <S-F12> :js options.showtabline = 0<CR>
 " map F12 for fire.fm functions
 "map <F12> :emenu Tools.Fire.fm.Station.Start a station<CR>
-map <silent> <F12> :emenu Tools.Fire.fm.Station.<CR>
+"map <silent> <F12> :emenu Tools.Fire.fm.Station.<CR>
 map <S-F12> <C-S-f>
 "map <S-F12> :emenu Tools.Fire.fm.Stop<CR>
-map <C-F12> :emenu Tools.Fire.fm.Skip<CR>
+"map <C-F12> :emenu Tools.Fire.fm.Skip<CR>
 
 " }}}
 
