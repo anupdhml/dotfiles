@@ -1,0 +1,11 @@
+; generated_rule gvim
+( if 
+( begin 
+( matches ( window_class ) "Gvim" )
+( is ( application_name ) "Vim" )
+) 
+( begin 
+( opacity 93 )
+( println "match" )
+)
+)

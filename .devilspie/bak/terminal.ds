@@ -1,0 +1,11 @@
+; generated_rule terminal
+( if 
+( and 
+( is ( application_name ) "Terminal" )
+( is ( window_class ) "Gnome-terminal" )
+) 
+( begin 
+( maximize )
+( println "match" )
+)
+)

@@ -1,0 +1,10 @@
+; generated_rule chrome
+( if 
+( and 
+( is ( application_name ) "Google Chrome" )
+) 
+( begin 
+( set_workspace 3 )
+( println "match" )
+)
+)

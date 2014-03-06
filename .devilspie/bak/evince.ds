@@ -1,0 +1,11 @@
+; generated_rule evince
+( if 
+( and 
+( matches ( application_name ) "Document Previewer" )
+( matches ( window_class ) "Evince" )
+) 
+( begin 
+( maximize )
+( println "match" )
+)
+)

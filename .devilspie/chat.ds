@@ -1,0 +1,13 @@
+; generated_rule chat
+( if 
+( and 
+( is ( application_name ) "Pidgin" )
+( is ( window_class ) "Pidgin" )
+) 
+( begin 
+;( pin )
+( set_workspace 2 )
+;( maximize )
+( println "match" )
+)
+)
