@@ -119,25 +119,25 @@ fi
 
 # setup colors
 #if [ -z "$DISPLAY" ] && [ $(tty) != /dev/tty6 ] ; then
-if [ "$TERM" = "linux" ] && [ $(tty) != /dev/tty6 ]; then
-    echo -en "\e]P0$c0" #black
-    echo -en "\e]P8$c8" #darkgrey
-    echo -en "\e]P1$c1" #darkred
-    echo -en "\e]P9$c9" #red
-    echo -en "\e]P2$c2" #darkgreen
-    echo -en "\e]PA$cA" #green
-    echo -en "\e]P3$c3" #brown
-    echo -en "\e]PB$cB" #yellow
-    echo -en "\e]P4$c4" #darkblue
-    echo -en "\e]PC$cC" #blue
-    echo -en "\e]P5$c5" #darkmagenta
-    echo -en "\e]PD$cD" #magenta
-    echo -en "\e]P6$c6" #darkcyan
-    echo -en "\e]PE$cE" #cyan
-    echo -en "\e]P7$c7" #lightgrey
-    echo -en "\e]PF$cF" #white
-    #clear # bring us back to default input colours
-fi
+#if [ "$TERM" = "linux" ] && [ $(tty) != /dev/tty6 ]; then
+    #echo -en "\e]P0$c0" #black
+    #echo -en "\e]P8$c8" #darkgrey
+    #echo -en "\e]P1$c1" #darkred
+    #echo -en "\e]P9$c9" #red
+    #echo -en "\e]P2$c2" #darkgreen
+    #echo -en "\e]PA$cA" #green
+    #echo -en "\e]P3$c3" #brown
+    #echo -en "\e]PB$cB" #yellow
+    #echo -en "\e]P4$c4" #darkblue
+    #echo -en "\e]PC$cC" #blue
+    #echo -en "\e]P5$c5" #darkmagenta
+    #echo -en "\e]PD$cD" #magenta
+    #echo -en "\e]P6$c6" #darkcyan
+    #echo -en "\e]PE$cE" #cyan
+    #echo -en "\e]P7$c7" #lightgrey
+    #echo -en "\e]PF$cF" #white
+    ##clear # bring us back to default input colours
+#fi
 
 # set PATH so it includes user's private bin if it exists
 #if [ -d "$HOME/bin" ] ; then

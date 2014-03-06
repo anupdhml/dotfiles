@@ -167,7 +167,7 @@ hF()
 
 # for PS1
 kernel_version=$(uname -r)
-if [ -z "$DISPLAY" ]; then
+if [ -z "$DISPLAY" ] && [ -z "$SSH_CONNECTION" ]; then
     name="anup-$kernel_version"
     #smiley=":)"
     #frown=":("
@@ -223,14 +223,15 @@ GIT_PS1_SHOWSTASHSTATE=yes
 #GIT_PS1_SHOWUNTRACKEDFILES=yes 
 
 # Change the prompt color and style.
-if [ $LOGNAME = anup ]; then
+if [ $LOGNAME = anup ] || [ $LOGNAME = adhamala ]; then
     #PS1='\n\[\033[01;34m\]\w\[\033[00m\]\$ '
     #PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;${namecol}m\]$name:\[\033[01;${dircol}m\]\w\[\033[00m\]\$ '
     #PS1="${debian_chroot:+($debian_chroot)}\[\`if [[ \$? = "0" ]]; then echo '\e[0;${namecol}m\]$smiley'; else echo '\e[0;31m\]$frown'; fi\`\]\[\033[01;${namecol}m\]$name:\[\033[01;${dircol}m\]\w\[\033[00m\]\$ "
     #PS1="${debian_chroot:+($debian_chroot)}\$(smileyfunct)\[\033[01;${namecol}m\]$name:\[\033[01;${dircol}m\]\w\[\033[01;30m\]\$(__git_ps1 \"(%s)\")\[\033[00m\]\$ "
     #" # this line is here to fix the syntax highligthing. above PS1 is valid but too many quotes garbled the highlighting
-    PS1='$(smileyfunct)\[\033[01;${namecol}m\]$name:\[\033[01;${dircol}m\]$(shortpath "$PWD")\[\033[01;30m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
+    #PS1='$(smileyfunct)\[\033[01;${namecol}m\]$name:\[\033[01;${dircol}m\]$(shortpath "$PWD")\[\033[01;30m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
+    PS1='$(smileyfunct)\[\033[01;${namecol}m\]$name@\h:\[\033[01;${dircol}m\]$(shortpath "$PWD")\[\033[01;30m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
 elif [ $(id -u) -eq 0 ]; then
     PS1="\\[$(tput setaf 1)\\]\\u@\\h:\\w# \\[$(tput sgr0)\\]" # you are root, set red colour prompt
 else 
@@ -252,7 +253,8 @@ xterm*|rxvt*)
     #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
     #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"; history -a; history -n; hF'
     #PROMPT_COMMAND='history -a;history -n;hF'
-    export PROMPT_COMMAND="history -a; history -c; history -r; hF; _loghistory -h; $PROMPT_COMMAND"
+    #export PROMPT_COMMAND="history -a; history -c; history -r; hF; _loghistory -h; $PROMPT_COMMAND"
+    export PROMPT_COMMAND="history -a; history -c; history -r; hF; $PROMPT_COMMAND"
 
     # Show the currently running command in the terminal title:
     # http://www.davidpashley.com/articles/xterm-titles-with-bash.html
@@ -532,3 +534,9 @@ export LESS=' -R '
 
 # passing bash aliases to sudo
 alias sudo='sudo '
+
+#set -o history
+#HISTFILE=~/.bash_history
+#HISTSIZE=500
+#HISTFILESIZE=500
+#SAVEHIST=100000

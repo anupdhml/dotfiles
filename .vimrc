@@ -19,11 +19,11 @@ syntax on   " syntax highlight
 
 " indent options
 filetype plugin indent on   " auto-detect the filetype
-set tabstop=4   " Tabs are 4 characters
-"set tabstop=2   " Tabs are 2 characters
+"set tabstop=4   " Tabs are 4 characters
+set tabstop=2   " Tabs are 2 characters
 "setlocal softtabstop=4
-set shiftwidth=4    " (Auto)indent uses 4 characters
-"set shiftwidth=2    " (Auto)indent uses 2 characters
+"set shiftwidth=4    " (Auto)indent uses 4 characters
+set shiftwidth=2    " (Auto)indent uses 2 characters
 set expandtab   " spaces instead of tabs
 set smarttab
 set autoindent   " guess indentation
@@ -284,7 +284,7 @@ xnoremap  `  s``<Esc>P<Right>
 "
 
 "--------
-" buffers
+"uffers
 "--------
 " Fast switching between buffers
 " The current buffer will be saved before switching to the next one.
@@ -390,8 +390,8 @@ nmap <Return> o<Esc>
 "noremap <silent> <S-o> o
 "
 " typos
-cmap Q q
-cmap W w
+"cmap Q q
+"cmap W w
 "
 " After shifting a visual block, select it again
 vnoremap < <gv
@@ -459,6 +459,9 @@ autocmd BufEnter * :syntax sync fromstart
 "autocmd VimEnter * NERDTree
 "autocmd BufEnter * NERDTreeMirror
 
+" remove trailing whitespaces
+autocmd FileType c,cpp,java,php,javascript,python autocmd BufWritePre <buffer> :%s/\s\+$//e
+
 "==============================================================================
 " commands...
 "==============================================================================
@@ -518,7 +521,7 @@ vmap <F7> <Plug>TransliterateApply
 "vmap <Leader>t <Plug>TransliterateApply
 
 " for ctrlp
-let g:ctrlp_map = '<c-\>'
+let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
 set noshowmode " now that we have powerline, no need for this
@@ -535,7 +538,7 @@ set noshowmode " now that we have powerline, no need for this
 ""call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
 
 " new powerline
-set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim
+set rtp+=$HOME/.local/lib/python2.6/site-packages/powerline/bindings/vim
 
 " Instantly leave insert mode when pressing <Esc> {{{
     set ttimeoutlen=10
@@ -555,6 +558,11 @@ let g:syntastic_auto_loc_list=2
 "let g:syntastic_mode_map = { 'mode': 'active',
 	"\ 'active_filetypes': [],
 	"\ 'passive_filetypes': ['python'] }
+
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+
+"let g:syntastic_disabled_filetypes=['php']
 
 " supertab
 "let g:SuperTabDefaultCompletionType = "context"
@@ -703,7 +711,7 @@ endfunction
 "endfunction
 
 "if ($TERM == "linux" && $TTY == "/dev/tty1")
-if ($DISPLAY == "") " in tty
+if ($DISPLAY == "" && $SSH_CONNECTION == "") " in tty
   if ( ($TTY == "/dev/tty1") || $TMUXINTTY == 1 ) " matrix in tty1, for tmux too
     "colorscheme matrixtty
     colorscheme matrixtty_mod
