@@ -217,3 +217,6 @@ if [ -f ~/.bashrc ]; then
   source ~/.bashrc
 fi
 
+LANGUAGE=en_US:en
+LANG=en_US.UTF-8
+

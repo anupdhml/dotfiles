@@ -19,11 +19,11 @@ syntax on   " syntax highlight
 
 " indent options
 filetype plugin indent on   " auto-detect the filetype
-set tabstop=4   " Tabs are 4 characters
-"set tabstop=2   " Tabs are 2 characters
+"set tabstop=4   " Tabs are 4 characters
+set tabstop=2   " Tabs are 2 characters
 "setlocal softtabstop=4
-set shiftwidth=4    " (Auto)indent uses 4 characters
-"set shiftwidth=2    " (Auto)indent uses 2 characters
+"set shiftwidth=4    " (Auto)indent uses 4 characters
+set shiftwidth=2    " (Auto)indent uses 2 characters
 set expandtab   " spaces instead of tabs
 set smarttab
 set autoindent   " guess indentation

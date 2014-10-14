@@ -8,10 +8,13 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 #export JAVA_HOME="/usr/lib/jvm/java-6-openjdk"
-export JAVA_HOME="/usr/lib/jvm/java-6-sun"
+#export JAVA_HOME="/usr/lib/jvm/java-6-sun"
 
 RUBY_BIN="${HOME}/.gem/ruby/*/bin"
 PATH="$RUBY_BIN:$PATH"
+
+# android stuff
+PATH="$HOME/data/src/adt-bundle-linux-x86-20131030/sdk/tools:$HOME/data/src/adt-bundle-linux-x86-20131030/sdk/platform-tools:$PATH"
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
