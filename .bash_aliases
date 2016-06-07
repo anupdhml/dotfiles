@@ -155,6 +155,8 @@ alias cd-tf="cd $HOME/public_html/tf/"
 alias clear-assets-mcontent="rm -rfv $HOME/public_html/anup-mcontent-nov/www/assets/*"
 alias clear-assets-mgame="rm -rfv $HOME/public_html/anup-mgame-nov/www/assets/*"
 alias cd-tiltfactor="cd $HOME/Desktop/tiltfactor/"
+#
+alias cd-linux="cd ~/Desktop/sf_linux/"
 
 # dump enhanced history log
 alias hhh="cat $HOME/.bash_log"
@@ -226,7 +228,7 @@ alias gpg-get-key='gpg --keyserver keyserver.ubuntu.com --recv-keys $1'
 alias gpg-apt-add='gpg --armor --export $1 | sudo apt-key add -'
 
 # Shows your public ip
-alias pip='wget http://checkip.dyndns.org/ -O - -o /dev/null | cut -d: -f 2 | cut -d\< -f 1'
+#alias pip='wget http://checkip.dyndns.org/ -O - -o /dev/null | cut -d: -f 2 | cut -d\< -f 1'
 
 # Test network speed (curl-based or wget-based)
 alias curlspeed='curl -o /dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
@@ -451,6 +453,20 @@ function gmailcheck() {
       #curl -u $1 --silent "https://mail.google.com/mail/feed/atom" | perl -ne 'print "\t" if /<name>/; print "$2\n" if /<(title|name)>(.*)<\/\1>/;'
       curl -u $1 --silent "https://mail.google.com/mail/feed/atom" | tr -d '\n' | awk -F '<entry>' '{for (i=2; i<=NF; i++) {print $i}}' | perl -pe 's/^<title>(.*)<\/title><summary>(.*)<\/summary>.*?<name>(.*?)<\/name>.*$/\n$3\n\t$1\n\t$2/'
     fi
+}
+
+function pdfpextr()
+{
+    # this function uses 3 arguments:
+    #     $1 is the first page of the range to extract
+    #     $2 is the last page of the range to extract
+    #     $3 is the input file
+    #     output file will be named "inputfile_pXX-pYY.pdf"
+    gs -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dSAFER \
+       -dFirstPage=${1} \
+       -dLastPage=${2} \
+       -sOutputFile=${3%.pdf}_p${1}-p${2}.pdf \
+       ${3}
 }
 
 #############################################################################################
