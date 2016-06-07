@@ -43,7 +43,7 @@ alias sl="sl -aFe"
 alias SL="sl -aFe"
 
 # change calendar default behavior
-alias calendar="calendar -l 0"
+#alias calendar="calendar -l 0"
 
 # better less
 alias vless='/usr/share/vim/vim72/macros/less.sh'
@@ -98,7 +98,7 @@ alias start-dropbox="dropbox start"
 alias cleanup-thumbnails='rm -rv ~/.thumbnails/'
 alias cleanup-packages='sudo apt-get -y autoclean && sudo apt-get -y autoremove && sudo apt-get -y clean && sudo apt-get -y remove && sudo deborphan | xargs sudo apt-get -y remove --purge'
 alias t='todo.sh'
-alias wr='wallpaper-random.sh'
+#alias wr='wallpaper-random.sh'
 alias ws='wallpaper-show.sh'
 
 # Tired of running apt-get /aptitude everytime?
@@ -155,6 +155,10 @@ alias cd-tf="cd $HOME/public_html/tf/"
 alias clear-assets-mcontent="rm -rfv $HOME/public_html/anup-mcontent-nov/www/assets/*"
 alias clear-assets-mgame="rm -rfv $HOME/public_html/anup-mgame-nov/www/assets/*"
 alias cd-tiltfactor="cd $HOME/Desktop/tiltfactor/"
+#
+alias cd-php="cd ~/data-local/php/"
+alias cd-resources="cd ~/data-local/resources/"
+alias cd-wayrunner="cd ~/.virtualenvs/wayrunner/lib/python2.7/site-packages/wayrunner-1.0.5-py2.7.egg/wayrunner/"
 
 # dump enhanced history log
 alias hhh="cat $HOME/.bash_log"
@@ -241,14 +245,17 @@ alias wgetspeed='wget --output-document=/dev/null http://speedtest.wdc01.softlay
 
 ## Git stuff          
 alias gitouch='find . \( -type d -empty \) -and \( -not -regex ./\.git.* \) -exec touch {}/.gitignore \;'
-alias gitp='git pull'
-alias gita='git add'
-alias gitb='git branch'
+alias gits='git status -suno'
+alias gitsf='git status'
 alias gitc='git checkout'
+alias gitd='git diff'
+alias gitds='git diff --staged'
+alias gita='git add'
+alias gitp='git pull'
+alias gitb='git branch'
 alias gitcl='git clone'
 alias gitco='git commit'
 alias gitca='git commit -a -m'
-alias gits='git status'
 
 ## svn stuff
 #alias svnaddall='svn status | grep "^\?" | awk "{print \$2}" | xargs svn add'
@@ -482,3 +489,29 @@ alias matrix5='tr -c "[:digit:]" " " < /dev/urandom | dd cbs=$COLUMNS conv=lcase
 
 #############################################################################################
 
+function drush-remove-module() {
+  drush pm-disable -y "$1"
+  drush pm-uninstall -y "$1"
+}
+
+alias viml='vim -c "normal '\''0"'
+#alias vi -='vim -c "normal '\''0"'
+
+alias wr='wayrunner'
+
+# makes branch switching less painful, with partial keyword matches
+function gitch() {
+  # only look at local branches
+  branch=$(git for-each-ref --format=%\(refname:short\) refs/heads/*"$1"*)
+  no_of_branches=$(wc -l <<< "$branch")
+
+  if [ -z "$branch" ]; then
+    echo "Could not find a local branch matching \"$1\" :("
+  elif [ "$no_of_branches" -gt 1 ]; then 
+    echo "$branch"
+    echo ""
+    echo "Found ${no_of_branches} local branches. Narrow down with a different keyword."
+  else
+    git checkout "$branch"
+  fi
+}

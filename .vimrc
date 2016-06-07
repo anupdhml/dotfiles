@@ -298,7 +298,7 @@ inoremap  <silent> <S-tab>  <C-C>:if &modifiable && !&readonly &&
 " pasting
 "--------
 "set paste insert mode toggle
-"set pastetoggle=tp
+set pastetoggle=<leader>p
 " Map paste from system clipboard to S-p
 "nnoremap <S-p> :r !xclip -o<CR>
 "vnoremap <S-p> :r !xclip -o<CR>
@@ -452,15 +452,16 @@ au FileType {html,xml} setlocal sw=2 sts=2
 autocmd BufEnter * :lchdir %:p:h
 
 " most accurate but slowest result
-autocmd BufEnter * :syntax sync fromstart
+"autocmd BufEnter * :syntax sync fromstart
 " faster way..
-"autocmd BufEnter * :syntax sync minlines=200
+autocmd BufEnter * :syntax sync minlines=1000
 
 "autocmd VimEnter * NERDTree
 "autocmd BufEnter * NERDTreeMirror
 
 " remove trailing whitespaces
-autocmd FileType c,cpp,java,php,javascript,python autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType c,cpp,java,php,javascript,python,puppet,spec,css,virata autocmd BufWritePre <buffer> :%s/\s\+$//e
+"autocmd FileType c,cpp,java,javascript,python,puppet,spec,css,virata autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 "==============================================================================
 " commands...
@@ -523,6 +524,16 @@ vmap <F7> <Plug>TransliterateApply
 " for ctrlp
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+" fast matching for big repos
+let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
+let g:ctrlp_max_files = 0
+let g:ctrlp_clear_cache_on_exit=0
+let g:ctrlp_custom_ignore = 'tmp$\|\.git$\|\.hg$\|\.svn$\|vendor'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_follow_symlinks=1
+"let g:ctrlp_max_height=24
+"let g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=500
 
 set noshowmode " now that we have powerline, no need for this
 
@@ -538,7 +549,8 @@ set noshowmode " now that we have powerline, no need for this
 ""call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
 
 " new powerline
-set rtp+=$HOME/.local/lib/python2.6/site-packages/powerline/bindings/vim
+"set rtp+=$HOME/.local/lib/python2.6/site-packages/powerline/bindings/vim
+set rtp+=$HOME/data/src/powerline/powerline/bindings/vim
 
 " Instantly leave insert mode when pressing <Esc> {{{
     set ttimeoutlen=10
@@ -924,3 +936,4 @@ augroup AutoView
 augroup END
 
 "-----------------------------------------------------------------------------
+au BufReadPost *.module set syntax=php

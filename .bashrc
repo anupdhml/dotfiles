@@ -2,6 +2,10 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# for debugging
+#set -x
+#export GIT_TRACE=1
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -12,6 +16,8 @@ export JAVA_HOME="/usr/lib/jvm/java-6-sun"
 
 RUBY_BIN="${HOME}/.gem/ruby/*/bin"
 PATH="$RUBY_BIN:$PATH"
+
+#LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/lib"
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -84,6 +90,10 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+if [ -f ~/.git-completion.bash ]; then
+    . ~/.git-completion.bash
+fi
+
 ####################
 # CUSTOMIZATIONS####
 ####################
@@ -138,18 +148,18 @@ export HISTIGNORE="&:[bf]g:ls:ll:la:exit:fortune:clear:history"
 #bind '"\e[B"':history-search-forward
 
 # function from here will be called from $PROMPT_COMMAND
-source $HOME/bin/loghistory.sh
+#source $HOME/bin/loghistory.sh
 
 # Managing history
 # right before prompting for the next command, save the previous command in a file.
-hF()
-{
-  unset HISTTIMEFORMAT
-  histentry="$(date +%Y-%m-%d--%H:%M:%S) ~~~ $(hostname):$PWD ~~~ $(history 1)" 
-  echo "$histentry" >> ~/.full_history || echo "hF: file error." ; return 1
-  #echo "$(date +%Y-%m-%d--%H:%M:%S) $PWD $(history 1)" >> ~/.full_history
-  #echo "$(hostname) $PWD $(history 1)"  >> ~/.full_history
-}
+#hF()
+#{
+  #unset HISTTIMEFORMAT
+  #histentry="$(date +%Y-%m-%d--%H:%M:%S) ~~~ $(hostname):$PWD ~~~ $(history 1)" 
+  #echo "$histentry" >> ~/.full_history || echo "hF: file error." ; return 1
+  ##echo "$(date +%Y-%m-%d--%H:%M:%S) $PWD $(history 1)" >> ~/.full_history
+  ##echo "$(hostname) $PWD $(history 1)"  >> ~/.full_history
+#}
 #PROMPT_COMMAND=histFunc
 
 # Managing history, another method. continued in .bash_logout
@@ -217,10 +227,58 @@ shortpath() {
 # for showing git related stuff in the prompt
 source ~/bin/git-prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=yes
-GIT_PS1_SHOWSTASHSTATE=yes
+
+#GIT_PS1_SHOWSTASHSTATE=yes
 #GIT_PS1_SHOWCOLORHINTS=yes 
 #GIT_PS1_SHOWUPSTREAM="auto"
 #GIT_PS1_SHOWUNTRACKEDFILES=yes 
+
+# 100% pure Bash (no forking) function to determine the name of the current git branch
+gitbranch() {
+    export GITBRANCH=""
+
+    local repo="${_GITBRANCH_LAST_REPO-}"
+    local gitdir=""
+    [[ ! -z "$repo" ]] && gitdir="$repo/.git"
+
+    # If we don't have a last seen git repo, or we are in a different directory
+    if [[ -z "$repo" || "$PWD" != "$repo"* || ! -e "$gitdir" ]]; then
+        local cur="$PWD"
+        while [[ ! -z "$cur" ]]; do
+            if [[ -e "$cur/.git" ]]; then
+                repo="$cur"
+                gitdir="$cur/.git"
+                break
+            fi
+            cur="${cur%/*}"
+        done
+    fi
+
+    if [[ -z "$gitdir" ]]; then
+        unset _GITBRANCH_LAST_REPO
+        return 0
+    fi
+    export _GITBRANCH_LAST_REPO="${repo}"
+    local head=""
+    local branch=""
+    read head < "$gitdir/HEAD"
+    case "$head" in
+        ref:*)
+            branch="${head##*/}"
+            ;;
+        "")
+            branch=""
+            ;;
+        *)
+            branch="d:${head:0:7}"
+            ;;
+    esac
+    if [[ -z "$branch" ]]; then
+        return 0
+    else
+        echo "(${PS1_green}$branch${PS1_reset})"
+    fi
+}
 
 # Change the prompt color and style.
 if [ $LOGNAME = anup ] || [ $LOGNAME = adhamala ]; then
@@ -231,7 +289,10 @@ if [ $LOGNAME = anup ] || [ $LOGNAME = adhamala ]; then
     #PS1="${debian_chroot:+($debian_chroot)}\$(smileyfunct)\[\033[01;${namecol}m\]$name:\[\033[01;${dircol}m\]\w\[\033[01;30m\]\$(__git_ps1 \"(%s)\")\[\033[00m\]\$ "
     #" # this line is here to fix the syntax highligthing. above PS1 is valid but too many quotes garbled the highlighting
     #PS1='$(smileyfunct)\[\033[01;${namecol}m\]$name:\[\033[01;${dircol}m\]$(shortpath "$PWD")\[\033[01;30m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
+    # slower
     PS1='$(smileyfunct)\[\033[01;${namecol}m\]$name@\h:\[\033[01;${dircol}m\]$(shortpath "$PWD")\[\033[01;30m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
+    # very fast
+    #PS1='$(smileyfunct)\[\033[01;${namecol}m\]$name@\h:\[\033[01;${dircol}m\]$(shortpath "$PWD")\[\033[01;30m\]$(gitbranch)\[\033[00m\]\$ '
 elif [ $(id -u) -eq 0 ]; then
     PS1="\\[$(tput setaf 1)\\]\\u@\\h:\\w# \\[$(tput sgr0)\\]" # you are root, set red colour prompt
 else 
@@ -254,7 +315,7 @@ xterm*|rxvt*)
     #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"; history -a; history -n; hF'
     #PROMPT_COMMAND='history -a;history -n;hF'
     #export PROMPT_COMMAND="history -a; history -c; history -r; hF; _loghistory -h; $PROMPT_COMMAND"
-    export PROMPT_COMMAND="history -a; history -c; history -r; hF; $PROMPT_COMMAND"
+    #export PROMPT_COMMAND="history -a; history -c; history -r; hF; $PROMPT_COMMAND"
 
     # Show the currently running command in the terminal title:
     # http://www.davidpashley.com/articles/xterm-titles-with-bash.html
@@ -540,3 +601,10 @@ alias sudo='sudo '
 #HISTSIZE=500
 #HISTFILESIZE=500
 #SAVEHIST=100000
+
+DRUPAL_SCRIPTS_HOME="${HOME}/data-local/drupalkb/bin"
+PATH="$DRUPAL_SCRIPTS_HOME:$PATH"
+
+#bash completion for yoda/wayrunner
+#source /wayfair/pkg/yoda/repo/yoda_completion
+#eval "$(_WAYRUNNER_COMPLETE=source wayrunner)"

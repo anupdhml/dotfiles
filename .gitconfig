@@ -1,11 +1,13 @@
 [user]
-	email = anupdhml+git@gmail.com
-	name = anupdhml
+	email = adhamala@wayfair.com
+	name = Anup Dhamala
 [color]
 	ui = true
 [core]
 	excludesfile = /home/anup/.gitignore_global
 	autocrlf = false
+	preloadindex = true
+  pager = diff-highlight | less -r
 [push]
 	default = current
 [rerere]
@@ -13,4 +15,18 @@
 [pull]
 	rebase = true
 [alias]
-  rb = "!MERGE_BASE=$(git merge-base origin/master HEAD); git diff --full-index $MERGE_BASE HEAD"
+  rb = "!MERGE_BASE=$(git merge-base origin HEAD); git diff --full-index $MERGE_BASE HEAD"
+  rbf = "!MERGE_BASE=$(git merge-base origin HEAD); git diff --name-only --full-index $MERGE_BASE HEAD"
+	g = grep --break --heading --line-number
+	trains = ! git fetch -q && git for-each-ref --count=5 --sort=-committerdate --format='%(committerdate:relative) %09 %(refname:short)' refs/remotes/origin/deploy_*
+	train = ! git fetch -q && git for-each-ref --count=1 --sort=-committerdate --format='%(refname:short)' refs/remotes/origin/deploy_*
+	board = ! git train | xargs git checkout -t
+	detrain = ! git branch --list | grep deploy_ | xargs -r git branch -d
+  worddiff = ! git diff --color | diff-highlight | less -r
+  diffs = ! git diff --staged
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C(magenta)(%cn)%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative --left-right
+[grep]
+	extendRegexp = true
+	lineNumber = true
+[fetch]
+	prune = true
