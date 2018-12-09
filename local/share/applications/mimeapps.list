@@ -13,6 +13,7 @@ application/x-shellscript=gvim.desktop
 text/x-python=gvim.desktop
 text/x-csrc=gvim.desktop
 text/x-chdr=gvim.desktop
+audio/x-aiff=audacity.desktop
 
 [Added Associations]
 video/x-ogm+ogg=vlc.desktop;
@@ -23,3 +24,4 @@ video/x-matroska=vlc.desktop;
 text/x-python=gvim.desktop;
 text/x-csrc=gvim.desktop;
 text/x-chdr=gvim.desktop;
+audio/x-aiff=audacity.desktop;

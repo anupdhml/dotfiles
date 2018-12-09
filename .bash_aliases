@@ -228,7 +228,7 @@ alias gpg-get-key='gpg --keyserver keyserver.ubuntu.com --recv-keys $1'
 alias gpg-apt-add='gpg --armor --export $1 | sudo apt-key add -'
 
 # Shows your public ip
-#alias pip='wget http://checkip.dyndns.org/ -O - -o /dev/null | cut -d: -f 2 | cut -d\< -f 1'
+#alias pubip='wget http://checkip.dyndns.org/ -O - -o /dev/null | cut -d: -f 2 | cut -d\< -f 1'
 
 # Test network speed (curl-based or wget-based)
 alias curlspeed='curl -o /dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'

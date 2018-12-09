@@ -17,10 +17,7 @@
   rb = "!MERGE_BASE=$(git merge-base origin HEAD); git diff --full-index $MERGE_BASE HEAD"
   rbf = "!MERGE_BASE=$(git merge-base origin HEAD); git diff --name-only --full-index $MERGE_BASE HEAD"
 	g = grep --break --heading --line-number
-	trains = ! git fetch -q && git for-each-ref --count=5 --sort=-committerdate --format='%(committerdate:relative) %09 %(refname:short)' refs/remotes/origin/deploy_*
-	train = ! git fetch -q && git for-each-ref --count=1 --sort=-committerdate --format='%(refname:short)' refs/remotes/origin/deploy_*
-	board = ! git train | xargs git checkout -t
-	detrain = ! git branch --list | grep deploy_ | xargs -r git branch -d
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
 [grep]
 	extendRegexp = true
 	lineNumber = true

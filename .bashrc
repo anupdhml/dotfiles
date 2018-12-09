@@ -18,6 +18,9 @@ export JAVA_HOME="/usr/lib/jvm/default-java"
 RUBY_BIN="${HOME}/.gem/ruby/*/bin"
 PATH="$RUBY_BIN:$PATH"
 
+# android stuff
+PATH="$HOME/data/src/adt-bundle-linux-x86-20131030/sdk/tools:$HOME/data/src/adt-bundle-linux-x86-20131030/sdk/platform-tools:$PATH"
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 #[[ $- != *i* ]] && return
