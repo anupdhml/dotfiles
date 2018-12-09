@@ -500,3 +500,30 @@ alias matrix5='tr -c "[:digit:]" " " < /dev/urandom | dd cbs=$COLUMNS conv=lcase
 
 #############################################################################################
 
+function wf-box-no {
+  if [ -z "$1" ]; then
+    echo "Please supply a username"
+  else
+    curl -s http://codesearch.csnzoo.com/source/raw/puppet/hieradata/facts/pod/dev01.yaml | awk "/$1/{getline; print}" | sed 's/ *number: *//'
+  fi
+}
+
+#function dev-box-no {
+  #if [ -z "$1" ]; then
+    #echo "Please supply a username"
+    #exit 1
+  #fi
+
+  #curl -s http://codesearch.csnzoo.com/source/raw/puppet/hieradata/facts/pod/dev01.yaml | awk "/$1/{getline; print}" | sed 's/ *number: *//'
+
+  ##devno=$(curl -s http://codesearch.csnzoo.com/source/raw/puppet/hieradata/facts/pod/dev01.yaml | awk "/${1}/{getline; print}" | sed 's/ *number: *//')
+  ##echo $devno
+  ##exit 0
+
+  ##if [ $(echo "${devno}" | wc -l) -gt 0 ]; then
+    ##echo "Multiple matches for given username"
+    ##exit 1
+  ##else
+    ##echo $devno
+  ##fi
+#}

@@ -308,10 +308,15 @@ URxvt.borderColor:      0
 !urxvt*font:             xft:Dejavu Sans Mono for Powerline:style=Book:size=11:antialias=true:hinting=true,xft:Sanskrit2003
 !urxvt*font:             xft:Dejavu Sans Mono for Powerline:style=Book:size=11:antialias=true:hinting=true,xft:kalimati
 !
-urxvt*font:             xft:Dejavu Sans Mono for Powerline:style=Book:size=10:antialias=true:hinting=true,xft:sarai
-urxvt*Boldfont:             xft:Dejavu Sans Mono for Powerline:style=Bold:size=10:antialias=true:hinting=true
-urxvt*Italicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=10:antialias=true:hinting=true
-urxvt*boldItalicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=10:antialias=true:hinting=true
+!urxvt*font:             xft:Dejavu Sans Mono for Powerline:style=Book:size=10:antialias=true:hinting=true,xft:sarai
+!urxvt*Boldfont:             xft:Dejavu Sans Mono for Powerline:style=Bold:size=10:antialias=true:hinting=true
+!urxvt*Italicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=10:antialias=true:hinting=true
+!urxvt*boldItalicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=10:antialias=true:hinting=true
+!
+urxvt*font:             xft:Dejavu Sans Mono for Powerline:style=Book:size=14:antialias=true:hinting=true,xft:sarai
+urxvt*Boldfont:             xft:Dejavu Sans Mono for Powerline:style=Bold:size=14:antialias=true:hinting=true
+urxvt*Italicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=14:antialias=true:hinting=true
+urxvt*boldItalicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=14:antialias=true:hinting=true
 
 ! traditional fonts - a more traditional font setup in lieu of xft
 !URxvt*font:-*-courier-medium-r-normal-*-*-140-*-*-*-*-iso8859-1

@@ -11,8 +11,9 @@ fi
     #PATH="$HOME/.local/bin:$PATH"
 #fi
 
+#export JAVA_HOME="/usr/lib/jvm/java-6-sun"
 #export JAVA_HOME="/usr/lib/jvm/java-6-openjdk"
-export JAVA_HOME="/usr/lib/jvm/java-6-sun"
+export JAVA_HOME="/usr/lib/jvm/default-java"
 
 RUBY_BIN="${HOME}/.gem/ruby/*/bin"
 PATH="$RUBY_BIN:$PATH"
