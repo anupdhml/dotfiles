@@ -91,7 +91,7 @@ URxvt*geometry: 100x63
 
 ! border
 URxvt.internalBorder:   1
-!URxvt*borderLess:true 
+!URxvt*borderLess:true
 
 ! scrollbar - true (default) or false
 URxvt*scrollBar:false
@@ -223,7 +223,7 @@ URxvt*color15 : #EEEEEC
 !URxvt.tabbed.title-bg:    15
 
 ! tab color dark
-URxvt.tabbed.tabbar-fg: 8 
+URxvt.tabbed.tabbar-fg: 8
 URxvt.tabbed.tab-fg:   15
 URxvt.tabbed.title-fg:   15
 URxvt.tabbed.tabbar-bg: 0
@@ -313,10 +313,15 @@ URxvt.borderColor:      0
 !urxvt*Italicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=10:antialias=true:hinting=true
 !urxvt*boldItalicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=10:antialias=true:hinting=true
 !
-urxvt*font:             xft:Dejavu Sans Mono for Powerline:style=Book:size=14:antialias=true:hinting=true,xft:sarai
-urxvt*Boldfont:             xft:Dejavu Sans Mono for Powerline:style=Bold:size=14:antialias=true:hinting=true
-urxvt*Italicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=14:antialias=true:hinting=true
-urxvt*boldItalicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=14:antialias=true:hinting=true
+!urxvt*font:             xft:Dejavu Sans Mono for Powerline:style=Book:size=14:antialias=true:hinting=true,xft:sarai
+!urxvt*Boldfont:             xft:Dejavu Sans Mono for Powerline:style=Bold:size=14:antialias=true:hinting=true
+!urxvt*Italicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=14:antialias=true:hinting=true
+!urxvt*boldItalicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=14:antialias=true:hinting=true
+!
+urxvt*font:             xft:Dejavu Sans Mono for Powerline:style=Book:size=16:antialias=true:hinting=true,xft:Noto Sans Devanagari
+urxvt*Boldfont:             xft:Dejavu Sans Mono for Powerline:style=Bold:size=16:antialias=true:hinting=true
+urxvt*Italicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=16:antialias=true:hinting=true
+urxvt*boldItalicfont:             xft:Dejavu Sans Mono for Powerline:style=Oblique:size=16:antialias=true:hinting=true
 
 ! traditional fonts - a more traditional font setup in lieu of xft
 !URxvt*font:-*-courier-medium-r-normal-*-*-140-*-*-*-*-iso8859-1
@@ -385,9 +390,9 @@ URxvt.selection.pattern-0: ([[:word:]]+)
 !URxvt.keysym.S-F6:      \033[17;2~
 !URxvt.keysym.S-F7:      \033[18;2~
 !URxvt.keysym.S-F8:      \033[19;2~
-!URxvt.keysym.S-F9:      \033[20;2~ 
+!URxvt.keysym.S-F9:      \033[20;2~
 !URxvt.keysym.S-F10:      \033[21;2~
-!URxvt.keysym.S-F11:      \033[23;2~ 
+!URxvt.keysym.S-F11:      \033[23;2~
 !URxvt.keysym.S-F12:      \033[24;2~
 !!
 !URxvt.keysym.C-F1:      \033[O1;5P
@@ -398,9 +403,9 @@ URxvt.selection.pattern-0: ([[:word:]]+)
 !URxvt.keysym.C-F6:      \033[17;5~
 !URxvt.keysym.C-F7:      \033[18;5~
 !URxvt.keysym.C-F8:      \033[19;5~
-!URxvt.keysym.C-F9:      \033[20;5~ 
+!URxvt.keysym.C-F9:      \033[20;5~
 !URxvt.keysym.C-F10:      \033[21;5~
-!URxvt.keysym.C-F11:      \033[23;5~ 
+!URxvt.keysym.C-F11:      \033[23;5~
 !URxvt.keysym.C-F12:      \033[24;5~
 !!
 !URxvt.keysym.A-F12:      \033[24;3~
