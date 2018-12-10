@@ -82,12 +82,9 @@ hi SignColumn term=standout ctermfg=8 ctermbg=7 guifg=#6C6C6C guibg=#D3D7CF
 " -------------------
 
 " comments
-"highlight Comment cterm=italic ctermfg=8 guifg=#6C6C6C gui=italic 
-if $TERM == "rxvt-unicode-256color" || $TERM == "rxvt-unicode" || $TERM == "screen-it"
-    "highlight Comment cterm=italic ctermfg=4  " Blue Italic
+if $TERM == "rxvt-unicode-256color" || $TERM == "rxvt-unicode" || $TERM == "xterm-256color" || $TERM == "screen-it"
     highlight Comment cterm=italic ctermfg=8 guifg=#6C6C6C gui=italic 
 else
-    "highlight Comment cterm=none ctermfg=4  " Blue
     highlight Comment cterm=none ctermfg=8 guifg=#6C6C6C gui=italic 
 endif
 

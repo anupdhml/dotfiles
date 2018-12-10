@@ -12,13 +12,15 @@ call plug#end()
 
 "----------------------------------------------------------------------------
 
-"colorscheme flattened_light
+if $TERM == "rxvt-unicode-256color"
+  colorscheme default_improved
+else
+  "set termguicolors
+  "set background=light
+  "colorscheme solarized8
+  colorscheme flattened_light
 
-"set termguicolors
-"let g:solarized_use16 = 1
-"set background=light
-"colorscheme solarized8
+  highlight Comment cterm=italic
+endif
 
-"highlight Comment cterm=italic
-
-colorscheme default_improved
+"----------------------------------------------------------------------------
