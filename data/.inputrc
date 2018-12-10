@@ -22,6 +22,9 @@ set completion-map-case on
 # better completion for long file names
 set completion-prefix-display-length 2
 
+# better completion for symlinked directories
+set mark-symlinked-directories on
+
 # paren matching
 set blink-matching-paren on
 
