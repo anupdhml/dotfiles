@@ -1,0 +1,25 @@
+[user]
+	email = anupdhml+git@gmail.com
+	name = anupdhml
+[color]
+	ui = true
+[core]
+	excludesfile = /home/anup/.gitignore_global
+	autocrlf = false
+	preloadindex = true
+[push]
+	default = current
+[rerere]
+	enabled = true
+[pull]
+	rebase = true
+[alias]
+  rb  = "!MERGE_BASE=$(git merge-base origin HEAD); git diff --full-index $MERGE_BASE HEAD"
+  rbf = "!MERGE_BASE=$(git merge-base origin HEAD); git diff --name-only --full-index $MERGE_BASE HEAD"
+	g   = grep --break --heading --line-number
+	lg  = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+[grep]
+	extendRegexp = true
+	lineNumber = true
+[fetch]
+	prune = true
