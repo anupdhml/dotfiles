@@ -14,6 +14,18 @@
 [pull]
 	rebase = true
 [alias]
+  # basics
+  s   = status
+  sf  = status -suno
+  c   = checkout
+  d   = diff
+  ds  = diff --staged
+  a   = add
+  p   = pull
+  b   = branch
+  cm  = commit -m
+  cam = commit -a -m
+  # extras
   rb  = "!MERGE_BASE=$(git merge-base origin HEAD); git diff --full-index $MERGE_BASE HEAD"
   rbf = "!MERGE_BASE=$(git merge-base origin HEAD); git diff --name-only --full-index $MERGE_BASE HEAD"
 	g   = grep --break --heading --line-number

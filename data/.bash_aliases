@@ -102,13 +102,13 @@ fd() {
 
 # git #########################################################################
 
-alias gits='git status'
-alias gitsf='git status -suno'
-alias gitc='git checkout'
-alias gitd='git diff'
-alias gitds='git diff --staged'
-alias gita='git add'
-alias gitp='git pull'
-alias gitb='git branch'
-alias gitcm='git commit -m'
-alias gitcam='git commit -a -m'
+#alias gits='git status'
+#alias gitsf='git status -suno'
+#alias gitc='git checkout'
+#alias gitd='git diff'
+#alias gitds='git diff --staged'
+#alias gita='git add'
+#alias gitp='git pull'
+#alias gitb='git branch'
+#alias gitcm='git commit -m'
+#alias gitcam='git commit -a -m'
