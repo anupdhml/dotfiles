@@ -64,10 +64,12 @@ fd() {
   else
     fzy_cmd="fzy"
   fi
-  matched_dir=$(find ~/repos ~/wf/repos -maxdepth 1 -type d | $fzy_cmd)
+  matched_dir=$(find . -type d | $fzy_cmd | head -n 1)
   if [[ -z "$matched_dir" ]]; then
-    echo "${1} not found"
-    return
+    if [[ -n "$1" ]]; then
+      echo "${1} not found"
+    fi
+    return 1
   fi
   cd "$matched_dir"
 }
