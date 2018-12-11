@@ -30,3 +30,5 @@
 	lineNumber = true
 [fetch]
 	prune = true
+[credential]
+	helper = cache

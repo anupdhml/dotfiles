@@ -1,6 +1,6 @@
 ## My inputrc
 
-$include /etc/inputrc
+#$include /etc/inputrc
 
 #set input-meta on
 #set output-meta on
@@ -11,19 +11,19 @@ $include /etc/inputrc
 #set keymap vi
 
 # case insensitive single-tab completion
-set completion-ignore-case on
-set show-all-if-ambiguous on
-set show-all-if-unmodified on
+#set completion-ignore-case on
+#set show-all-if-ambiguous on
+#set show-all-if-unmodified on
 #set completion-query-items 100
 
 # underscores and hyphens are treated equally when completing
-set completion-map-case on
+#set completion-map-case on
 
 # better completion for long file names
-set completion-prefix-display-length 2
+#set completion-prefix-display-length 2
 
 # paren matching
-set blink-matching-paren on
+#set blink-matching-paren on
 
 # useful bindings ------------------------------------------------------------
 
@@ -33,8 +33,8 @@ Control-h: menu-complete-backward
 #Control-k: menu-complete-backward
 
 # make history search easier, using up and down arrows
-"\e[A": history-search-backward
-"\e[B": history-search-forward
+#"\e[A": history-search-backward
+#"\e[B": history-search-forward
 
 #"\e[2~": paste-from-clipboard
 #"\e[3~": delete-char

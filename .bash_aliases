@@ -64,7 +64,7 @@ function mkcd() {
 # urxvt with tmux
 #alias urxvt-tmux='urxvt -e bash -c "tmux -q has-session && exec tmux attach-session -d || exec tmux new-session -n$USER -s$USER@$HOSTNAME"'
 alias urxvt-tmux='urxvt -e bash -c "(tmux -q has-session && exec tmux attach-session -d) || (exec tmux new-session)"'
-alias tmux-start="(tmux -q has-session && tmux-attach-session -d) || (tmux new-session)"
+alias tmux-start="(tmux -q has-session && tmux attach-session -d) || (tmux new-session)"
 
 # C
 alias gccminenodb="gcc -Wall -pedantic -std=c99"
@@ -515,3 +515,7 @@ function gitch() {
     git checkout "$branch"
   fi
 }
+
+alias gitselect='git for-each-ref --format="%(refname:short)" refs/heads/\* | while read -r line; do read -p "select branch: $line (y/N)?" answer </dev/tty; case "$answer" in y|Y) echo "$line";; esac; done'
+
+alias beez="beeline -i /csnzoo/adhamala/.hiverc -u jdbc:hive2://bigdatahive.service.bo1.csnzoo.com:10000 -n adhamala --verbose=true --showWarnings=true showNestedErrs=true --color=true --silent=false"

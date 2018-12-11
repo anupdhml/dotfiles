@@ -12,12 +12,17 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 #export JAVA_HOME="/usr/lib/jvm/java-6-openjdk"
-export JAVA_HOME="/usr/lib/jvm/java-6-sun"
+#export JAVA_HOME="/usr/lib/jvm/java-6-sun"
+
+export AIRFLOW_HOME=/wayfair/app/airflow
 
 RUBY_BIN="${HOME}/.gem/ruby/*/bin"
 PATH="$RUBY_BIN:$PATH"
 
-#LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/lib"
+GOPATH=$HOME/go
+PATH=$PATH:/usr/local/go/bin
+
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/lib"
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return

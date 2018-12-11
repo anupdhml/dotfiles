@@ -463,6 +463,12 @@ autocmd BufEnter * :syntax sync minlines=1000
 autocmd FileType c,cpp,java,php,javascript,python,puppet,spec,css,virata autocmd BufWritePre <buffer> :%s/\s\+$//e
 "autocmd FileType c,cpp,java,javascript,python,puppet,spec,css,virata autocmd BufWritePre <buffer> :%s/\s\+$//e
 
+" hive syntax
+" for .hql files
+au BufNewFile,BufRead *.hql set filetype=hive expandtab
+" for .q files
+au BufNewFile,BufRead *.q set filetype=hive expandtab
+
 "==============================================================================
 " commands...
 "==============================================================================
@@ -549,8 +555,8 @@ set noshowmode " now that we have powerline, no need for this
 ""call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
 
 " new powerline
-"set rtp+=$HOME/.local/lib/python2.6/site-packages/powerline/bindings/vim
-set rtp+=$HOME/data/src/powerline/powerline/bindings/vim
+set rtp+=$HOME/.local/lib/python2.6/site-packages/powerline/bindings/vim
+"set rtp+=$HOME/data/src/powerline/powerline/bindings/vim
 
 " Instantly leave insert mode when pressing <Esc> {{{
     set ttimeoutlen=10
@@ -729,7 +735,8 @@ if ($DISPLAY == "" && $SSH_CONNECTION == "") " in tty
     colorscheme matrixtty_mod
   "elseif ($TERM == "linux") " not for tmux
   else
-    colorscheme mycolorstty
+    "colorscheme mycolorstty
+    colorscheme mycolors
   endif
 else " in urxvt and elsewhere
   colorscheme mycolors
@@ -937,3 +944,18 @@ augroup END
 
 "-----------------------------------------------------------------------------
 au BufReadPost *.module set syntax=php
+
+"autocmd BufWritePost,FileWritePost $HOME/computed_distribution/grafana/scripted_dash/*.js :silent exec "!npm run build-dev"
+"autocmd BufWritePost,FileWritePost $HOME/computed_distribution/grafana/grafana-scripted-dashboards/elasticsearch-monitoring/*.{js,json} :!npm run build-dev elasticsearch-monitoring 
+
+"disable javascript validation
+"let g:EclimJavascriptValidate = 0
+let g:EclimJavascriptLintEnabled = 0
+
+"we don't have latest vim
+let g:go_version_warning = 0
+
+augroup vimrc_autocmds
+  autocmd BufEnter * highlight OverLength ctermbg=grey guibg=#592929
+  autocmd BufEnter * match OverLength /\%101v.*/
+augroup END
