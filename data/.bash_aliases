@@ -33,6 +33,8 @@ function bd(){
 }
 
 # pick directory (rotates it in the stack)
+# TODO make pd only bring the selection to the top (like in zsh)
+# also use fzf for fuzzy matches
 function pd() {
   if [[ $# -ge 1 ]]; then
     choice="$1"
