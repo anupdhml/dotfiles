@@ -25,6 +25,7 @@
   b   = branch
   cm  = commit -m
   cam = commit -a -m
+  sh  = show
   # extras
   rb  = "!MERGE_BASE=$(git merge-base origin HEAD); git diff --full-index $MERGE_BASE HEAD"
   rbf = "!MERGE_BASE=$(git merge-base origin HEAD); git diff --name-only --full-index $MERGE_BASE HEAD"
