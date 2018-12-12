@@ -12,7 +12,7 @@ __personal_prompt() {
   name="\u@\h"
 
   # colors (dynamic)
-  color_name='\[\033[01;35m\]' #pink
+  color_name='\[\033[01;35m\]' # pink
   color_path='\[\033[01;34m\]' # blue
   color_git='\[\033[01;30m\]'  # black
 
@@ -80,6 +80,27 @@ __personal_prompt() {
   }
 
   PROMPT_COMMAND="ps1${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+
+  ##############################################################################
+
+  # change the window titlebar to show current command
+  # https://mg.pov.lt/blog/bash-prompt.html
+  # http://www.davidpashley.com/articles/xterm-titles-with-bash.html
+  show_command_in_title_bar() {
+    case "$BASH_COMMAND" in
+      *\033]0*)
+        # The command is trying to set the title bar as well;
+        # this is most likely the execution of $PROMPT_COMMAND.
+        # In any case nested escapes confuse the terminal, so don't
+        # output them.
+        ;;
+      *)
+        echo -ne "\033]0;${USER}@${HOSTNAME}:${PWD}: ${BASH_COMMAND}\007"
+        ;;
+    esac
+  }
+
+  trap show_command_in_title_bar DEBUG
 }
 
 __personal_prompt
