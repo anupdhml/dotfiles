@@ -36,10 +36,10 @@ git_color=$'\e[01;30m'     # black
 prompt_end_color=$'\e[00m' # black (light)
 
 # configs for __git_ps1 function (sourced from /etc/bash_completion.d/git-prompt)
+GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_SHOWDIRTYSTATE=yes
 #GIT_PS1_SHOWUNTRACKEDFILES=yes
 #GIT_PS1_SHOWSTASHSTATE=yes
-#GIT_PS1_SHOWUPSTREAM="auto"
 #GIT_PS1_SHOWCOLORHINTS=yes
 
 # overrides for production hosts
