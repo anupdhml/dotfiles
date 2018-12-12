@@ -9,25 +9,31 @@ smileyfunct() {
   if [ "$ret_val" = "0" ]; then
     echo "|^◡^|"
   else
+    # print with red
     echo -e "\e[0;31m|T_T|${ret_val}|\e[0m"
   fi
 }
 
 # for shortening the work path when it gets long 
 shortpath() {
-    local PRE= NAME="$1" LENGTH=35;
-    [[ "$NAME" != "${NAME#$HOME/}" || -z "${NAME#$HOME}" ]] &&
-        PRE+='~' NAME="${NAME#$HOME}" LENGTH=$[LENGTH-1];
-    ((${#NAME}>$LENGTH)) && NAME="/...${NAME:$[${#NAME}-LENGTH+4]}";
-    echo "$PRE$NAME"
+  local PRE= NAME="$1" LENGTH=35;
+  [[ "$NAME" != "${NAME#$HOME/}" || -z "${NAME#$HOME}" ]] &&
+    PRE+='~' NAME="${NAME#$HOME}" LENGTH=$[LENGTH-1];
+  ((${#NAME}>$LENGTH)) && NAME="/...${NAME:$[${#NAME}-LENGTH+4]}";
+  echo "$PRE$NAME"
 }
 
 # Variables ###################################################################
 
 # Defaults
-name="\u@\h"
+name="${LOGNAME}@${HOSTNAME%%.*}"
 prompt_end="$"
-name_color=35; path_color=34 # pink/blue
+
+# colors
+name_color=$'\e[01;35m'    # pink
+path_color=$'\e[01;34m'    # blue
+git_color=$'\e[01;30m'     # black
+prompt_end_color=$'\e[00m' # black (light)
 
 # configs for __git_ps1 function (sourced from /etc/bash_completion.d/git-prompt)
 GIT_PS1_SHOWDIRTYSTATE=yes
@@ -38,14 +44,14 @@ GIT_PS1_SHOWDIRTYSTATE=yes
 
 # overrides for production hosts
 if [[ "$HOSTNAME" == *".host."* || "$HOSTNAME" == *".sec."* ]]; then
-  name_color=35; path_color=31 # pink/blue; red
+  path_color=$'\e[01;31m' # red
 fi
 
 # overrides for root user
 if [ "$EUID" -eq 0 ]; then
-  name="root"
   prompt_end="#"
-  name_color=31; path_color=31 # red
+  name_color=$'\e[01;31m' # red
+  path_color=$'\e[01;31m' # red
 fi
 
 # overrides for home user
@@ -64,19 +70,13 @@ esac
 
 if [ "$fancy_prompt" = yes ]; then
   #PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-  PS1='$(smileyfunct)\[\033[01;${name_color}m\]${name}:\[\033[01;${path_color}m\]$(shortpath "$PWD")\[\033[01;30m\]$(__git_ps1 "(%s)")\[\033[00m\]${prompt_end} '
+  PS1='$(smileyfunct)\[${name_color}\]${name}:\[${path_color}\]$(shortpath "$PWD")\[${git_color}\]$(__git_ps1 "(%s)")\[${prompt_end_color}\]${prompt_end} '
 else
   PS1='\u@\h:\w\$ '
 fi
 
 # empty line before prompt
 PS1="\n$PS1"
-
-# good usage example
-#Green="\033[0;32m"
-#Yellow="\033[1;33m"
-#Normal="\033[0m"
-#PS1="\[$Yellow\]\u@\h\[$Normal\]:\[$Green\]\w \$(smileyfunct) \[$Normal\]"
 
 ## cool prompt
 #function bash_prompt {
