@@ -70,10 +70,10 @@ __personal_prompt() {
 
     local path="${color_path}$(__shorten_path "$PWD")${COLOR_RESET}"
 
-    # escape git info properly since they are dervied from user input.
+    # escape git info properly since they are dervied from user input
     # prevents security exploits as in https://github.com/njhartwell/pw3nage
-    git_info="$(__git_ps1)"
-    local git="${color_git}\${git_info}${COLOR_RESET}"
+    __git_info="$(__git_ps1)"
+    local git="${color_git}\${__git_info}${COLOR_RESET}"
 
     # finally construct the prompt
     PS1="\n${smiley}${name}:${path}${git}${symbol} "
@@ -95,7 +95,7 @@ __personal_prompt() {
         # output them.
         ;;
       *)
-        echo -ne "\033]0;${USER}@${HOSTNAME}:${PWD}: ${BASH_COMMAND}\007"
+        echo -ne "\033]0;${USER}@${HOSTNAME}:$(__shorten_path "$PWD"): ${BASH_COMMAND}\007"
         ;;
     esac
   }
