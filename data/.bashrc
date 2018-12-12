@@ -61,6 +61,9 @@ fi
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+# awesome prompt
+source ~/bin/.personal_bash_prompt.sh
+
 # fasd initialization: https://github.com/clvv/fasd#install
 fasd_cache="$HOME/.fasd-init-bash"
 if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
@@ -68,9 +71,6 @@ if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
 fi
 source "$fasd_cache"
 unset fasd_cache
-
-# awesome prompt
-source ~/bin/.personal_bash_prompt.sh
 
 # alias definitions
 # making this the final item here, since aliases may utilize stuff already sourced
