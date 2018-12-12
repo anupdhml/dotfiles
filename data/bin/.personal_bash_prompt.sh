@@ -58,7 +58,7 @@ __personal_prompt() {
     echo "$pre$name"
   }
 
-  set_ps1() {
+  ps1() {
     # check the exit code of the previous command and change smileys accordingly
     if [ $? -eq 0 ]; then
       local smiley="|^◡^|"
@@ -79,7 +79,7 @@ __personal_prompt() {
     PS1="\n${smiley}${name}:${path}${git}${symbol} "
   }
 
-  PROMPT_COMMAND="set_ps1${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+  PROMPT_COMMAND="ps1${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
 }
 
 __personal_prompt
