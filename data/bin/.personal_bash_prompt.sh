@@ -95,7 +95,8 @@ __personal_prompt() {
         # output them.
         ;;
       *)
-        echo -ne "\033]0;${USER}@${HOSTNAME}:$(__shorten_path "$PWD"): ${BASH_COMMAND}\007"
+        #echo -ne "\033]0;${USER}@${HOSTNAME}:$(__shorten_path "$PWD"): ${BASH_COMMAND}\007"
+        echo -ne "\033]0;${USER}@${HOSTNAME}: ${BASH_COMMAND}\007"
         ;;
     esac
   }
