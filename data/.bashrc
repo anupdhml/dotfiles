@@ -66,7 +66,5 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# prompt
+# awesome prompt
 source ~/bin/.personal_bash_prompt.sh
-# https://github.com/riobard/bash-powerline (dec 10, 2018)
-#source ~/bin/.bash-powerline.sh
