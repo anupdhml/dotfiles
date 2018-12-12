@@ -9,7 +9,7 @@ fi
 
 __personal_prompt() {
   symbol="$"
-  name="${LOGNAME}@${HOSTNAME%%.*}"
+  name="\u@\h"
 
   # colors (dynamic)
   color_name='\[\033[01;35m\]' #pink
@@ -29,7 +29,7 @@ __personal_prompt() {
   #GIT_PS1_SHOWCOLORHINTS=yes
 
   # overrides for home user (set short name)
-  if [ $LOGNAME = anup ]; then
+  if [ "$USER" = anup ]; then
     # overrides for home user
     name_list=(anup अनुप ανουπ)
     name=${name_list[ RANDOM % ${#name_list[@]} ]}
@@ -72,8 +72,8 @@ __personal_prompt() {
 
     # escape git info properly since they are dervied from user input.
     # prevents security exploits as in https://github.com/njhartwell/pw3nage
-    __git_info="$(__git_ps1)"
-    local git="${color_git}\${__git_info}${COLOR_RESET}"
+    git_info="$(__git_ps1)"
+    local git="${color_git}\${git_info}${COLOR_RESET}"
 
     # finally construct the prompt
     PS1="\n${smiley}${name}:${path}${git}${symbol} "
