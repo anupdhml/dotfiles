@@ -4,7 +4,7 @@
 # Functions ###################################################################
 
 # for showing the return status of last-ran command
-smileyfunct() {
+__smileyfunct() {
   local ret_val=$?
   if [ "$ret_val" = "0" ]; then
     echo "|^◡^|"
@@ -15,12 +15,12 @@ smileyfunct() {
 }
 
 # for shortening the work path when it gets long 
-shortpath() {
-  local PRE= NAME="$1" LENGTH=35;
-  [[ "$NAME" != "${NAME#$HOME/}" || -z "${NAME#$HOME}" ]] &&
-    PRE+='~' NAME="${NAME#$HOME}" LENGTH=$[LENGTH-1];
-  ((${#NAME}>$LENGTH)) && NAME="/...${NAME:$[${#NAME}-LENGTH+4]}";
-  echo "$PRE$NAME"
+__shorten_path() {
+  local pre= name="$1" length=35;
+  [[ "$name" != "${name#$HOME/}" || -z "${name#$HOME}" ]] &&
+    pre+='~' name="${name#$HOME}" length=$[length-1];
+  ((${#name}>$length)) && name="/...${name:$[${#name}-length+4]}";
+  echo "$pre$name"
 }
 
 # Variables ###################################################################
@@ -70,7 +70,7 @@ esac
 
 if [ "$fancy_prompt" = yes ]; then
   #PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-  PS1='$(smileyfunct)\[${name_color}\]${name}:\[${path_color}\]$(shortpath "$PWD")\[${git_color}\]$(__git_ps1 "(%s)")\[${prompt_end_color}\]${prompt_end} '
+  PS1='$(__smileyfunct)\[${name_color}\]${name}:\[${path_color}\]$(__shorten_path "$PWD")\[${git_color}\]$(__git_ps1 "(%s)")\[${prompt_end_color}\]${prompt_end} '
 else
   PS1='\u@\h:\w\$ '
 fi
