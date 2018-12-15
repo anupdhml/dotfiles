@@ -35,6 +35,16 @@ call plug#end()
 
 "----------------------------------------------------------------------------
 
+"if !has('gui_running')
+"  set t_Co=256
+"endif
+
+" enable status bar
+set laststatus=2
+
+" this needs to be set before intializing colorschemes
+set background=light
+
 if $TERM == "rxvt-unicode-256color"
   colorscheme default_improved
 else
@@ -46,16 +56,12 @@ else
   highlight Comment cterm=italic
 endif
 
-set laststatus=2
-set background=light
-
-"if !has('gui_running')
-"  set t_Co=256
-"endif
-
 let g:lightline = {
-      \ 'colorscheme': 'powerline',
-      \ }
+    \ 'colorscheme': 'powerline',
+    \ }
+
+let g:tmuxline_theme = 'powerline'
+let g:tmuxline_preset = 'powerline'
 
 "----------------------------------------------------------------------------
 
