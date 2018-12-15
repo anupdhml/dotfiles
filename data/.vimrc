@@ -25,6 +25,7 @@ set smartindent  " smart autoindenting when starting a new line
 call plug#begin('~/.vim/plugged')
 
 Plug 'itchyny/lightline.vim'
+Plug 'edkolev/tmuxline.vim'
 
 " On-demand loading
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
