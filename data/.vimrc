@@ -24,6 +24,8 @@ set smartindent  " smart autoindenting when starting a new line
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
+Plug 'itchyny/lightline.vim'
+
 " On-demand loading
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
@@ -42,6 +44,17 @@ else
 
   highlight Comment cterm=italic
 endif
+
+set laststatus=2
+set background=light
+
+"if !has('gui_running')
+"  set t_Co=256
+"endif
+
+let g:lightline = {
+      \ 'colorscheme': 'powerline',
+      \ }
 
 "----------------------------------------------------------------------------
 
