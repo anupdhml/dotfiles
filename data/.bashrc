@@ -77,3 +77,8 @@ unset fasd_cache
 if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
+
+# startup ######################################################################
+
+# if not inside a tmux session, and if no session is started, start a new session
+[ -z "$TMUX"  ] && { tmux attach || tmux new-session;}
