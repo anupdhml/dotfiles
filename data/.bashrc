@@ -29,21 +29,32 @@ export CDPATH=.:~/repos:~/wf/repos
 # remove quotes from ls output (for filenames with space)
 export QUOTING_STYLE=literal
 
+# synatx highlighting for less
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+export LESS=' -R '
+
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # history ######################################################################
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
 # append to the history file, don't overwrite it
 shopt -s histappend
 
+# force commands that you entered on more than one line to be adjusted to fit on only one
+shopt -s cmdhist
+
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+export HISTSIZE=1000000
+export HISTFILESIZE=999999
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+#export HISTCONTROL=ignoreboth
+export HISTCONTROL=erasedups:ignoreboth
+
+# prevent some frequenty used commands from appearing in the history file
+export HISTIGNORE="&:[bf]g:ls:ll:la:exit:fortune:clear:history"
 
 # sources #####################################################################
 
@@ -81,4 +92,11 @@ fi
 # startup ######################################################################
 
 # if not inside a tmux session, and if no session is started, start a new session
-[ -z "$TMUX"  ] && { tmux attach || tmux new-session;}
+#[ -z "$TMUX"  ] && { tmux attach || tmux new-session;}
+
+# solve ssh issues in tmux
+# TODO test this out
+#source ~/bin/ssh-find-agent.bash
+
+# welcome message
+source ~/bin/.welcome.sh
