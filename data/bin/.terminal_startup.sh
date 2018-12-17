@@ -49,3 +49,5 @@ if [ -z "$TMUX"  ]; then
   #tmux-start
   tmux -q has-session &> /dev/null && tmux list-sessions
 fi
+
+return 0

@@ -79,6 +79,9 @@ __personal_prompt() {
     PS1="\n${smiley}${name}:${path}${git}${symbol} "
   }
 
+  # if the prompt commamd is already set, include it too.
+  # ps1 needs to be at the beginning of the chain here, since we check for the
+  # status of the last command in the function.
   PROMPT_COMMAND="ps1${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
 
   ##############################################################################
