@@ -20,16 +20,19 @@ FORTUNE_BASE_DIR="${HOME}/data/fortunes"
     #$FORTUNE_BASE_DIR/others_BIG/ \
     #"
 
-# print a random cow
-_get_random_cow() {
+_get_random_cowfile() {
   files=(/usr/share/cowsay/cows/*)
   printf "%s\n" "${files[RANDOM % ${#files}]}"
+}
+
+_get_today_calendar() {
+  calendar -l 0 | cut -d$'\t' -f2-
 }
 
 if [ "$[$RANDOM % 4]" -eq 0 ]; then
   # run this roughly 1 in 4 times
   echo "$(date '+%b %d') in history and elsewhere:"
-  calendar -l 0 | cut -d ' ' -f 3-
+  _get_today_calendar | sed 's/^/    /'
 else
   # -e treats all fortune sources equally
   #~/bin/fortunecow -e $FORTUNE_BASE_DIR/*/
@@ -39,12 +42,12 @@ else
   #~/bin/fortunecow $FORTUNE_BASE_DIR/*/
   #~/bin/fortunecow $fortune_paths # remove big folder when using this
 
-  fortune | cowsay -f $(_get_random_cow)
+  fortune | cowsay -f $(_get_random_cowfile)
 fi
 
 echo ""
-echo "Running tmux sessions:"
-tmux -q has-session &> /dev/null && tmux list-sessions
+echo "Available tmux sessions:"
+tmux -q has-session &> /dev/null && (tmux list-sessions | sed 's/^/    /')
 
 # if not inside a tmux session, and if no session is started, start a new session
 #[ -z "$TMUX"  ] && { tmux attach-session -d || tmux new-session; }
