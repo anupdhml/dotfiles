@@ -196,7 +196,7 @@ alias freechess='telnet fics.freechess.org 5000'
 # TODO fix this
 etymology() {
   for term in "$@"; do
-    url="https://etymonline.com/index.php?term=$term"
+    url="https://www.etymonline.com/word/${term}"
     curl -s "$url" | grep "<dd " |
         sed -e 's/<a[^>]*>\([^<]*\)<[^>]*>/:\1:/g' -e 's/<[^>]*>//g' |
         fold -sw `[ $COLUMNS -lt 80 ] && echo $COLUMNS || echo 79 `
