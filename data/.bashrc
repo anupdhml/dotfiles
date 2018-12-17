@@ -97,9 +97,11 @@ source ~/bin/.personal_bash_prompt.sh
 # TODO test this out
 #source ~/bin/ssh-find-agent.bash
 
-# script collecting stuff directly visible during terminal startup
-# (welcome message, tmux initialization etc.)
-# to be run only when not inside a tmux session.
+# all the stuff we don't want running when inside a tmux session
 if [ -z "$TMUX" ]; then
+  # display a nice welcome message
   source ~/bin/.terminal_startup.sh
+
+  # if no tmux session has been started, start it. otherwise attach to the existing one
+  #tmux attach-session -d || tmux new-session
 fi
