@@ -1,0 +1,25 @@
+LANG=en_US.UTF-8
+
+/* for a list of available calendars, see /usr/share/calendar/calendar.all */
+
+#include <calendar.birthday>
+
+#include <calendar.holiday>
+#include <calendar.usholiday>
+#include <calendar.dutch>
+#include <calendar.eu>
+#include <calendar.world>
+
+#include <calendar.christian>
+#include <calendar.judaic>
+#include <calendar.discordian>
+#include <calendar.pagan>
+
+#include <calendar.history>
+#include <calendar.lotr>
+#include <calendar.music>
+
+#include <calendar.computer>
+#include <calendar.freebsd>
+#include <calendar.debian>
+#include <calendar.ubuntu>

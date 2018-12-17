@@ -49,7 +49,7 @@ if [ -z "$TMUX"  ]; then
     #echo ""
 
     echo "$(date '+%b %d') in history and elsewhere:"
-    calendar -l 0 | sed 's/[a-zA-Z]* [0-9]*\(.*\)/\1/g'
+    calendar -l 0 | cut -d ' ' -f 3-
   fi
 
   #tmux-start
