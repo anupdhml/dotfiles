@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # Generate a useful PS1 for personal use
 
 # if not a color terminal, set a simple PS1 and exit right away

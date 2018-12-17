@@ -91,7 +91,7 @@ fi
 # awesome prompt
 # make sure that this is the last thing that modifies the prompt function
 # (eg: by placed this after things like fasd initialization)
-source ~/bin/.personal_bash_prompt.sh
+source ~/bin/.bash_prompt.sh
 
 # solve ssh issues in tmux
 # TODO test this out
