@@ -73,6 +73,7 @@ fi
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # awesome prompt
+# keep this before fasd intialization, since that also modifies prompt command
 source ~/bin/.personal_bash_prompt.sh
 
 # fasd initialization: https://github.com/clvv/fasd#install
@@ -93,5 +94,6 @@ if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
 
-# welcome message
-source ~/bin/.welcome.sh
+# script collecting stuff directly visible during terminal startup
+# (welcome message, tmux initialization etc.)
+source ~/bin/.terminal_startup.sh
