@@ -100,7 +100,7 @@ source ~/bin/.bash_prompt.sh
 # all the stuff we don't want running when inside a tmux session
 if [ -z "$TMUX" ]; then
   # display a nice welcome message
-  source ~/bin/.terminal_welcome.sh
+  ~/bin/.terminal_welcome.sh
 
   # if no tmux session has been started, start it. otherwise attach to the existing one
   #tmux attach-session -d || tmux new-session

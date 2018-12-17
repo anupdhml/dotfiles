@@ -62,4 +62,4 @@ fi
 #[ -z "$TMUX"  ] && { tmux attach-session -d || tmux new-session; }
 #tmux-start
 
-return 0
+exit 0
