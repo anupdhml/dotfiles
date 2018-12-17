@@ -50,6 +50,11 @@ alias g='xdg-open' # open in gui
 alias psg='ps auxw | grep $1'
 alias fnd='find . -iname $1'
 
+# easy linking
+lns() {
+  ln -sfv "$(pwd)/${1}" "$2"
+}
+
 # tree representation of processes
 alias ps-tree='ps -e -o pid,ppid,command --forest'
 
@@ -59,11 +64,10 @@ alias apt-update='sudo apt-get update; sudo apt-get upgrade && sudo apt-get auto
 # use vim like less
 alias vless='/usr/share/vim/vim80/macros/less.sh'
 
-# tmux initialization
-alias tmux-start='tmux attach-session -d || tmux new-session'
-
-# urxvt with tmux
-alias urxvt-tmux='urxvt -e bash -c "(tmux -q has-session &> /dev/null && exec tmux attach-session -d) || (exec tmux new-session)"'
+# terminals with tmux
+alias xfce4-terminal-tmux='xfce4-terminal --maximize -e "bash -c ~/bin/tmux_start.sh"'
+alias urxvt-tmux='urxvt -e bash -c "~/bin/tmux_start.sh"'
+#alias urxvt-tmux='urxvt -e bash -c "(tmux -q has-session &> /dev/null && exec tmux attach-session -d) || (exec tmux new-session)"'
 
 # utilities ##########################################################
 
