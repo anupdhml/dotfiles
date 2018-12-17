@@ -32,6 +32,9 @@ alias sudo='sudo '
 # always start these apps in maximized mode
 alias xfce4-terminal="xfce4-terminal --maximize"
 
+# improved less
+alias less='less --ignore-case --long-prompt'
+
 # new commands ################################################################
 
 # useful ls aliases

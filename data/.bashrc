@@ -29,10 +29,6 @@ export CDPATH=.:~/repos:~/wf/repos
 # remove quotes from ls output (for filenames with space)
 export QUOTING_STYLE=literal
 
-# synatx highlighting for less
-export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
-export LESS=' -R '
-
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
