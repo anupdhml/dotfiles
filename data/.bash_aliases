@@ -24,7 +24,7 @@ alias killall='killall -u $USER -v'
 # Make the command output more readable
 alias du='du -kh'
 alias df='df -kTh'
-alias free='free -m'
+alias free='free -h'
 
 # this ensures that aliases work with sudo
 alias sudo='sudo '

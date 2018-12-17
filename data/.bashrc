@@ -48,13 +48,16 @@ shopt -s cmdhist
 export HISTSIZE=1000000
 export HISTFILESIZE=999999
 
+# timestamp the history entry
+export HISTTIMEFORMAT="%h %d %H:%M:%S "
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-#export HISTCONTROL=ignoreboth
-export HISTCONTROL=erasedups:ignoreboth
+#export HISTCONTROL=ignoreboth:erasedups
+export HISTCONTROL=ignoreboth
 
 # prevent some frequenty used commands from appearing in the history file
-export HISTIGNORE="&:[bf]g:ls:ll:la:exit:fortune:clear:history"
+export HISTIGNORE="&:[bf]g:l[sla]:exit:fortune:clear:history:du*:df*:free*"
 
 # sources #####################################################################
 
