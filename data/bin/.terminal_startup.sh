@@ -22,6 +22,12 @@ FORTUNE_BASE_DIR="${HOME}/data/fortunes"
 
 MAX_NUM=6
 
+# print a random cow
+_get_random_cow() {
+  files=(/usr/share/cowsay/cows/*)
+  printf "%s\n" "${files[RANDOM % ${#files}]}"
+}
+
 # if not inside a tmux session, and if no session is started, start a new session
 #[ -z "$TMUX"  ] && { tmux attach-session -d || tmux new-session; }
 
@@ -35,7 +41,7 @@ if [ -z "$TMUX"  ]; then
     #~/bin/fortunecow $FORTUNE_BASE_DIR/*/
     #~/bin/fortunecow $fortune_paths # remove big folder when using this
 
-    fortune | cowsay
+    fortune | cowsay -f $(_get_random_cow)
   else
     ##calcurse -a
     #calcurse -a -r1

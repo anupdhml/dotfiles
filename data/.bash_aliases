@@ -203,9 +203,3 @@ etymology() {
     echo
   done
 }
-
-# print a random cow
-cow-random() {
-  files=(/usr/share/cowsay/cows/*)
-  printf "%s\n" "${files[RANDOM % ${#files}]}"
-}

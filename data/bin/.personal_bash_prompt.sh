@@ -102,7 +102,7 @@ __personal_prompt() {
   # change the window titlebar to show current command
   # https://mg.pov.lt/blog/bash-prompt.html
   # http://www.davidpashley.com/articles/xterm-titles-with-bash.html
-  show_command_in_title_bar() {
+  _show_command_in_title_bar() {
     case "$BASH_COMMAND" in
       _*)
         # Ignore commands that begin with _.
@@ -121,7 +121,7 @@ __personal_prompt() {
     esac
   }
 
-  trap show_command_in_title_bar DEBUG
+  trap _show_command_in_title_bar DEBUG
 }
 
 __personal_prompt
