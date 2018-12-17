@@ -29,6 +29,15 @@ export CDPATH=.:~/repos:~/wf/repos
 # remove quotes from ls output (for filenames with space)
 export QUOTING_STYLE=literal
 
+# vi all the way
+export EDITOR="vi"
+export VISUAL="vi"
+
+# for cowsay
+#export COWPATH="/usr/share/cowsay/cows:$HOME/data/cows/my_cows:$HOME/data/cows/other_cows"
+#COW_BASE_DIR=$HOME/data/cows
+#export COWPATH="$COW_BASE_DIR/my_cows:$COW_BASE_DIR/other_cows:$COW_BASE_DIR/aur_cows:$COW_BASE_DIR/ubuntu_cows"
+
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
