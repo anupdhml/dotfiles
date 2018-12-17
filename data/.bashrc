@@ -73,6 +73,7 @@ fi
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # fasd initialization: https://github.com/clvv/fasd#install
+# modifies the prompt function
 fasd_cache="$HOME/.fasd-init-bash"
 if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
   fasd --init posix-alias bash-hook bash-ccomp bash-ccomp-install >| "$fasd_cache"
@@ -80,18 +81,22 @@ fi
 source "$fasd_cache"
 unset fasd_cache
 
-# solve ssh issues in tmux
-# TODO test this out
-#source ~/bin/ssh-find-agent.bash
-
 # alias definitions
 # making this the final item here, since aliases may utilize stuff already sourced
 if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
 
+# ~/bin sources ##############################################################
+
 # awesome prompt
+# make sure that this is the last thing that modifies the prompt function
+# (eg: by placed this after things like fasd initialization)
 source ~/bin/.personal_bash_prompt.sh
+
+# solve ssh issues in tmux
+# TODO test this out
+#source ~/bin/ssh-find-agent.bash
 
 # script collecting stuff directly visible during terminal startup
 # (welcome message, tmux initialization etc.)

@@ -58,7 +58,7 @@ __personal_prompt() {
     echo "$pre$name"
   }
 
-  ps1() {
+  _set_ps1() {
     # check the exit code of the previous command and change smileys accordingly
     if [ $? -eq 0 ]; then
       local smiley="|^◡^|"
@@ -79,10 +79,22 @@ __personal_prompt() {
     PS1="\n${smiley}${name}:${path}${git}${symbol} "
   }
 
+  # function collecting anything else we might want to run.
+  # also serves as a placeholder window title for the prompt,
+  # since it's executed last.
+  ps1() {
+    # for syncing history across sessions, every time a command runs
+    # disabled because can be expensive over time, and is also prone
+    # to bugs (history file gets nuked once in a while)
+    #history -a; history -c; history -r;
+
+    : # no-op
+  }
+
   # if the prompt commamd is already set, include it too.
-  # ps1 needs to be at the beginning of the chain here, since we check for the
-  # status of the last command in the function.
-  PROMPT_COMMAND="ps1${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+  # _set_ps1 needs to be at the beginning of the chain here, since we check for
+  # the status of the last command in the function.
+  PROMPT_COMMAND="_set_ps1${PROMPT_COMMAND:+; $PROMPT_COMMAND}ps1"
 
   ##############################################################################
 
@@ -91,6 +103,10 @@ __personal_prompt() {
   # http://www.davidpashley.com/articles/xterm-titles-with-bash.html
   show_command_in_title_bar() {
     case "$BASH_COMMAND" in
+      _*)
+        # Ignore commands that begin with _.
+        # likely the functions used to set the prompt command.
+        ;;
       *\033]0*)
         # The command is trying to set the title bar as well;
         # this is most likely the execution of $PROMPT_COMMAND.
