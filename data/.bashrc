@@ -53,7 +53,7 @@ export HISTTIMEFORMAT="%h %d %H:%M:%S "
 export HISTCONTROL=ignoreboth
 
 # prevent some frequenty used commands from appearing in the history file
-export HISTIGNORE="&:[bf]g:l[als]:lal:exit:fortune:clear:history:du*:df*:free*"
+export HISTIGNORE="&:[bf]g:l[als]:lal:exit:fortune:clear:history:du:df*:free*"
 
 # sources #####################################################################
 
