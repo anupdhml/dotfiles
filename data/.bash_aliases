@@ -1,5 +1,7 @@
 # Alias definitions.
 
+# command overrides ###########################################################
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -12,17 +14,43 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+# Make the commands interactive and verbose
+alias rm="rm -vI"
+alias rmdir="rmdir -v"
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias killall='killall -u $USER -v'
+
+# Make the command output more readable
+alias du='du -kh'
+alias df='df -kTh'
+alias free='free -m'
 
 # this ensures that aliases work with sudo
 alias sudo='sudo '
 
+# always start these apps in maximized mode
+alias xfce4-terminal="xfce4-terminal --maximize"
+
+# new commands ################################################################
+
+# useful ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# better less
+alias vless='/usr/share/vim/vim80/macros/less.sh'
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# tmux initialization
+alias tmux-start="tmux attach-session -d || tmux new-session"
+
+# urxvt with tmux
+alias urxvt-tmux='urxvt -e bash -c "(tmux -q has-session &> /dev/null && exec tmux attach-session -d) || (exec tmux new-session)"'
 
 # directory navigation #########################################################
 
@@ -37,7 +65,7 @@ alias .......="cd ../../../../../.."
 alias dirs="dirs -v"
 
 # change directory
-function cd() {
+cd() {
   if [ "$#" = "0" ]; then
     pushd ${HOME} > /dev/null
   else
@@ -46,7 +74,7 @@ function cd() {
 }
 
 # back directory
-function bd(){
+bd() {
   if [ "$#" = "0" ]; then
     dirs -v
     echo -n "? "
@@ -62,7 +90,7 @@ function bd(){
 # pick directory (rotates it in the stack)
 # TODO make pd only bring the selection to the top (like in zsh)
 # also use fzf for fuzzy matches
-function pd() {
+pd() {
   if [[ $# -ge 1 ]]; then
     choice="$1"
   else
@@ -138,3 +166,9 @@ _fasd_bash_hook_cmd_complete o v vv
 #alias gitcm='git commit -m'
 #alias gitcam='git commit -a -m'
 #alias gitsh='git sh'
+
+# just for fun ################################################################
+
+# make sl less annoying (allow ctrl-c to cancel)
+alias sl="sl -aFe"
+alias SL="sl -aFe"

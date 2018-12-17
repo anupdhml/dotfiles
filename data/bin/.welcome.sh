@@ -41,3 +41,11 @@ else
   echo "$(date '+%b %d') in history and elsewhere:"
   calendar -l 0 | sed 's/[a-zA-Z]* [0-9]*\(.*\)/\1/g'
 fi
+
+# if not inside a tmux session, and if no session is started, start a new session
+#[ -z "$TMUX"  ] && { tmux attach-session -d || tmux new-session; }
+
+if [ -z "$TMUX"  ]; then
+  #tmux-start
+  tmux -q has-session &> /dev/null && tmux list-sessions
+fi

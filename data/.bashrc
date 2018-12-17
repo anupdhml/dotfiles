@@ -83,20 +83,15 @@ fi
 source "$fasd_cache"
 unset fasd_cache
 
+# solve ssh issues in tmux
+# TODO test this out
+#source ~/bin/ssh-find-agent.bash
+
 # alias definitions
 # making this the final item here, since aliases may utilize stuff already sourced
 if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
-
-# startup ######################################################################
-
-# if not inside a tmux session, and if no session is started, start a new session
-#[ -z "$TMUX"  ] && { tmux attach || tmux new-session;}
-
-# solve ssh issues in tmux
-# TODO test this out
-#source ~/bin/ssh-find-agent.bash
 
 # welcome message
 source ~/bin/.welcome.sh
