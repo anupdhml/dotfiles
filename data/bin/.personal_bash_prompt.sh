@@ -91,10 +91,11 @@ __personal_prompt() {
     : # no-op
   }
 
-  # if the prompt commamd is already set, include it too.
+  # if the prompt commamd is already set, include it too (stripping of the last
+  # ; that may be present).
   # _set_ps1 needs to be at the beginning of the chain here, since we check for
   # the status of the last command in the function.
-  PROMPT_COMMAND="_set_ps1${PROMPT_COMMAND:+; $PROMPT_COMMAND}ps1"
+  PROMPT_COMMAND="_set_ps1${PROMPT_COMMAND:+; ${PROMPT_COMMAND%%;}};ps1"
 
   ##############################################################################
 
