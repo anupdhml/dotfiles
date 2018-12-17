@@ -99,4 +99,7 @@ source ~/bin/.personal_bash_prompt.sh
 
 # script collecting stuff directly visible during terminal startup
 # (welcome message, tmux initialization etc.)
-source ~/bin/.terminal_startup.sh
+# to be run only when not inside a tmux session.
+if [ -z "$TMUX" ]; then
+  source ~/bin/.terminal_startup.sh
+fi

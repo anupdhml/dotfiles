@@ -28,32 +28,25 @@ _get_random_cow() {
   printf "%s\n" "${files[RANDOM % ${#files}]}"
 }
 
+if [ "$[$RANDOM % $MAX_NUM]" -le 4 ]; then
+  # -e treats all fortune sources equally
+  #~/bin/fortunecow -e $FORTUNE_BASE_DIR/*/
+  #~/bin/fortunecow -e $fortune_paths
+
+  # based on no of fortunes
+  #~/bin/fortunecow $FORTUNE_BASE_DIR/*/
+  #~/bin/fortunecow $fortune_paths # remove big folder when using this
+
+  fortune | cowsay -f $(_get_random_cow)
+else
+  echo "$(date '+%b %d') in history and elsewhere:"
+  calendar -l 0 | cut -d ' ' -f 3-
+fi
+
 # if not inside a tmux session, and if no session is started, start a new session
 #[ -z "$TMUX"  ] && { tmux attach-session -d || tmux new-session; }
 
-if [ -z "$TMUX"  ]; then
-  if [ "$[$RANDOM % $MAX_NUM]" -le 4 ]; then
-    # -e treats all fortune sources equally
-    #~/bin/fortunecow -e $FORTUNE_BASE_DIR/*/
-    #~/bin/fortunecow -e $fortune_paths
-
-    # based on no of fortunes
-    #~/bin/fortunecow $FORTUNE_BASE_DIR/*/
-    #~/bin/fortunecow $fortune_paths # remove big folder when using this
-
-    fortune | cowsay -f $(_get_random_cow)
-  else
-    ##calcurse -a
-    #calcurse -a -r1
-    #calendar -l 0
-    #echo ""
-
-    echo "$(date '+%b %d') in history and elsewhere:"
-    calendar -l 0 | cut -d ' ' -f 3-
-  fi
-
-  #tmux-start
-  tmux -q has-session &> /dev/null && tmux list-sessions
-fi
+#tmux-start
+tmux -q has-session &> /dev/null && tmux list-sessions
 
 return 0
