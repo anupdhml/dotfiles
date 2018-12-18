@@ -33,6 +33,18 @@ export QUOTING_STYLE=literal
 export EDITOR="vi"
 export VISUAL="vi"
 
+# for color terminals, make man pages colorful
+if [[ "$TERM" == *"color" ]]; then
+  export LESS_TERMCAP_mb=$'\E[0;31m'    # begin blinking red
+  export LESS_TERMCAP_md=$'\E[0;31m'    # begin bold red
+  export LESS_TERMCAP_me=$'\E[0m'       # end mode
+  export LESS_TERMCAP_se=$'\E[0m'       # end standout-mode
+  export LESS_TERMCAP_so=$'\E[1;40;37m' # begin standout-mode - info box white
+  #export LESS_TERMCAP_so=$'\E[1;44;33m' # begin standout-mode - info box yellow
+  export LESS_TERMCAP_ue=$'\E[0m'       # end underline
+  export LESS_TERMCAP_us=$'\E[0;32m'    # begin underline green
+fi
+
 # for cowsay
 #export COWPATH="/usr/share/cowsay/cows:$HOME/data/cows/my_cows:$HOME/data/cows/other_cows"
 #COW_BASE_DIR=$HOME/data/cows
