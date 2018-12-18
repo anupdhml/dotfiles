@@ -40,7 +40,7 @@ alias less='less --ignore-case --long-prompt'
 # useful ls aliases
 alias l='ls -CF'
 alias la='ls -A'
-alias ll='ls -lh'
+alias ll='ls -Alh'
 alias lal='ll -A'
 alias lsd='ll | grep "^d"'    # list only directories
 alias lsf='ll | grep -v "^d"' # list only files
