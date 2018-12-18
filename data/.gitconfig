@@ -14,7 +14,7 @@
 [pull]
   rebase = true
 [alias]
-# basics
+  # basics
   s   = status
   sf  = status -suno
   c   = checkout
@@ -26,7 +26,7 @@
   cm  = commit -m
   cam = commit -a -m
   sh  = show
-# extras
+  # extras
   rs  = reset --soft HEAD~1
   rh  = reset --hard HEAD~1
   g   = grep --break --heading --line-number
