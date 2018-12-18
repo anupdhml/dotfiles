@@ -39,9 +39,12 @@ URxvt*color15 : #EEEEEC
 !*pointerColorForeground:S_base01
 
 ! background color (prior to tinting) (default is white)
-!URxvt*background:	#F0F0F0
-urxvt*depth: 32
 URxvt.background: rgba:f0f0/f0f0/f0f0/eeee
+!URxvt*background:	#F0F0F0
+! solarized light
+!URxvt*background: #fdf6e3
+! transparency
+!urxvt*depth: 32
 
 ! transparency - true or false (default)
 !URxvt*transparent:true

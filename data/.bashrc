@@ -24,7 +24,7 @@ shopt -s cdspell
 # env vars ####################################################################
 
 # easily jump to directories (apart from ones in the current dir)
-export CDPATH=.:~/repos:~/wf/repos
+#export CDPATH=.:~/repos:~/wf/repos
 
 # remove quotes from ls output (for filenames with space)
 export QUOTING_STYLE=literal
