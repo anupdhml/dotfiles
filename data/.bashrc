@@ -44,10 +44,17 @@ export HISTCONTROL=ignoreboth
 # prevent some frequenty used commands from appearing in the history file
 export HISTIGNORE="&:[bf]g:l[als]:lal:exit:fortune:clear:history:du:df*:free*"
 
-# env vars ####################################################################
+# path vars ####################################################################
 
 # easily jump to directories (apart from ones in the current dir)
 #export CDPATH=.:~/repos:~/wf/repos
+
+# for cowsay
+#export COWPATH="/usr/share/cowsay/cows:$HOME/data/cows/my_cows:$HOME/data/cows/other_cows"
+#COW_BASE_DIR=$HOME/data/cows
+#export COWPATH="$COW_BASE_DIR/my_cows:$COW_BASE_DIR/other_cows:$COW_BASE_DIR/aur_cows:$COW_BASE_DIR/ubuntu_cows"
+
+# other vars ###################################################################
 
 # remove quotes from ls output (for filenames with space)
 export QUOTING_STYLE=literal
@@ -56,8 +63,7 @@ export QUOTING_STYLE=literal
 export EDITOR="vi"
 export VISUAL="vi"
 
-# colors for ls
-# sets LS_COLORS
+# colors for ls. sets LS_COLORS
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
@@ -68,7 +74,6 @@ fi
 
 # for color terminals, make man pages colorful
 if [[ "$TERM" == *"color" ]]; then
-  #export LESS=-R
   export LESS_TERMCAP_mb=$'\E[0;31m'    # begin blink (red)
   export LESS_TERMCAP_md=$'\E[0;31m'    # begin bold (red)
   export LESS_TERMCAP_me=$'\E[0m'       # end bold/blink
@@ -80,11 +85,6 @@ fi
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# for cowsay
-#export COWPATH="/usr/share/cowsay/cows:$HOME/data/cows/my_cows:$HOME/data/cows/other_cows"
-#COW_BASE_DIR=$HOME/data/cows
-#export COWPATH="$COW_BASE_DIR/my_cows:$COW_BASE_DIR/other_cows:$COW_BASE_DIR/aur_cows:$COW_BASE_DIR/ubuntu_cows"
 
 # sources #####################################################################
 
