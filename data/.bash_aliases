@@ -9,9 +9,10 @@ if [ -x /usr/bin/dircolors ]; then
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+    # also ignore case by default for grep
+    alias grep='grep --ignore-case --color=auto'
+    alias fgrep='fgrep --ignore-case --color=auto'
+    alias egrep='egrep --ignore-case --color=auto'
 fi
 
 # Make the commands interactive and verbose
