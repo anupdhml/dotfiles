@@ -2,20 +2,17 @@
 
 # command overrides ###########################################################
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+# enable color support of ls and also add -v option
+# (natural sort of numbers within text)
+alias ls='ls --color=auto -v'
 
-    # add -v option for ls (natural sort of numbers within text)
-    alias ls='ls --color=auto -v'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+# improved less (with color support)
+alias less='less --ignore-case --long-prompt --RAW-CONTROL-CHARS'
 
-    # also ignore case by default for grep
-    alias grep='grep --color=auto --ignore-case'
-    alias fgrep='fgrep --color=auto --ignore-case'
-    alias egrep='egrep --color=auto --ignore-case'
-fi
+# enable color support of grep and also ignore case
+alias grep='grep --color=auto --ignore-case'
+alias fgrep='fgrep --color=auto --ignore-case'
+alias egrep='egrep --color=auto --ignore-case'
 
 # on color terminals, fool certain commands to always print in color
 # (useful to see color when piping to places like less)
@@ -23,20 +20,17 @@ if [[ "$TERM" == *"color" ]]; then
   alias dmesg='dmesg --color=always'
 fi
 
-# Make the commands interactive and verbose
+# make the commands interactive and verbose
 alias rm='rm -vI'
 alias rmdir='rmdir -v'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias killall='killall -u $USER -v'
 
-# Make the command output more readable
+# make the command output more readable
 alias du='du -kh'
 alias df='df -kTh'
 alias free='free -h'
-
-# improved less
-alias less='less --ignore-case --long-prompt --RAW-CONTROL-CHARS'
 
 # prefer human numeric sort by default
 alias sort='sort -h'

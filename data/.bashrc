@@ -21,38 +21,6 @@ shopt -s globstar
 # auto-correct typos in directory names
 shopt -s cdspell
 
-# env vars ####################################################################
-
-# easily jump to directories (apart from ones in the current dir)
-#export CDPATH=.:~/repos:~/wf/repos
-
-# remove quotes from ls output (for filenames with space)
-export QUOTING_STYLE=literal
-
-# vi all the way
-export EDITOR="vi"
-export VISUAL="vi"
-
-# for color terminals, make man pages colorful
-if [[ "$TERM" == *"color" ]]; then
-  #export LESS=-R
-  export LESS_TERMCAP_mb=$'\E[0;31m'    # begin blink (red)
-  export LESS_TERMCAP_md=$'\E[0;31m'    # begin bold (red)
-  export LESS_TERMCAP_me=$'\E[0m'       # end bold/blink
-  export LESS_TERMCAP_so=$'\E[1;40;37m' # begin standout (black bg, white fg)
-  export LESS_TERMCAP_se=$'\E[0m'       # end standout
-  export LESS_TERMCAP_us=$'\E[0;32m'    # begin underline (green)
-  export LESS_TERMCAP_ue=$'\E[0m'       # end underline
-fi
-
-# for cowsay
-#export COWPATH="/usr/share/cowsay/cows:$HOME/data/cows/my_cows:$HOME/data/cows/other_cows"
-#COW_BASE_DIR=$HOME/data/cows
-#export COWPATH="$COW_BASE_DIR/my_cows:$COW_BASE_DIR/other_cows:$COW_BASE_DIR/aur_cows:$COW_BASE_DIR/ubuntu_cows"
-
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
 # history ######################################################################
 
 # append to the history file, don't overwrite it
@@ -76,6 +44,48 @@ export HISTCONTROL=ignoreboth
 # prevent some frequenty used commands from appearing in the history file
 export HISTIGNORE="&:[bf]g:l[als]:lal:exit:fortune:clear:history:du:df*:free*"
 
+# env vars ####################################################################
+
+# easily jump to directories (apart from ones in the current dir)
+#export CDPATH=.:~/repos:~/wf/repos
+
+# remove quotes from ls output (for filenames with space)
+export QUOTING_STYLE=literal
+
+# vi all the way
+export EDITOR="vi"
+export VISUAL="vi"
+
+# colors for ls
+# sets LS_COLORS
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
+# make less more friendly for non-text input files, see lesspipe(1)
+# sets LESSOPEN
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# for color terminals, make man pages colorful
+if [[ "$TERM" == *"color" ]]; then
+  #export LESS=-R
+  export LESS_TERMCAP_mb=$'\E[0;31m'    # begin blink (red)
+  export LESS_TERMCAP_md=$'\E[0;31m'    # begin bold (red)
+  export LESS_TERMCAP_me=$'\E[0m'       # end bold/blink
+  export LESS_TERMCAP_so=$'\E[1;40;37m' # begin standout (black bg, white fg)
+  export LESS_TERMCAP_se=$'\E[0m'       # end standout
+  export LESS_TERMCAP_us=$'\E[0;32m'    # begin underline (green)
+  export LESS_TERMCAP_ue=$'\E[0m'       # end underline
+fi
+
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# for cowsay
+#export COWPATH="/usr/share/cowsay/cows:$HOME/data/cows/my_cows:$HOME/data/cows/other_cows"
+#COW_BASE_DIR=$HOME/data/cows
+#export COWPATH="$COW_BASE_DIR/my_cows:$COW_BASE_DIR/other_cows:$COW_BASE_DIR/aur_cows:$COW_BASE_DIR/ubuntu_cows"
+
 # sources #####################################################################
 
 # enable programmable completion features (you don't need to enable
@@ -88,10 +98,6 @@ if ! shopt -oq posix; then
     source /etc/bash_completion
   fi
 fi
-
-# make less more friendly for non-text input files, see lesspipe(1)
-# sets LESSOPEN var
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # fasd initialization: https://github.com/clvv/fasd#install
 # modifies the prompt function
