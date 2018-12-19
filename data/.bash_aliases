@@ -5,14 +5,16 @@
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+
+    # add -v option for ls (natural sort of numbers within text)
+    alias ls='ls --color=auto -v'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
     # also ignore case by default for grep
-    alias grep='grep --ignore-case --color=auto'
-    alias fgrep='fgrep --ignore-case --color=auto'
-    alias egrep='egrep --ignore-case --color=auto'
+    alias grep='grep --color=auto --ignore-case'
+    alias fgrep='fgrep --color=auto --ignore-case'
+    alias egrep='egrep --color=auto --ignore-case'
 fi
 
 # Make the commands interactive and verbose
@@ -27,14 +29,17 @@ alias du='du -kh'
 alias df='df -kTh'
 alias free='free -h'
 
+# improved less
+alias less='less --ignore-case --long-prompt'
+
+# prefer human numeric sort by default
+alias sort='sort -h'
+
 # this ensures that aliases work with sudo
 alias sudo='sudo '
 
 # always start these apps in maximized mode
 alias xfce4-terminal='xfce4-terminal --maximize'
-
-# improved less
-alias less='less --ignore-case --long-prompt'
 
 # command extensions ##########################################################
 
