@@ -35,13 +35,14 @@ export VISUAL="vi"
 
 # for color terminals, make man pages colorful
 if [[ "$TERM" == *"color" ]]; then
-  export LESS_TERMCAP_mb=$'\E[0;31m'    # begin blinking red
-  export LESS_TERMCAP_md=$'\E[0;31m'    # begin bold red
-  export LESS_TERMCAP_me=$'\E[0m'       # end mode
-  export LESS_TERMCAP_se=$'\E[0m'       # end standout-mode
-  export LESS_TERMCAP_so=$'\E[1;40;37m' # begin standout-mode - info box white
+  #export LESS=-R
+  export LESS_TERMCAP_mb=$'\E[0;31m'    # begin blink (red)
+  export LESS_TERMCAP_md=$'\E[0;31m'    # begin bold (red)
+  export LESS_TERMCAP_me=$'\E[0m'       # end bold/blink
+  export LESS_TERMCAP_so=$'\E[1;40;37m' # begin standout (black bg, white fg)
+  export LESS_TERMCAP_se=$'\E[0m'       # end standout
+  export LESS_TERMCAP_us=$'\E[0;32m'    # begin underline (green)
   export LESS_TERMCAP_ue=$'\E[0m'       # end underline
-  export LESS_TERMCAP_us=$'\E[0;32m'    # begin underline green
 fi
 
 # for cowsay
@@ -89,6 +90,7 @@ if ! shopt -oq posix; then
 fi
 
 # make less more friendly for non-text input files, see lesspipe(1)
+# sets LESSOPEN var
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # fasd initialization: https://github.com/clvv/fasd#install

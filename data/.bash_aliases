@@ -17,6 +17,12 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto --ignore-case'
 fi
 
+# on color terminals, fool certain commands to always print in color
+# (useful to see color when piping to places like less)
+if [[ "$TERM" == *"color" ]]; then
+  alias dmesg='dmesg --color=always'
+fi
+
 # Make the commands interactive and verbose
 alias rm='rm -vI'
 alias rmdir='rmdir -v'
@@ -30,7 +36,7 @@ alias df='df -kTh'
 alias free='free -h'
 
 # improved less
-alias less='less --ignore-case --long-prompt'
+alias less='less --ignore-case --long-prompt --RAW-CONTROL-CHARS'
 
 # prefer human numeric sort by default
 alias sort='sort -h'
