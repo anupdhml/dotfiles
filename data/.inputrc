@@ -1,6 +1,5 @@
-# Config file for readline library (see `man 3 readline`).
-# Used by interactive programs like bash for line editing
-# (handling things like completion on the way).
+# Config file for readline library (see `man 3 readline` and info `rluserman`).
+# Used by interactive programs like bash for line editing (handling things like completion on the way).
 #
 # For all available options here, run `bind -V`.
 # Some options are documented at:
@@ -8,11 +7,15 @@
 
 $include /etc/inputrc
 
-#set input-meta on
-#set output-meta on
-#set convert-meta off
-#set bell-style visible
+# allow UTF-8 input and output
+set input-meta on
+set output-meta on
+set convert-meta off
 
+# ring the terminal bell
+set bell-style audible
+
+# to enable vi-style controls. default is emacs
 #set editing-mode vi
 #set keymap vi
 
@@ -25,14 +28,16 @@ set show-all-if-unmodified on
 
 # underscores and hyphens are treated equally when completing
 set completion-map-case on
+
 # better completion for long file names
+# common prefixes longer than this value are replaced with ellipsis
 set completion-prefix-display-length 2
 
 # better completion when in the middle of word
 # (don't duplicate what's already there)
 set skip-completed-text on
 
-# append char to indicate file type (eg for symlinks)
+# append char to indicate file type (eg for symlinks, similar to ls -F)
 set visible-stats on
 # mark directories with slash at the end
 set mark-directories on
@@ -61,5 +66,5 @@ set blink-matching-paren on
 "\e[1;5A": menu-complete-backward
 "\e[1;5B": menu-complete
 # alternate keys
-Control-k: menu-complete-backward
-Control-j: menu-complete
+#Control-k: menu-complete-backward
+#Control-j: menu-complete
