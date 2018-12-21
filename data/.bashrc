@@ -54,23 +54,15 @@ export HISTIGNORE="&:[bf]g:l[als]:lal:exit:fortune:clear:history:du:df*:free*"
 #COW_BASE_DIR=$HOME/data/cows
 #export COWPATH="$COW_BASE_DIR/my_cows:$COW_BASE_DIR/other_cows:$COW_BASE_DIR/aur_cows:$COW_BASE_DIR/ubuntu_cows"
 
-# other vars ###################################################################
+# color vars ###################################################################
 
-# remove quotes from ls output (for filenames with space)
-export QUOTING_STYLE=literal
-
-# vi all the way
-export EDITOR="vi"
-export VISUAL="vi"
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # colors for ls. sets LS_COLORS
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
-
-# make less more friendly for non-text input files, see lesspipe(1)
-# sets LESSOPEN
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # for color terminals, make man pages colorful
 if [[ "$TERM" == *"color" ]]; then
@@ -83,8 +75,18 @@ if [[ "$TERM" == *"color" ]]; then
   export LESS_TERMCAP_ue=$'\E[0m'       # end underline
 fi
 
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+# other vars ###################################################################
+
+# make less more friendly for non-text input files, see lesspipe(1)
+# sets LESSOPEN
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# remove quotes from ls output (for filenames with space)
+export QUOTING_STYLE=literal
+
+# vi all the way
+export EDITOR="vi"
+export VISUAL="vi"
 
 # sources #####################################################################
 

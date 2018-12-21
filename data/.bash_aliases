@@ -1,24 +1,52 @@
 # Alias definitions.
 
-# command overrides ###########################################################
+# command overrides (colors/usability) ########################################
 
 # enable color support of ls and also add -v option
 # (natural sort of numbers within text)
 alias ls='ls --color=auto -v'
-
-# improved less (with color support)
-alias less='less --ignore-case --long-prompt --RAW-CONTROL-CHARS'
 
 # enable color support of grep and also ignore case
 alias grep='grep --color=auto --ignore-case'
 alias fgrep='fgrep --color=auto --ignore-case'
 alias egrep='egrep --color=auto --ignore-case'
 
-# on color terminals, fool certain commands to always print in color
-# (useful to see color when piping to places like less)
 if [[ "$TERM" == *"color" ]]; then
+  # on color terminals, fool certain commands to always print in color
+  # (useful to see color when piping to places like less)
+  alias diff='diff --color=always'
   alias dmesg='dmesg --color=always'
+else
+  # enable auto color support elsewhere
+  alias diff='diff --color=auto'
+  alias dmesg='dmesg --color=auto'
 fi
+
+# improved less (with color support)
+alias less='less --ignore-case --long-prompt --RAW-CONTROL-CHARS'
+
+# via generic colorizer
+GRC="$(which grc)"
+if [ -n GRC ]; then
+  alias colorify="${GRC} -es --colour=auto"
+
+  alias configure='colorify ./configure'
+  #alias gcc='colorify gcc'
+  #alias g++='colorify g++'
+  #alias ld='colorify ld'
+  #alias make='colorify make'
+
+  alias netstat='colorify netstat'
+  alias ping='colorify ping'
+  alias tcpdump='colorify tcpdump'
+  alias traceroute='colorify traceroute'
+fi
+
+# command alternatives that have color support
+#alias make='colormake'
+#alias tail='colortail'
+
+# command overrides (usability) ###############################################
 
 # make the commands interactive and verbose
 alias rm='rm -vI'
