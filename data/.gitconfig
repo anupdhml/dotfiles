@@ -7,6 +7,9 @@
   excludesfile = /home/anup/.gitignore_global
   autocrlf = false
   preloadindex = true
+  # better highlighting for git diff (word based)
+  # also always clear the screen after pager use
+  pager = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less -r -c -+F -+X
 [push]
   default = current
 [rerere]
@@ -31,14 +34,18 @@
   rs  = reset --soft HEAD~1
   rh  = reset --hard HEAD~1
   g   = grep --break --heading --line-number
-  lg  = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+  lg  = log --graph --pretty=format:'%Cred%h%Creset %Cgreen[%<(11,trunc)%cr]%Creset %C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit
   # for posting to reviewboard
   rb  = "!MERGE_BASE=$(git merge-base origin HEAD); git diff --full-index $MERGE_BASE HEAD"
   rbf = "!MERGE_BASE=$(git merge-base origin HEAD); git diff --name-only --full-index $MERGE_BASE HEAD"
   # checkout branch with fuzzy search for names
   bc  = "!bc() { git checkout $(git branch | fzy -e $1); }; bc"
+  # better diff to show word level changes
+  #dw  = "!git diff --color | perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less -r -c"
 [grep]
   extendRegexp = true
   lineNumber = true
 [fetch]
-	prune = true
+  prune = true
+[credential]
+  helper = cache

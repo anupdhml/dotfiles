@@ -38,21 +38,42 @@ export HISTTIMEFORMAT="%h %d %H:%M:%S "
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-#export HISTCONTROL=ignoreboth:erasedups
-export HISTCONTROL=ignoreboth
+#export HISTCONTROL="ignoreboth:erasedups"
+export HISTCONTROL="ignoreboth"
 
 # prevent some frequenty used commands from appearing in the history file
 export HISTIGNORE="&:[bf]g:l[als]:lal:exit:fortune:clear:history:du:df*:free*"
 
 # path vars ####################################################################
 
-# easily jump to directories (apart from ones in the current dir)
-#export CDPATH=.:~/repos:~/wf/repos
+# add some more paths for command discovery
+export PATH="${PATH}:~/.local/bin"
 
-# for cowsay
-#export COWPATH="/usr/share/cowsay/cows:$HOME/data/cows/my_cows:$HOME/data/cows/other_cows"
-#COW_BASE_DIR=$HOME/data/cows
-#export COWPATH="$COW_BASE_DIR/my_cows:$COW_BASE_DIR/other_cows:$COW_BASE_DIR/aur_cows:$COW_BASE_DIR/ubuntu_cows"
+# for shared libraries
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:~/.local/lib"
+
+# easily jump to directories (apart from ones in the current dir)
+#export CDPATH=".:~/repos:~/wf/repos"
+
+# cowsay
+#export COWPATH="/usr/share/cowsay/cows:~/data/cows/my_cows:~/data/cows/other_cows"
+#COW_BASE_DIR="~/data/cows"
+#export COWPATH="${COW_BASE_DIR}/my_cows:${COW_BASE_DIR}/other_cows:${COW_BASE_DIR}/aur_cows:${COW_BASE_DIR}/ubuntu_cows"
+
+# airflow
+if [ -d "/wayfair/app/airflow" ]; then
+  export AIRFLOW_HOME="/wayfair/app/airflow"
+fi
+
+# java
+export JAVA_HOME="/usr/lib/jvm/default-java"
+
+# golang
+export GOPATH="${HOME}/go"
+export PATH="${PATH}:/usr/local/go/bin"
+
+# haskell
+export PATH="${PATH}:~/.cabal/bin"
 
 # color vars ###################################################################
 
@@ -82,7 +103,7 @@ fi
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # remove quotes from ls output (for filenames with space)
-export QUOTING_STYLE=literal
+export QUOTING_STYLE="literal"
 
 # vi all the way
 export EDITOR="vi"
@@ -103,7 +124,7 @@ fi
 
 # fasd initialization: https://github.com/clvv/fasd#install
 # modifies the prompt function
-fasd_cache="$HOME/.fasd-init-bash"
+fasd_cache="${HOME}/.fasd-init-bash"
 if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
   fasd --init posix-alias bash-hook bash-ccomp bash-ccomp-install >| "$fasd_cache"
 fi

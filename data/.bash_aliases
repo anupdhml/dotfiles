@@ -220,6 +220,10 @@ alias gccmine='gcc -Wall -pedantic -std=c99 -ggdb'
 alias gccminenodb='gcc -Wall -pedantic -std=c99'
 alias valgrind-memcheck='valgrind --leak-check=yes'
 
+# better beeline for hive queries
+# TODO version control hive too
+alias beez="beeline -i ~/.hiverc -u jdbc:hive2://${HIVE_SERVER}:10000 -n $USER --verbose=true --showWarnings=true showNestedErrs=true --color=true --silent=false"
+
 # just for fun ################################################################
 
 # make sl less annoying (allow ctrl-c to cancel)
