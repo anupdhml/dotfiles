@@ -18,18 +18,18 @@
   rebase = true
 [alias]
   # basics
-  s   = status
-  sf  = status -suno
-  c   = checkout
-  cb  = checkout -b
   d   = diff
   ds  = diff --staged
+  b   = branch
+  s   = status
+  su  = status -suno
+  sh  = show
   a   = add
   p   = pull
-  b   = branch
+  c   = checkout
+  cb  = checkout -b
   cm  = commit -m
   cam = commit -a -m
-  sh  = show
   # extras
   rs  = reset --soft HEAD~1
   rh  = reset --hard HEAD~1

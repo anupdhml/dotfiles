@@ -41,8 +41,8 @@ export HISTTIMEFORMAT="%h %d %H:%M:%S "
 #export HISTCONTROL="ignoreboth:erasedups"
 export HISTCONTROL="ignoreboth"
 
-# prevent some frequenty used commands from appearing in the history file
-export HISTIGNORE="&:[bf]g:l[als]:lal:exit:fortune:clear:history:du:df*:free*"
+# prevent some frequently used commands from appearing in the history file
+export HISTIGNORE="&:[bf]g:l[als]:lal:exit:fortune:clear:history:du:df*:free*:git d:git ds:git b:git s:git su:git sh:git lg:git rb"
 
 # path vars ####################################################################
 
