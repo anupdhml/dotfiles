@@ -53,7 +53,12 @@ else
   "colorscheme solarized8
   colorscheme flattened_light
 
-  highlight Comment cterm=italic
+  " italiicize comments, except on terminals that don't support it
+  if $TERM == "linux"
+    highlight Comment cterm=none ctermfg=darkgrey
+  else
+    highlight Comment cterm=italic
+  endif
 endif
 
 let g:lightline = {

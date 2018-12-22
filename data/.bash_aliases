@@ -112,6 +112,9 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias pdf-combine='gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=combined.pdf $1'
 alias pdf-from-images='convert -adjoin -page A4 $1 images.pdf'
 
+# test terminal color capabilities
+alias colortest-msgcat='msgcat --color=test'
+
 # directory navigation #########################################################
 
 alias ..='cd ..'
