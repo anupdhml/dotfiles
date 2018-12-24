@@ -50,11 +50,16 @@ call plug#begin('~/.vim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'edkolev/tmuxline.vim'
 
+Plug 'scrooloose/nerdcommenter'
+
 " on-demand loading
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 " initialize plugin system
 call plug#end()
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
 
 " theme -----------------------------------------------------------------------
 
@@ -94,6 +99,10 @@ let g:tmuxline_preset = 'minimal'
 
 " key bindings -----------------------------------------------------------------
 
+" With a map leader it's possible to do extra key combinations like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
+
 " fast switching between buffers with shift-tab. The current buffer will be
 " saved before switching to the next one.
 noremap <silent> <S-tab> :if &modifiable && !&readonly && &modified
@@ -113,11 +122,25 @@ vnoremap < <gv
 vnoremap > >gv
 
 " add blank line on enter
-"nmap <Return> o<Esc>
+nmap <Return> o<Esc>
+
+" F8 - toggle comment (via nerd commenter)
+map   <silent> <F8>         ,c<Space>
+map   <silent> <S-F8>       ,cs
+map   <silent> <C-F8>       ,cm
+imap  <silent> <F8>    <Esc>,c<Space>
+imap  <silent> <S-F8>  <Esc>,cs
+imap  <silent> <C-F8>  <Esc>,cm
 
 " autocmd ----------------------------------------------------------------------
 
 " have vim jump to the last position when reopening a file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" remove trailing whitespaces (for certain filetypes) automatically on file save
+autocmd FileType
+    \ c,cpp,css,erb,java,javascript,puppet,python,vim
+    \ autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+" open help files in a vertical split
+autocmd FileType help wincmd L
