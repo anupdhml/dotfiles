@@ -3,6 +3,9 @@
 " enable all vim features
 set nocompatible
 
+" enable filetype detection as well as type-specific plugin/indentation
+filetype plugin indent on
+
 " text options
 syntax on " syntax highlight
 set wrap " wrap long lines
@@ -17,7 +20,6 @@ set expandtab    " spaces instead of tabs
 set smarttab     " smart tab
 set autoindent   " guess indentation
 set smartindent  " smart autoindenting when starting a new line
-filetype plugin indent on " auto-detect the filetype
 
 " searching
 set hlsearch   " highlight the search terms
@@ -67,9 +69,6 @@ let g:NERDDefaultAlign = 'left'
 "  set t_Co=256
 "endif
 
-" enable status bar
-set laststatus=2
-
 " this needs to be set before intializing colorschemes
 set background=light
 
@@ -89,13 +88,26 @@ else
   endif
 endif
 
+" lightline and tnmuxline configuration
 let g:lightline = {
     \ 'colorscheme': 'powerline',
     \ }
-
 let g:tmuxline_powerline_separators = 0
 let g:tmuxline_theme = 'powerline'
 let g:tmuxline_preset = 'minimal'
+
+" these settings work well with statuslines like lightline
+set laststatus=2 " always display the statusline in all windows
+set noshowmode   " hide the default mode text (e.g. -- INSERT -- below the statusline)
+
+" instantly leave insert mode when pressing <Esc>
+" useful to have with statuslines like lightline
+set ttimeoutlen=10
+augroup FastEscape
+    autocmd!
+    au InsertEnter * set timeoutlen=0
+    au InsertLeave * set timeoutlen=1000
+augroup END
 
 " key bindings -----------------------------------------------------------------
 
