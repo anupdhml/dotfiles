@@ -43,6 +43,9 @@ set autowrite " automatically save before commands like :next and :make
 set hidden    " hide buffers when they are abandoned
 set mouse=a   " enable mouse usage (all modes)
 
+" other options
+set ttyfast " speed up scrolling in Vim
+
 " plugins ---------------------------------------------------------------------
 
 " specify a directory for plugins
@@ -151,7 +154,7 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 
 " remove trailing whitespaces (for certain filetypes) automatically on file save
 autocmd FileType
-    \ c,conf,cpp,css,erb,go,haskell,html,java,javascript,lua,php,python,ruby,sh,vim
+    \ awk,c,changelog,conf,config,cpp,css,dircolors,dockerfile,erb,erlang,git,go,grub,haskell,html,java,javascript,jproperties,json,lua,make,man,markdown,perl,php,python,readline,ruby,scala,sh,sql,sshconfig,sudoers,systemd,tmux,vim,xdefaults,xml,yaml
     \ autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " open help files in a vertical split
