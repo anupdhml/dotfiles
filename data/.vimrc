@@ -139,7 +139,7 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 
 " remove trailing whitespaces (for certain filetypes) automatically on file save
 autocmd FileType
-    \ c,cpp,css,erb,java,javascript,puppet,python,vim
+    \ c,conf,cpp,css,erb,go,haskell,html,java,javascript,lua,php,python,ruby,sh,vim
     \ autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " open help files in a vertical split
