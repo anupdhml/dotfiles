@@ -25,6 +25,7 @@
 # helpers #####################################################################
 
 _get_today_calendar() {
+  # remove all indentation
   calendar -l 0 | cut -d$'\t' -f2-
 }
 
@@ -49,12 +50,17 @@ else
   #~/bin/fortunecow $fortune_paths # remove big folder when using this
 
   fortune | cowsay -f $(_get_random_cowfile)
+
+  # remove last 2 promo lines from the weather output
+  # TODO randomize this as well
+  #wttr | head -n -2
 fi
 
 # Show info on available tmux sessions (if any)
 if $(tmux -q has-session &> /dev/null); then
   echo ""
   echo "Available tmux sessions:"
+  # indent output with 4 spaces
   tmux list-sessions | sed 's/^/    /'
 fi
 

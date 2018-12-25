@@ -248,3 +248,10 @@ etymology() {
     echo
   done
 }
+
+# weather function
+wttr() {
+  local request="wttr.in/${1-Boston}?T&m"
+  [ "$COLUMNS" -lt 125 ] && request+='&n'
+  curl --header "Accept-Language: ${LANG%_*}" --compressed --silent "$request"
+}
