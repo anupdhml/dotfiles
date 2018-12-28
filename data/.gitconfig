@@ -25,7 +25,8 @@
   su  = status -suno
   sh  = show
   a   = add
-  p   = pull
+  pl  = pull
+  ps  = push
   c   = checkout
   cb  = checkout -b
   cm  = commit -m
