@@ -55,6 +55,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'edkolev/tmuxline.vim'
 
+Plug 'tpope/vim-obsession'
 Plug 'scrooloose/nerdcommenter'
 
 " on-demand loading
@@ -111,6 +112,10 @@ augroup FastEscape
     au InsertEnter * set timeoutlen=0
     au InsertLeave * set timeoutlen=1000
 augroup END
+
+" command maps -----------------------------------------------------------------
+
+command S Obsession
 
 " key bindings -----------------------------------------------------------------
 
