@@ -81,19 +81,26 @@ urxvt*boldItalicfont: xft:Dejavu Sans Mono:style=Oblique:size=16:antialias=true:
 URxvt*letterSpace: -1
 !URxvt*lineSpace: -1
 
-#############################################
+# scroll settings #############################################################
 
-! scrollbar - true (default) or false
-URxvt*scrollBar:false
+! scrollbar appearance
+URxvt*scrollBar: false
+URxvt*scrollBar_right: true
+URxvt*transpscrollbar: true
+URxvt*scrollstyle: plain
 
-! scrollbar position - left=false (default) or right=true
-URxvt*scrollBar_right:true
+! scrollback buffer lines
+URxvt*saveLines: 50000
 
-! scrollbar style - rxvt (default), plain, next, or xterm
-URxvt*scrollstyle:plain
-URxvt.secondaryScroll:  true
+! disable scrolback buffer for secondary screen (as used by programs like less)
+URxvt.secondaryScreen: true
+URxvt.secondaryScroll: false
 
-! transparent scrollbar
-URxvt*transpscrollbar:true
+! do not scroll with output
+URxvt*scrollTtyOutput: false
 
-#############################################
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
