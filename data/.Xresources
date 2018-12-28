@@ -1,6 +1,6 @@
 ! geometry
-! this value makes urxvt start maximized in my xfce setup
-URxvt*geometry: 130x40
+! this value makes urxvt start maximized in my setup
+URxvt*geometry: 148x40
 
 ! border
 URxvt.internalBorder: 1
@@ -81,7 +81,7 @@ urxvt*boldItalicfont: xft:Dejavu Sans Mono:style=Oblique:size=16:antialias=true:
 URxvt*letterSpace: -1
 !URxvt*lineSpace: -1
 
-# scroll settings #############################################################
+! scroll settings #############################################################
 
 ! scrollbar appearance
 URxvt*scrollBar: false
