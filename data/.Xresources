@@ -1,3 +1,20 @@
+! geometry
+! this value makes urxvt start maximized in my xfce setup
+URxvt*geometry: 130x40
+
+! border
+URxvt.internalBorder: 1
+
+! perl extensions
+URxvt.perl-ext-common: default,matcher,selection-to-clipboard
+
+! open links on mouse left-click
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+
+! icon file
+URxvt*iconFile: /usr/share/icons/elementary-xfce/apps/64/xfce-terminal.png
+
 #############################################
 
 ! My Color Scheme
