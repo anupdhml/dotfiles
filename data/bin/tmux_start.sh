@@ -14,35 +14,59 @@ if [ -n "$TMUX" ]; then
   exit 0
 fi
 
-# directories for plugins and saved sessions
-TMUX_PLUGIN_DIR="${HOME}/.tmux/plugins"
-TMUX_RESURRECT_DIR="${HOME}/.tmux/resurrect"
-
-# resurrection helper
+# function to handle the resurrection cleanly, without leaving any blank
+# sessions (which is necessary to bootstrap the operation)
 _tmux_resurrect() {
-  while ! tmux run-shell "${TMUX_PLUGIN_DIR}/tmux-resurrect/scripts/restore.sh"; do
-    sleep 0.2;
-  done
+  local RESURRECT_BOOTSTRAP_SESSION="_resurrect_bootstrap"
 
-  # we don't need the dummy window now
-  # TODO if there were no sessions to restore, this effectively kills tmux
-  # start a session without special name in that case
-  tmux kill-session -t _resurrect_helper
+  # directories for plugins and saved sessions
+  local TMUX_PLUGINS_DIR="${HOME}/.tmux/plugins"
+  local TMUX_RESURRECT_DIR="${HOME}/.tmux/resurrect"
+
+  # resurrection helper
+  __run_resurrect() {
+    while ! tmux run-shell "${TMUX_PLUGINS_DIR}/tmux-resurrect/scripts/restore.sh"; do
+      sleep 0.2
+    done
+
+    # by now last session will have been restored so we don't need the bootstrap
+    # session. clear it.
+    # TODO if by some chance one of the restored sessions has the same name as
+    # the bootstrap session, don't run this
+    tmux kill-session -t "$RESURRECT_BOOTSTRAP_SESSION"
+  }
+
+  # Resurrect the last saved session (if it exists). This is done in the
+  # background and will succeed once tmux starts up (next command here).
+  if [ -f "${TMUX_RESURRECT_DIR}/last" ]; then
+    #__run_resurrect &> /dev/null &
+    __run_resurrect &
+  else
+    echo "No last session found"
+    return 1
+  fi
+
+  # Start tmux to help with the resurrect. After resurrection, the bootstrap
+  # session will be cleared (in __run_resurrect)
+  tmux new-session -s "$RESURRECT_BOOTSTRAP_SESSION"
 }
 
 ###############################################################################
 
 if tmux -q has-session &> /dev/null; then
-  # attaches the last used session (detaching it from any clients as well)
+  # if the session is already attached, it will be detached from the other clients
+  echo "Attaching last used session..."
   tmux attach-session -d
 else
-  # no session has been started. try to resurrect the last saved session (if it
-  # exists). This is done in the background and will succeed once tmux starts up
-  # (next command here)
-  [ -f "${TMUX_RESURRECT_DIR}/last" ] && _tmux_resurrect &
+  echo "There are no active sessions. Resurrecting last saved session..."
+  _tmux_resurrect; resurrection_status=$?
 
-  # start tmux
-  tmux new-session -s _resurrect_helper
+  if [ $resurrection_status -eq 0 ]; then
+    echo "Resurrected some sessions!"
+  else
+    echo "Could not resurrect :( Starting a blank session..."
+    tmux new-session
+  fi
 fi
 
 exit 0
