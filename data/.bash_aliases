@@ -100,8 +100,8 @@ alias vless='/usr/share/vim/vim80/macros/less.sh'
 
 # terminals with tmux
 alias xfce4-terminal-tmux='xfce4-terminal --maximize -e "bash -c ~/bin/tmux_start.sh"'
-alias urxvt-tmux='urxvt -e bash -c "~/bin/tmux_start.sh"'
-#alias urxvt-tmux='urxvt -e bash -c "(tmux -q has-session &> /dev/null && exec tmux attach-session -d) || (exec tmux new-session)"'
+alias urxvt-tmux='~/bin/urxvtcd -e bash -c "~/bin/tmux_start.sh"'
+#alias urxvt-tmux='~/bin/urxvtcd -e bash -c "(tmux -q has-session &> /dev/null && exec tmux attach-session -d) || (exec tmux new-session)"'
 
 # utilities ##########################################################
 

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Desktop Startup Script
+Exec=.desktop_startup.sh
+Comment=Script meant to be run during desktop startup
+Encoding=UTF-8
+Type=Application
+StartupNotify=false
+Terminal=false
+Hidden=false
