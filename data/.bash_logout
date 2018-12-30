@@ -19,3 +19,6 @@ fi
 #cat ~/.bash_history >> ~/.history_full
 #awk '!x[$0]++' ~/.history_full > ~/.bash_history
 #\cp ~/.bash_history ~/.history_full
+
+# save the tmux sessions. can lead to empty last file so disabling
+#~/.tmux/plugins/tmux-resurrect/scripts/save.sh quiet
