@@ -3,7 +3,7 @@
 #
 # Attaches to the last used session from the available ones.
 # If no sessions are available, tries to resurrect the last saved
-# session.
+# sessions.
 #
 # Resurrect functionality depends on https://github.com/tmux-plugins/tmux-resurrect
 #
@@ -29,20 +29,33 @@ _tmux_resurrect() {
       sleep 0.2
     done
 
-    # by now last session will have been restored so we don't need the bootstrap
-    # session. clear it.
-    # TODO if by some chance one of the restored sessions has the same name as
-    # the bootstrap session, don't run this
-    tmux kill-session -t "$RESURRECT_BOOTSTRAP_SESSION"
+    no_of_sessions=$(tmux list-sessions | wc -l)
+
+    # if no of sessions now is greater than 1, we resurrected some sessions and
+    # no longer need the bootstrap session. This also takes care of the (rare)
+    # case when we have the only resurrected session has the same name as the
+    # bootstrap session (in this case, tmux-resurrect will have already
+    # overwritten the bootstrap with the restored session and we don't want to
+    # clear the only existing session).
+    if [ "$no_of_sessions" -gt 1 ]; then
+      tmux kill-session -t "$RESURRECT_BOOTSTRAP_SESSION"
+    fi
+
+    # some diagnostics
+    local resurrected_sessions="$(tmux list-sessions)"
+    local no_of_resurrected_sessions=$(echo "$resurrected_sessions" | wc -l)
+    local resurrected_session_names=$(echo "$resurrected_sessions" | cut -d':' -f1 | tr '\n' '  ')
+
+    # send the diagnostic message to the active session statusbar
+    tmux display-message "Resurrected ${no_of_resurrected_sessions} sessions: ${resurrected_session_names}"
   }
 
-  # Resurrect the last saved session (if it exists). This is done in the
+  # Resurrect the last saved sessions (if they exist). This is done in the
   # background and will succeed once tmux starts up (next command here).
   if [ -f "${TMUX_RESURRECT_DIR}/last" ]; then
-    #__run_resurrect &> /dev/null &
     __run_resurrect &
   else
-    echo "No last session found"
+    echo "File not found for last saved sessions"
     return 1
   fi
 
@@ -58,10 +71,10 @@ if tmux -q has-session &> /dev/null; then
   echo "Attaching last used session..."
   tmux attach-session -d
 else
-  echo "There are no active sessions. Resurrecting last saved session..."
+  echo "There are no active sessions. Resurrecting last saved sessions..."
   _tmux_resurrect; resurrection_status=$?
 
-  if [ $resurrection_status -eq 0 ]; then
+  if [ "$resurrection_status" -eq 0 ]; then
     echo "Resurrected some sessions!"
   else
     echo "Could not resurrect :( Starting a blank session..."
