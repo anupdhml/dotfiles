@@ -5,7 +5,7 @@
 synapse --startup &
 
 # web browser
-firefox &
+#firefox &
 
 # miscellaneous desktop applications
 #redshift &
