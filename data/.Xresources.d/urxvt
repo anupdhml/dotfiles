@@ -1,4 +1,4 @@
-! Xresources configuration for urxvt
+! Xresources configuration for rxvt-unicode terminal
 !
 ! vim: filetype=xdefaults
 
@@ -119,7 +119,7 @@ URxvt*scrollTtyKeypress: true
 
 ! keycodes ####################################################################
 
-! make ctrl-arrow keys work (like xterm)
+! make ctrl-arrow keys work in programs like vim (by emulating xterm sequences)
 URxvt.keysym.Control-Left: \033[1;5D
 URxvt.keysym.Control-Right:\033[1;5C
 URxvt.keysym.Control-Up: \033[1;5A

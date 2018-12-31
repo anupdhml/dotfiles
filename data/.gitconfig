@@ -52,3 +52,9 @@
   prune = true
 [credential]
   helper = cache
+
+# For repos in the matching directory, read further configs. Useful for
+# overriding stuff so far (eg: different author identity for these repos)
+[includeIf "gitdir:~/wf/repos/"]
+  # for wf use
+  path = .gitconfig_wf
