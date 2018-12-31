@@ -152,6 +152,6 @@ if [ -z "$TMUX" ]; then
   # display a nice welcome message
   ~/bin/.terminal_welcome.sh
 
-  # if no tmux session has been started, start it. otherwise attach to the existing one
-  #tmux attach-session -d || tmux new-session
+  # nice tmux startup (resurrecting old sessions as well)
+  #~/bin/tmux_start.sh
 fi
