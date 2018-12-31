@@ -86,7 +86,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # for color terminals, make man pages colorful
-if [[ "$TERM" == *"color" ]]; then
+if [[ "$TERM" == *"color"* ]]; then
   export LESS_TERMCAP_mb=$'\E[0;31m'    # begin blink (red)
   export LESS_TERMCAP_md=$'\E[0;31m'    # begin bold (red)
   export LESS_TERMCAP_me=$'\E[0m'       # end bold/blink

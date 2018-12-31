@@ -2,7 +2,7 @@
 # Generate a useful PS1 for personal use
 
 # if not a color terminal, set a simple PS1 and exit right away
-if [[ "$TERM" != *"color" ]]; then
+if [[ "$TERM" != *"color"* ]]; then
   PS1="\u@\h:\w\$ "
   return
 fi
