@@ -76,7 +76,8 @@ let g:NERDDefaultAlign = 'left'
 " this needs to be set before intializing colorschemes
 set background=light
 
-if $TERM == "rxvt-unicode-256color"
+if $TERM == "rxvt-unicode-256color" && !has('gui_running')
+  " only on terminal vim
   colorscheme default_improved
 else
   "set termguicolors
