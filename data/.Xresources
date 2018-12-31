@@ -24,7 +24,7 @@ URxvt*iconFile: /usr/share/icons/elementary-xfce/apps/64/xfce-terminal.png
 
 ! perl extensions to enable (man urxvt-extensions for more)
 ! clipboard extension makes sure that selection text is copied to the system clipboard
-URxvt.perl-ext-common: default,matcher,selection-to-clipboard
+URxvt.perl-ext-common: default,matcher,selection-to-clipboard,font-size
 
 ! configuration for the matcher extension
 ! open URL links on mouse left-click
