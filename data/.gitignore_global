@@ -1,4 +1,7 @@
 # Global gitignore file (applies to all git projects)
+#
+# Must be referenced from the main gitconfig file.
+# `git config --global core.excludesfile ~/.gitignore_global`
 
 # Compiled source #
 ###################
