@@ -115,9 +115,11 @@ alias pdf-from-images='convert -adjoin -page A4 $1 images.pdf'
 # test terminal color capabilities
 alias colortest-msgcat='msgcat --color=test'
 
-# copy terminfo for rxvt-unicode-256color to remote host (provided as $1)
-# use if you get unknown terminal type with urxvt (eg: when clearing the screen)
-alias urxvt-terminfo-copy='infocmp rxvt-unicode-256color | ssh $1 "mkdir -p .terminfo && cat >/tmp/ti && tic /tmp/ti"'
+# Copy terminfo for the current terminal to a remote host (provided as $1).
+# Use if you get "unknown terminal type" error in the remote host (eg: when
+# clearing the screen). This is necessary for terminals like rxvt-unicode256color,
+# whose terminfo file is not widely installed.
+alias terminfo-copy='infocmp "$TERM" | ssh $1 "mkdir -p ~/.terminfo && cat >/tmp/ti && tic /tmp/ti && rm /tmp/ti"'
 
 # directory navigation #########################################################
 
