@@ -68,6 +68,7 @@ alias sudo='sudo '
 
 # always start these apps in maximized mode
 alias xfce4-terminal='xfce4-terminal --maximize'
+#alias gvim='gvim -geometry 148x40'
 
 # command extensions ##########################################################
 
