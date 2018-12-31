@@ -1,4 +1,7 @@
-/* for a list of available calendars, see /usr/share/calendar/calendar.all */
+/* Config file for calendar program
+ *
+ * For a list of available calendars, see /usr/share/calendar/calendar.all
+ */
 
 #include <calendar.birthday>
 

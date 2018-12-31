@@ -1,6 +1,5 @@
 #!/bin/bash
 # Script meant to be run during terminal startup, for displaying welcome messages
-#
 # By anupdhml
 
 # variables ####################################################################

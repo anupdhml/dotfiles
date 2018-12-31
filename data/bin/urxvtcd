@@ -1,6 +1,9 @@
 #!/bin/sh
-# modified version of the official urxvtcd script
-# adds the opendisplay option, to bind urxvtd lifetime with X server
+# Modified version of the official urxvtcd script
+#
+# Adds the opendisplay option, to bind urxvtd lifetime with X server
+#
+# By anupdhml
 
 urxvtc "$@"
 if [ $? -eq 2 ]; then

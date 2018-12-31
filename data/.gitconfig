@@ -1,3 +1,5 @@
+# Config file for git
+
 [user]
   email = anupdhml+git@gmail.com
   name = anupdhml

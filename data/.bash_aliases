@@ -1,4 +1,4 @@
-# Alias definitions.
+# File for bash alias definitions
 
 # command overrides (colors/usability) ########################################
 

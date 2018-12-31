@@ -1,5 +1,6 @@
 #!/bin/bash
-# Generate a useful PS1 for personal use
+# Generate a useful PS1 for personal use (meant to be sourced from bashrc)
+# By anupdhml
 
 # if not a color terminal, set a simple PS1 and exit right away
 if [[ "$TERM" != *"color"* ]]; then
@@ -28,9 +29,8 @@ __personal_prompt() {
   #GIT_PS1_SHOWSTASHSTATE=yes
   #GIT_PS1_SHOWCOLORHINTS=yes
 
-  # overrides for home user (set short name)
+  # overrides for home user (variations on the name, without the hostname)
   if [ "$USER" = anup ]; then
-    # overrides for home user
     name_list=(anup अनुप ανουπ)
     name=${name_list[ RANDOM % ${#name_list[@]} ]}
   fi

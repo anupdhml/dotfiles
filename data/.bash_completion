@@ -1,5 +1,8 @@
+# File for storing custom bash completions
+
 shopt -s nullglob
 
+# pick up completions from a directory
 for file in ~/.bash_completion.d/*; do
   [ -f "$file" ] && source "$file"
 done

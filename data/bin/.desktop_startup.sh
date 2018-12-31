@@ -1,5 +1,6 @@
 #!/bin/bash
-# Script meant to be run during desktop startup
+# Script meant to be run during desktop startup, for starting GUI applications
+# By anupdhml
 
 # launcher
 synapse --startup &

@@ -1,3 +1,5 @@
+# Global gitignore file (applies to all git projects)
+
 # Compiled source #
 ###################
 *.com
