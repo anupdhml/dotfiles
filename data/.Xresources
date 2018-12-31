@@ -1,23 +1,37 @@
-! geometry
-! this value makes urxvt start maximized in my setup
+! Configuration params for X client applicationsXresources
+! Mainly used for urxvt customization
+
+! terminal name
+!URxvt*termName: xterm-256color
+URxvt*termName: rxvt-unicode-256color
+
+! commands as login shell. enables sourcing of .bash_logout on shell exit
+URxvt*loginShell:true
+
+! disable ctrl+shift shortcut that enters ISO14755 mode
+URxvt.iso14755: false
+
+! window dimensions -- the value here makes urxvt start maximized in my setup
 URxvt*geometry: 148x40
 
-! border
+! border, to align with how terminals like xfce4-terminal display text
 URxvt.internalBorder: 1
-
-! perl extensions
-URxvt.perl-ext-common: default,matcher,selection-to-clipboard
-
-! open links on mouse left-click
-URxvt.url-launcher: /usr/bin/xdg-open
-URxvt.matcher.button: 1
 
 ! icon file
 URxvt*iconFile: /usr/share/icons/elementary-xfce/apps/64/xfce-terminal.png
 
-#############################################
+! extensions ###################################################################
 
-! My Color Scheme
+! perl extensions to enable (man urxvt-extensions for more)
+! clipboard extension makes sure that selection text is copied to the system clipboard
+URxvt.perl-ext-common: default,matcher,selection-to-clipboard
+
+! configuration for the matcher extension
+! open URL links on mouse left-click
+URxvt.matcher.button: 1
+URxvt.url-launcher: /usr/bin/xdg-open
+
+! colors ######################################################################
 
 ! black
 URxvt*color0  : #2E3436
@@ -48,30 +62,27 @@ URxvt*color7  : #D6D6D6
 URxvt*color15 : #EEEEEC
 !URxvt*color15 : #FFFFFF
 
-!*background:            S_base3
-!*foreground:            S_base00
-!*fadeColor:             S_base3
-!*cursorColor:           S_base01
-!*pointerColorBackground:S_base1
-!*pointerColorForeground:S_base01
+! text color
+URxvt*foreground:	#323232
 
-! background color (prior to tinting) (default is white)
+! background color
 URxvt.background: rgba:f0f0/f0f0/f0f0/eeee
 !URxvt*background:	#F0F0F0
 ! solarized light
 !URxvt*background: #fdf6e3
-! transparency
+
+! enables background transparency
 !urxvt*depth: 32
 
-! transparency - true or false (default)
-!URxvt*transparent:true
-!URxvt*inheritPixmap: true
+! cursor color
+URxvt.cursorColor: 8
 
-! font color (default is black)
-URxvt*foreground:	#323232
+! border color. ensures that there is no ugly white line at the top of the window
+URxvt.borderColor: 0
 
-#############################################
+! fonts #######################################################################
 
+! default font, with a devanagari fallback font (to dispaly devanagari text better)
 urxvt*font:           xft:Dejavu Sans Mono:style=Book:size=16:antialias=true:hinting=true,xft:Noto Sans Devanagari
 urxvt*Boldfont:       xft:Dejavu Sans Mono:style=Bold:size=16:antialias=true:hinting=true
 urxvt*Italicfont:     xft:Dejavu Sans Mono:style=Oblique:size=16:antialias=true:hinting=true
@@ -81,7 +92,7 @@ urxvt*boldItalicfont: xft:Dejavu Sans Mono:style=Oblique:size=16:antialias=true:
 URxvt*letterSpace: -1
 !URxvt*lineSpace: -1
 
-! scroll settings #############################################################
+! scrolling ###################################################################
 
 ! scrollbar appearance
 URxvt*scrollBar: false
@@ -104,3 +115,11 @@ URxvt*scrollWithBuffer: true
 
 ! scroll back to the bottom on keypress
 URxvt*scrollTtyKeypress: true
+
+! keycodes ####################################################################
+
+! make ctrl-arrow keys work (like xterm)
+URxvt.keysym.Control-Left: \033[1;5D
+URxvt.keysym.Control-Right:\033[1;5C
+URxvt.keysym.Control-Up: \033[1;5A
+URxvt.keysym.Control-Down: \033[1;5B

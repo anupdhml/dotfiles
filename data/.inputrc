@@ -65,6 +65,3 @@ set blink-matching-paren on
 # cycle through available completions, using ctrl-up and ctrl-down
 "\e[1;5A": menu-complete-backward
 "\e[1;5B": menu-complete
-# alternate keys
-#Control-k: menu-complete-backward
-#Control-j: menu-complete
