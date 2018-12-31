@@ -120,7 +120,11 @@ alias colortest-msgcat='msgcat --color=test'
 # Use if you get "unknown terminal type" error in the remote host (eg: when
 # clearing the screen). This is necessary for terminals like rxvt-unicode256color,
 # whose terminfo file is not widely installed.
-alias terminfo-copy='infocmp "$TERM" | ssh $1 "mkdir -p ~/.terminfo && cat >/tmp/ti && tic /tmp/ti && rm /tmp/ti"'
+terminfo-copy() {
+  [ -z "$1" ] && echo "Usage: terminfo-copy <user@hostname>" && return 1
+  local REMOTE_HOST="$1"
+  infocmp $TERM | ssh "$REMOTE_HOST" "mkdir -p ~/.terminfo && cat >/tmp/ti && tic /tmp/ti && rm /tmp/ti"
+}
 
 # directory navigation #########################################################
 
