@@ -99,6 +99,10 @@ alias apt-update='sudo apt-get update; sudo apt-get upgrade && sudo apt-get auto
 # use vim like less
 alias vless='/usr/share/vim/vim80/macros/less.sh'
 
+# ssh without host authenticity check on first connect. use wisely
+#alias ssh-nocheck='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+alias ssh-nocheck='ssh -o StrictHostKeyChecking=no'
+
 # terminals with tmux
 alias xfce4-terminal-tmux='xfce4-terminal --maximize -e "bash -c ~/bin/tmux_start.sh"'
 alias urxvt-tmux='~/bin/urxvtcd -e bash -c "~/bin/tmux_start.sh"'
