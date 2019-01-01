@@ -63,12 +63,18 @@ alias free='free -h'
 # prefer human numeric sort by default
 alias sort='sort -h'
 
+# show entry in dirs line-by-line with number
+alias dirs='dirs -v'
+
 # this ensures that aliases work with sudo
 alias sudo='sudo '
 
 # always start these apps in maximized mode
 alias xfce4-terminal='xfce4-terminal --maximize'
 #alias gvim='gvim -geometry 148x40'
+
+# ssh with fuzzy host finding (see ssh-fuzzy function)
+alias ssh='ssh-fuzzy'
 
 # command extensions ##########################################################
 
@@ -113,9 +119,9 @@ alias urxvt-tmux='~/bin/urxvtcd -e bash -c "~/bin/tmux_start.sh"'
 # Add an "alert" alias for long running commands.  Use like so: sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# supply input as $1
+# pdf related
 alias pdf-combine='gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=combined.pdf $1'
-alias pdf-from-images='convert -adjoin -page A4 $1 images.pdf'
+alias pdf-from-images='convert -adjoin -page A4 *.{jpg,png} images.pdf'
 
 # test terminal color capabilities
 alias colortest-msgcat='msgcat --color=test'
@@ -138,9 +144,6 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 alias .......='cd ../../../../../..'
-
-# show entry in dirs line-by-line with number
-alias dirs='dirs -v'
 
 # change directory
 cd() {
@@ -192,6 +195,8 @@ pd() {
   pushd $choice > /dev/null
 }
 
+# fuzzy finders ###############################################################
+
 # find directory (fuzzy)
 fd() {
   if [[ $# -ge 1 ]]; then
@@ -207,6 +212,43 @@ fd() {
     return 1
   fi
   cd "$matched_dir"
+}
+
+# ssh with fuzzy pick for hostnames (provided as first argument).
+# The choices will be generated based on entries in the HOSTNAMES_FILE
+# Relies on fuzzy finder fzy
+ssh-fuzzy() {
+  HOSTNAMES_FILE="${HOME}/.local/share/hostnames"
+  FUZZY_FINDER_CMD="fzy"
+  INPUT_STRING="$1"
+
+  # if more than one arguments were provided, proceed to ssh and exit from here
+  if [ $# -gt 1 ]; then
+    ssh "$@"; return
+  fi
+
+  # if the hostnames file does not exist, proceed to ssh and exit from here
+  if [ ! -f "$HOSTNAMES_FILE" ]; then
+    echo "Hostnames file '${HOSTNAMES_FILE}' does not exist. Configure it for fuzzy host finding."
+    ssh "$@"; return
+  fi
+
+  # if an arg was provided, change fuzzy finder command to print matches right away
+  if [ -n "$INPUT_STRING" ]; then
+    FUZZY_FINDER_CMD="${FUZZY_FINDER_CMD} -e ${INPUT_STRING}"
+  fi
+
+  # pick only the top matched host
+  matched_host=$(cat "$HOSTNAMES_FILE" | $FUZZY_FINDER_CMD | head -n 1)
+
+  if [ -n "$matched_host" ]; then
+    ssh "$matched_host"
+  else
+    if [ -n "$INPUT_STRING" ]; then
+      echo "'${INPUT_STRING}' did not match any hosts on file. Trying ssh straight..."
+      ssh "$INPUT_STRING"
+    fi
+  fi
 }
 
 # fasd ########################################################################
