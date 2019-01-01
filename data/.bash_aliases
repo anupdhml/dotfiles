@@ -219,18 +219,20 @@ fd() {
 # Relies on fuzzy finder fzy
 ssh-fuzzy() {
   HOSTNAMES_FILE="${HOME}/.local/share/hostnames"
-  FUZZY_FINDER_CMD="fzy"
   INPUT_STRING="$1"
+
+  FUZZY_FINDER_CMD="fzy"
+  SSH_CMD=\ssh # \ to use unaliased ssh, when ssh is aliased to this function
 
   # if more than one arguments were provided, proceed to ssh and exit from here
   if [ $# -gt 1 ]; then
-    ssh "$@"; return
+    $SSH_CMD "$@"; return
   fi
 
   # if the hostnames file does not exist, proceed to ssh and exit from here
   if [ ! -f "$HOSTNAMES_FILE" ]; then
     echo "Hostnames file '${HOSTNAMES_FILE}' does not exist. Configure it for fuzzy host finding."
-    ssh "$@"; return
+    $SSH_CMD "$@"; return
   fi
 
   # if an arg was provided, change fuzzy finder command to print matches right away
@@ -242,11 +244,11 @@ ssh-fuzzy() {
   matched_host=$(cat "$HOSTNAMES_FILE" | $FUZZY_FINDER_CMD | head -n 1)
 
   if [ -n "$matched_host" ]; then
-    ssh "$matched_host"
+    $SSH_CMD "$matched_host"
   else
     if [ -n "$INPUT_STRING" ]; then
       echo "'${INPUT_STRING}' did not match any hosts on file. Trying ssh straight..."
-      ssh "$INPUT_STRING"
+      $SSH_CMD "$INPUT_STRING"
     fi
   fi
 }
