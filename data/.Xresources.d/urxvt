@@ -9,17 +9,11 @@
 ! commands as login shell. enables sourcing of .bash_logout on shell exit
 URxvt*loginShell:true
 
+! command to use when printing the screen (ctrl+print includes the scrollback)
+URxvt*print-pipe: cat > ~/$(echo urxvt_$(date +'%Y-%m-%d_%H-%m-%S').dump)
+
 ! disable ctrl+shift shortcut that enters ISO14755 mode
 URxvt.iso14755: false
-
-! window dimensions -- the value here makes urxvt start maximized in my setup
-URxvt*geometry: 148x40
-
-! border, to align with how terminals like xfce4-terminal display text
-URxvt.internalBorder: 1
-
-! icon file
-URxvt*iconFile: /usr/share/icons/elementary-xfce/apps/64/xfce-terminal.png
 
 ! extensions ###################################################################
 
@@ -31,6 +25,20 @@ URxvt.perl-ext-common: default,matcher,selection-to-clipboard,font-size
 ! open URL links on mouse left-click
 URxvt.matcher.button: 1
 URxvt.url-launcher: /usr/bin/xdg-open
+
+! appearance ###################################################################
+
+! window dimensions -- the value here makes urxvt start maximized in my setup
+URxvt*geometry: 148x40
+
+! border, to align with how terminals like xfce4-terminal display text
+URxvt.internalBorder: 1
+
+! icon file
+URxvt*iconFile: /usr/share/icons/elementary-xfce/apps/64/xfce-terminal.png
+
+! turn on visual bell
+URxvt*visualBell: true
 
 ! colors ######################################################################
 
