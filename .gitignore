@@ -1,6 +1,3 @@
-# git config file for wf use
-data/.gitconfig_wf
-
 # tmux plugins directory
 data/.tmux/plugins
 
