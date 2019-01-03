@@ -37,9 +37,6 @@ URxvt.internalBorder: 1
 ! icon file
 URxvt*iconFile: /usr/share/icons/elementary-xfce/apps/64/xfce-terminal.png
 
-! turn on visual bell
-URxvt*visualBell: true
-
 ! colors ######################################################################
 
 ! black
