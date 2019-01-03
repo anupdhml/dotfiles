@@ -56,7 +56,7 @@
   bc  = "!bc() { git checkout $(git branch | fzy -e $1); }; bc"
 
   # update all the project code, including submodules
-  update = "!git pull && git submodule update --init --recursive"
+  update = "!git pull; git submodule update --init --recursive"
 
   # better diff to show word level changes
   #dw  = "!git diff --color | perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less -r -c"
