@@ -1,14 +1,8 @@
-# tmux plugins directory
-data/.tmux/plugins
-
 # tmux sessions directory (via tmux-resurrect plugin)
 data/.tmux/resurrect/*
 
 # vim history file
 data/.vim/.netrwhist
-
-# vim plugins directory
-data/.vim/plugged
 
 # vim sessions directory
 # need the folder in git so adding a dummy README as a placeholder
