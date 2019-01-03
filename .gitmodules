@@ -1,5 +1,10 @@
 # Git submodules
-# These need to be cloned too for some of the dotfiles to work properly.
+#
+# These need to be cloned too for some of the dotfiles to work properly:
+#   git submodule init
+#
+# To update all the submodules (along with any submodules that they may include too)
+#   git submodule update --recursive
 
 # tmux plugins ----------------------------------------------------------------
 # align these with the plugin list in .tmux.conf
