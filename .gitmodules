@@ -1,3 +1,32 @@
+# Git submodules
+# These need to be cloned too for some of the dotfiles to work properly.
+
+# tmux plugins ----------------------------------------------------------------
+# align these with the plugin list in .tmux.conf
+
+[submodule "data/.tmux/plugins/tmux-better-mouse-mode"]
+  path = data/.tmux/plugins/tmux-better-mouse-mode
+  url = https://git::@github.com/nhdaly/tmux-better-mouse-mode
+
+[submodule "data/.tmux/plugins/tmux-continuum"]
+  path = data/.tmux/plugins/tmux-continuum
+  url = https://git::@github.com/tmux-plugins/tmux-continuum
+
+[submodule "data/.tmux/plugins/tmux_mode_indicator"]
+  path = data/.tmux/plugins/tmux_mode_indicator
+  url = https://git::@github.com/dominikduda/tmux_mode_indicator
+
+[submodule "data/.tmux/plugins/tmux-resurrect"]
+  path = data/.tmux/plugins/tmux-resurrect
+  url = https://git::@github.com/tmux-plugins/tmux-resurrect
+
 [submodule "data/.tmux/plugins/tmux-sessionist"]
-	path = data/.tmux/plugins/tmux-sessionist
-	url = https://git::@github.com/tmux-plugins/tmux-sessionist
+  path = data/.tmux/plugins/tmux-sessionist
+  url = https://git::@github.com/tmux-plugins/tmux-sessionist
+
+[submodule "data/.tmux/plugins/tpm"]
+  path = data/.tmux/plugins/tpm
+  url = https://github.com/tmux-plugins/tpm
+
+# vim plugins ------------------------------------------------------------------
+# align these with the plugin list in .vimrc
