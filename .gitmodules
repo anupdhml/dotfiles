@@ -1,4 +1,4 @@
-# Git submodules
+# Git submodules list
 #
 # These need to be cloned too for some of the dotfiles to work properly:
 #   git submodule init

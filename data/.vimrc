@@ -50,6 +50,7 @@ set ttyfast " speed up scrolling in Vim
 
 " specify a directory for plugins
 " avoid using standard Vim directory names like 'plugin'
+"for the dotfiles repo, the plugins are present as git submodules
 call plug#begin('~/.vim/plugged')
 
 Plug 'itchyny/lightline.vim'

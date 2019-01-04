@@ -3,13 +3,27 @@
 [user]
   email = anupdhml+git@gmail.com
   name = anupdhml
+
+# core options ----------------------------------------------------------------
+
 [core]
+  # gitignore config to apply for all projects
   excludesfile = ~/.gitignore_global
+
+  # git won't mess with the line endings
   autocrlf = false
+
+  # speeds up operations like git diff and git status especially on filesystems like NFS
   preloadindex = true
+
   # better highlighting for git diff (word based)
   # also always clear the screen after pager use
   pager = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less -r -c -+F -+X
+
+# others -----------------------------------------------------------------------
+
+[commit]
+  template = ~/.gitmessage
 [credential]
   helper = cache
 [push]
@@ -25,6 +39,8 @@
   lineNumber = true
 [color]
   ui = true
+
+# aliases ----------------------------------------------------------------------
 
 [alias]
   # basics
@@ -60,6 +76,8 @@
 
   # better diff to show word level changes
   #dw  = "!git diff --color | perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less -r -c"
+
+# file includes ----------------------------------------------------------------
 
 # For repos in the matching directory, read further configs. Useful for
 # overriding stuff so far (eg: different author identity for these repos)

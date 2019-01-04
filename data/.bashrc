@@ -108,7 +108,7 @@ export QUOTING_STYLE="literal"
 export EDITOR="vi"
 export VISUAL="vi"
 
-# sources #####################################################################
+# sources ######################################################################
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -136,7 +136,7 @@ if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
 
-# ~/bin sources ##############################################################
+# ~/bin sources ################################################################
 
 # awesome prompt
 # make sure that this is the last thing that modifies the prompt function
