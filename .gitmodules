@@ -35,3 +35,19 @@
 
 # vim plugins ------------------------------------------------------------------
 # align these with the plugin list in .vimrc
+
+[submodule "data/.vim/plugged/lightline.vim"]
+  path = data/.vim/plugged/lightline.vim
+  url = https://github.com/itchyny/lightline.vim.git
+
+[submodule "data/.vim/plugged/nerdcommenter"]
+  path = data/.vim/plugged/nerdcommenter
+  url = https://github.com/scrooloose/nerdcommenter.git
+
+[submodule "data/.vim/plugged/tmuxline.vim"]
+  path = data/.vim/plugged/tmuxline.vim
+  url = https://github.com/edkolev/tmuxline.vim.git
+
+[submodule "data/.vim/plugged/vim-obsession"]
+  path = data/.vim/plugged/vim-obsession
+  url = https://github.com/tpope/vim-obsession.git
