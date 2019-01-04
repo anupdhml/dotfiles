@@ -8,7 +8,7 @@
 
 [core]
   # gitignore config to apply for all projects
-  excludesfile = ~/.gitignore_global
+  excludesfile = ~/.git.d/.gitignore_global
 
   # git won't mess with the line endings
   autocrlf = false
@@ -23,7 +23,7 @@
 # others -----------------------------------------------------------------------
 
 [commit]
-  template = ~/.gitmessage
+  template = ~/.git.d/.gitmessage
 [credential]
   helper = cache
 [push]
@@ -83,4 +83,4 @@
 # overriding stuff so far (eg: different author identity for these repos)
 [includeIf "gitdir:~/wf/repos/"]
   # for wf use
-  path = .gitconfig_wf
+  path = ~/.git.d/.gitconfig_wf
