@@ -1,3 +1,6 @@
+# File for git alias definitions
+# vim: filetype=gitconfig
+
 [alias]
   # basics
   d   = diff

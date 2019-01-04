@@ -23,7 +23,7 @@
 # others -----------------------------------------------------------------------
 
 [commit]
-  template = ~/.git.d/commit_message_template
+  template = ~/.git.d/template_commit_message
 [credential]
   helper = cache
 [push]
