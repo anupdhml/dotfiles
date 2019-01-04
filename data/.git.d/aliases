@@ -1,0 +1,34 @@
+[alias]
+  # basics
+  d   = diff
+  ds  = diff --staged
+  b   = branch
+  s   = status
+  su  = status -suno
+  sh  = show
+  a   = add
+  pl  = pull
+  ps  = push
+  c   = checkout
+  cb  = checkout -b
+  cm  = commit -m
+  cam = commit -a -m
+
+  # extras
+  rs  = reset --soft HEAD~1
+  rh  = reset --hard HEAD~1
+  g   = grep --break --heading --line-number
+  lg  = log --graph --pretty=format:'%Cred%h%Creset %Cgreen[%<(11,trunc)%cr]%Creset %C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit
+
+  # for posting to reviewboard
+  rb  = "!MERGE_BASE=$(git merge-base origin HEAD); git diff --full-index $MERGE_BASE HEAD"
+  rbf = "!MERGE_BASE=$(git merge-base origin HEAD); git diff --name-only --full-index $MERGE_BASE HEAD"
+
+  # checkout branch with fuzzy search for names. depends on fzy
+  bc  = "!bc() { git checkout $(git branch | fzy -e $1); }; bc"
+
+  # update all the project code, including submodules
+  update = "!git pull; git submodule update --init --recursive"
+
+  # better diff to show word level changes
+  #dw  = "!git diff --color | perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less -r -c"
