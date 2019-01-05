@@ -49,6 +49,9 @@ set mouse=a   " enable mouse usage (all modes)
 " other options
 set ttyfast " speed up scrolling in Vim
 
+" directly use system clipboard for yank/paste operations
+"set clipboard=unnamedplus
+
 " plugins ---------------------------------------------------------------------
 
 " specify a directory for plugins
@@ -63,6 +66,7 @@ Plug 'tpope/vim-obsession'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ajh17/VimCompletesMe'
 
+" TODO configure options here
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " on-demand loading
@@ -159,6 +163,17 @@ map   <silent> <C-F8>       ,cm
 imap  <silent> <F8>    <Esc>,c<Space>
 imap  <silent> <S-F8>  <Esc>,cs
 imap  <silent> <C-F8>  <Esc>,cm
+
+" toggle paste mode
+set pastetoggle=<leader>p
+
+" copy to system clipboard with cy (follow with a motion movement)
+nnoremap cy "+y
+vnoremap cy "+y
+
+" paste from system clipboard with cp
+nnoremap cp "+p<cr>
+vnoremap cp "+p<cr>
 
 " autocmd ----------------------------------------------------------------------
 

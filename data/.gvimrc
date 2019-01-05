@@ -10,6 +10,9 @@ set guioptions-=T " turn off toolbar
 set guioptions-=L " turn off left scrollbar
 set guioptions-=r " turn off right scrollbar
 
+" copy selection to primary clipboard (paste with middle-mouse/S-insert)
+set guioptions+=a
+
 " align font with what we use in the terminal
 set guifont=Dejavu\ Sans\ Mono\ 16
 
