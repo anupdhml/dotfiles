@@ -48,6 +48,14 @@
   path = data/.vim/plugged/tmuxline.vim
   url = https://github.com/edkolev/tmuxline.vim.git
 
+[submodule "data/.vim/plugged/vim-go"]
+	path = data/.vim/plugged/vim-go
+	url = https://github.com/fatih/vim-go.git
+
 [submodule "data/.vim/plugged/vim-obsession"]
   path = data/.vim/plugged/vim-obsession
   url = https://github.com/tpope/vim-obsession.git
+
+[submodule "data/.vim/plugged/VimCompletesMe"]
+  path = data/.vim/plugged/VimCompletesMe
+  url = https://github.com/ajh17/VimCompletesMe.git

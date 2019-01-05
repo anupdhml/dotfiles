@@ -36,6 +36,9 @@ set wildignore=*.o,*.e,*~           " ignore these extensions for completion
 " completion menu
 set completeopt=menuone,longest " always show the menu, insert longest match
 
+" turn on omnicomplete
+set omnifunc=syntaxcomplete#Complete
+
 " enhancements over vi
 set showcmd   " show (partial) command in status line
 set showmatch " show matching brackets
@@ -58,6 +61,9 @@ Plug 'edkolev/tmuxline.vim'
 
 Plug 'tpope/vim-obsession'
 Plug 'scrooloose/nerdcommenter'
+Plug 'ajh17/VimCompletesMe'
+
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " on-demand loading
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }

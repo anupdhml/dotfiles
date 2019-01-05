@@ -69,7 +69,7 @@ export JAVA_HOME="/usr/lib/jvm/default-java"
 
 # golang
 export GOPATH="${HOME}/go"
-export PATH="${PATH}:/usr/local/go/bin"
+export PATH="${PATH}:${GOPATH}/bin:/usr/local/go/bin"
 
 # haskell
 export PATH="${PATH}:~/.cabal/bin"
