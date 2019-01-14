@@ -69,6 +69,8 @@ Plug 'ajh17/VimCompletesMe'
 " TODO configure options here
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+Plug 'rodjek/vim-puppet'
+
 " on-demand loading
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
@@ -182,7 +184,7 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 
 " remove trailing whitespaces (for certain filetypes) automatically on file save
 autocmd FileType
-    \ awk,c,calendar,changelog,conf,config,cpp,css,desktop,dircolors,dockerfile,erb,erlang,git,go,grub,haskell,html,java,javascript,jproperties,json,lua,make,man,markdown,perl,php,python,readline,ruby,scala,sh,sql,sshconfig,sudoers,systemd,tmux,vim,xdefaults,xml,yaml
+    \ awk,c,calendar,changelog,conf,config,cpp,css,desktop,dircolors,dockerfile,eruby,erlang,git,go,grub,haskell,html,java,javascript,jproperties,json,lua,make,man,markdown,perl,php,puppet,python,readline,ruby,scala,sh,sql,sshconfig,sudoers,systemd,tmux,vim,xdefaults,xml,yaml
     \ autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " open help files in a vertical split

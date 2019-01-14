@@ -56,6 +56,10 @@
   path = data/.vim/plugged/vim-obsession
   url = https://github.com/tpope/vim-obsession.git
 
+[submodule "data/.vim/plugged/vim-puppet"]
+  path = data/.vim/plugged/vim-puppet
+  url = https://github.com/rodjek/vim-puppet.git
+
 [submodule "data/.vim/plugged/VimCompletesMe"]
   path = data/.vim/plugged/VimCompletesMe
   url = https://github.com/ajh17/VimCompletesMe.git
