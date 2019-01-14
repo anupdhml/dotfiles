@@ -86,12 +86,12 @@ fi
 
 # for color terminals, make man pages colorful
 if [[ "$TERM" == *"color"* ]]; then
-  export LESS_TERMCAP_mb=$'\E[0;31m'    # begin blink (red)
-  export LESS_TERMCAP_md=$'\E[0;31m'    # begin bold (red)
+  export LESS_TERMCAP_mb=$'\E[0;32m'    # begin blink (green)
+  export LESS_TERMCAP_md=$'\E[0;32m'    # begin bold (green)
   export LESS_TERMCAP_me=$'\E[0m'       # end bold/blink
   export LESS_TERMCAP_so=$'\E[1;40;37m' # begin standout (black bg, white fg)
   export LESS_TERMCAP_se=$'\E[0m'       # end standout
-  export LESS_TERMCAP_us=$'\E[0;32m'    # begin underline (green)
+  export LESS_TERMCAP_us=$'\E[0;31m'    # begin underline (red)
   export LESS_TERMCAP_ue=$'\E[0m'       # end underline
 fi
 
@@ -107,6 +107,9 @@ export QUOTING_STYLE="literal"
 # vi all the way
 export EDITOR="vi"
 export VISUAL="vi"
+
+# config file for bat
+export BAT_CONFIG_PATH="${HOME}/.bat.conf"
 
 # sources ######################################################################
 
