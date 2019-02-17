@@ -2,6 +2,7 @@
 .calendar
 .config/autostart
 .config/google-chrome
+.config/powerline
 .fonts
 .guayadeque
 .local/share/gnome-shell
