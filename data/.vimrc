@@ -48,6 +48,7 @@ set mouse=a   " enable mouse usage (all modes)
 
 " other options
 set ttyfast " speed up scrolling in Vim
+set autochdir " change directory for each file opened
 
 " directly use system clipboard for yank/paste operations
 "set clipboard=unnamedplus
