@@ -187,5 +187,9 @@ autocmd FileType
     \ awk,c,calendar,changelog,conf,config,cpp,css,desktop,dircolors,dockerfile,eruby,erlang,git,go,grub,haskell,html,java,javascript,jproperties,json,lua,make,man,markdown,perl,php,puppet,python,readline,ruby,scala,sh,sql,sshconfig,sudoers,systemd,tmux,vim,xdefaults,xml,yaml
     \ autocmd BufWritePre <buffer> :%s/\s\+$//e
 
+" override iskeword set from vim-puppet/ftplugin/puppet.vim, to ingnore ':'
+" (so that we can do things like word matches on module variable's word parts
+autocmd FileType puppet setl iskeyword=-,@,48-57,_,192-255
+
 " open help files in a vertical split
 autocmd FileType help wincmd L
