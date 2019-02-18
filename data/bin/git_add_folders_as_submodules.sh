@@ -7,7 +7,7 @@
 #
 # By anupdhml
 
-for repo in *;do
+for repo in *; do
   # skip over non-directories
   [ ! -d "$repo" ] && continue
 

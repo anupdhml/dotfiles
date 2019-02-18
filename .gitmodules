@@ -36,9 +36,17 @@
 # vim plugins ------------------------------------------------------------------
 # align these with the plugin list in .vimrc
 
+[submodule "data/.vim/plugged/ale"]
+	path = data/.vim/plugged/ale
+	url = https://github.com/w0rp/ale.git
+
 [submodule "data/.vim/plugged/lightline.vim"]
   path = data/.vim/plugged/lightline.vim
   url = https://github.com/itchyny/lightline.vim.git
+
+[submodule "data/.vim/plugged/lightline-ale"]
+	path = data/.vim/plugged/lightline-ale
+	url = https://github.com/maximbaz/lightline-ale.git
 
 [submodule "data/.vim/plugged/nerdcommenter"]
   path = data/.vim/plugged/nerdcommenter

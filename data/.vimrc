@@ -72,6 +72,9 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 Plug 'rodjek/vim-puppet'
 
+Plug 'w0rp/ale'               " asynchronous lint engine
+Plug 'maximbaz/lightline-ale' " ALE indicator for lightline
+
 " on-demand loading
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
@@ -80,6 +83,23 @@ call plug#end()
 
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
+
+" active ale linters/fixers
+let g:ale_linters = {
+\   'puppet': ['puppetlint'],
+\}
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'puppet': ['puppetlint'],
+\}
+
+" ale settings
+" TODO play with completion, go to definiton, hovering etc
+" https://github.com/w0rp/ale#2-usage
+let g:ale_linters_explicit = 1           " only run linters named in ale_linters settings.
+let g:ale_lint_on_text_changed = 'never' " linting runs only on file save/open now
+"let g:ale_fix_on_save = 1                " auto-fix files on save
+"let g:ale_sign_column_always = 1         " always show the gutter
 
 " theme -----------------------------------------------------------------------
 
@@ -114,6 +134,27 @@ let g:lightline = {
 let g:tmuxline_powerline_separators = 0
 let g:tmuxline_theme = 'powerline'
 let g:tmuxline_preset = 'minimal'
+
+" for lightline-ale
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+let g:lightline.component_type = {
+      \     'linter_checking': 'left',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'left',
+      \ }
+" TODO add the usual stuff here and enable this
+"let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
+" https://github.com/maximbaz/lightline-ale#using-icons-as-indicators
+"let g:lightline#ale#indicator_checking = "\uf110"
+"let g:lightline#ale#indicator_warnings = "\uf071"
+"let g:lightline#ale#indicator_errors = "\uf05e"
+"let g:lightline#ale#indicator_ok = "\uf00c"
 
 " these settings work well with statuslines like lightline
 set laststatus=2 " always display the statusline in all windows
@@ -177,6 +218,10 @@ vnoremap cy "+y
 " paste from system clipboard with cp
 nnoremap cp "+p<cr>
 vnoremap cp "+p<cr>
+
+" move between ale warnings and errors quickly
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " autocmd ----------------------------------------------------------------------
 
