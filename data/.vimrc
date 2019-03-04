@@ -75,6 +75,13 @@ Plug 'rodjek/vim-puppet'
 Plug 'w0rp/ale'               " asynchronous lint engine
 Plug 'maximbaz/lightline-ale' " ALE indicator for lightline
 
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'shumphrey/fugitive-gitlab.vim'
+
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-endwise'
+
 " on-demand loading
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
@@ -100,6 +107,12 @@ let g:ale_linters_explicit = 1           " only run linters named in ale_linters
 let g:ale_lint_on_text_changed = 'never' " linting runs only on file save/open now
 "let g:ale_fix_on_save = 1                " auto-fix files on save
 "let g:ale_sign_column_always = 1         " always show the gutter
+
+" ale indicators (aligned with indicators used in lightline-ale)
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
+
+let g:fugitive_gitlab_domains = ['https://git.csnzoo.com']
 
 " theme -----------------------------------------------------------------------
 
@@ -127,34 +140,54 @@ else
   endif
 endif
 
-" lightline and tnmuxline configuration
-let g:lightline = {
-    \ 'colorscheme': 'powerline',
-    \ }
+" update colors for ale indicators on the sidebar
+" TODO change sidebar color
+highlight link ALEWarningSign Keyword
+highlight link ALEErrorSign String
+
+" for generating tmux status bar config from vim (aligning tmux appearance with vim ligttline)
 let g:tmuxline_powerline_separators = 0
 let g:tmuxline_theme = 'powerline'
 let g:tmuxline_preset = 'minimal'
 
-" for lightline-ale
+" lightline configuration
+let g:lightline = {}
+
+" aligned with tmuxline theme
+let g:lightline.colorscheme = 'powerline'
+
+" for showing git branch info. depends on vim-fugitive
+let g:lightline.component_function = {
+    \   'fugitive': 'fugitive#head',
+    \ }
+
+" for showing linter errrors/warnings. depends on lightline-ale
 let g:lightline.component_expand = {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-      \ }
+    \  'linter_checking': 'lightline#ale#checking',
+    \  'linter_warnings': 'lightline#ale#warnings',
+    \  'linter_errors': 'lightline#ale#errors',
+    \  'linter_ok': 'lightline#ale#ok',
+    \ }
 let g:lightline.component_type = {
-      \     'linter_checking': 'left',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'left',
-      \ }
-" TODO add the usual stuff here and enable this
-"let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
-" https://github.com/maximbaz/lightline-ale#using-icons-as-indicators
-"let g:lightline#ale#indicator_checking = "\uf110"
-"let g:lightline#ale#indicator_warnings = "\uf071"
-"let g:lightline#ale#indicator_errors = "\uf05e"
-"let g:lightline#ale#indicator_ok = "\uf00c"
+    \  'linter_checking': 'left',
+    \  'linter_warnings': 'warning',
+    \  'linter_errors': 'error',
+    \  'linter_ok': 'left',
+    \ }
+let g:lightline#ale#indicator_checking = ''
+let g:lightline#ale#indicator_warnings = '▲'
+let g:lightline#ale#indicator_errors = '✗'
+let g:lightline#ale#indicator_ok = '✓'
+
+" configure lightline components
+let g:lightline.active = {
+    \   'left':  [ ['mode', 'paste'],
+    \              ['fugitive', 'readonly', 'filename', 'modified'] ],
+    \   'right': [ [ 'lineinfo' ],
+    \              [ 'percent' ],
+    \              [ 'fileformat', 'fileencoding', 'filetype' ],
+    \              ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ] ]
+    \ }
 
 " these settings work well with statuslines like lightline
 set laststatus=2 " always display the statusline in all windows
@@ -241,6 +274,20 @@ endfunction
 nnoremap <leader>e :call FzyCommand("find . -type f", ":e")<cr>
 nnoremap <leader>v :call FzyCommand("find . -type f", ":vs")<cr>
 nnoremap <leader>s :call FzyCommand("find . -type f", ":sp")<cr>
+
+" run previous command on the first window (and first pane) of the current tmux session
+" works well only if history is in-sync across all panes
+"nmap \r :!tmux send-keys -t "$(tmux display-message -p '\#S'):1.1" C-p C-j <CR><CR>
+
+" for running git commands on current file
+" TODO make it work as a :Git command. or as :Gblame...
+fun! GitCommand(command)
+	silent! !clear
+	exec "!git " . a:command . " %"
+endfun
+map <leader>gb :call GitCommand("blame") <CR><CR>
+map <leader>gd :call GitCommand("diff") <CR><CR>
+map <leader>gl :call GitCommand("log -p") <CR><CR>
 
 " autocmd ----------------------------------------------------------------------
 

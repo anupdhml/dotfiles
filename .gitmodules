@@ -37,16 +37,20 @@
 # align these with the plugin list in .vimrc
 
 [submodule "data/.vim/plugged/ale"]
-	path = data/.vim/plugged/ale
-	url = https://github.com/w0rp/ale.git
+  path = data/.vim/plugged/ale
+  url = https://github.com/w0rp/ale.git
+
+[submodule "data/.vim/plugged/fugitive-gitlab.vim"]
+  path = data/.vim/plugged/fugitive-gitlab.vim
+  url = https://github.com/shumphrey/fugitive-gitlab.vim.git
 
 [submodule "data/.vim/plugged/lightline.vim"]
   path = data/.vim/plugged/lightline.vim
   url = https://github.com/itchyny/lightline.vim.git
 
 [submodule "data/.vim/plugged/lightline-ale"]
-	path = data/.vim/plugged/lightline-ale
-	url = https://github.com/maximbaz/lightline-ale.git
+  path = data/.vim/plugged/lightline-ale
+  url = https://github.com/maximbaz/lightline-ale.git
 
 [submodule "data/.vim/plugged/nerdcommenter"]
   path = data/.vim/plugged/nerdcommenter
@@ -56,9 +60,17 @@
   path = data/.vim/plugged/tmuxline.vim
   url = https://github.com/edkolev/tmuxline.vim.git
 
+[submodule "data/.vim/plugged/vim-endwise"]
+  path = data/.vim/plugged/vim-endwise
+  url = https://github.com/tpope/vim-endwise.git
+
+[submodule "data/.vim/plugged/vim-fugitive"]
+  path = data/.vim/plugged/vim-fugitive
+  url = https://github.com/tpope/vim-fugitive.git
+
 [submodule "data/.vim/plugged/vim-go"]
-	path = data/.vim/plugged/vim-go
-	url = https://github.com/fatih/vim-go.git
+  path = data/.vim/plugged/vim-go
+  url = https://github.com/fatih/vim-go.git
 
 [submodule "data/.vim/plugged/vim-obsession"]
   path = data/.vim/plugged/vim-obsession
@@ -67,6 +79,14 @@
 [submodule "data/.vim/plugged/vim-puppet"]
   path = data/.vim/plugged/vim-puppet
   url = https://github.com/rodjek/vim-puppet.git
+
+[submodule "data/.vim/plugged/vim-rhubarb"]
+  path = data/.vim/plugged/vim-rhubarb
+  url = https://github.com/tpope/vim-rhubarb.git
+
+[submodule "data/.vim/plugged/vim-surround"]
+  path = data/.vim/plugged/vim-surround
+  url = https://github.com/tpope/vim-surround.git
 
 [submodule "data/.vim/plugged/VimCompletesMe"]
   path = data/.vim/plugged/VimCompletesMe

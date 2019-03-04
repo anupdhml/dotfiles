@@ -198,7 +198,7 @@ pd() {
 # fuzzy finders ###############################################################
 
 # find directory (fuzzy)
-fd() {
+findd() {
   if [[ $# -ge 1 ]]; then
     fzy_cmd="fzy -e ${1}"
   else
