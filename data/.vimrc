@@ -82,6 +82,8 @@ Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 
+Plug 'srstevenson/vim-picker'
+
 " on-demand loading
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
@@ -112,7 +114,12 @@ let g:ale_lint_on_text_changed = 'never' " linting runs only on file save/open n
 let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
 
+" fugitive gitlab
 let g:fugitive_gitlab_domains = ['https://git.csnzoo.com']
+
+" vim picker
+let g:picker_find_executable = 'fd'
+let g:picker_find_flags = '--type file --follow --hidden --exclude .git'
 
 " theme -----------------------------------------------------------------------
 
@@ -242,7 +249,7 @@ imap  <silent> <S-F8>  <Esc>,cs
 imap  <silent> <C-F8>  <Esc>,cm
 
 " toggle paste mode
-set pastetoggle=<leader>p
+set pastetoggle=<leader>P
 
 " copy to system clipboard with cy (follow with a motion movement)
 nnoremap cy "+y
@@ -268,12 +275,19 @@ function! FzyCommand(choice_command, vim_command)
     exec a:vim_command . ' ' . output
   endif
 endfunction
-" TODO use fd (and respect gitignore). also scope for rg here?
-" https://github.com/jhawthorn/fzy#use-with-vim
-" should also be able to open any project file from a path (similar to ctrl-p)
-nnoremap <leader>e :call FzyCommand("find . -type f", ":e")<cr>
-nnoremap <leader>v :call FzyCommand("find . -type f", ":vs")<cr>
-nnoremap <leader>s :call FzyCommand("find . -type f", ":sp")<cr>
+" TODO close picker window on escape
+nnoremap <leader>fe :call FzyCommand("fd --type file --follow --hidden --exclude .git . $(git rev-parse --show-toplevel 2>/dev/null)", ":e")<cr>
+
+" for vim-picker
+nmap <unique> <leader>pe <Plug>PickerEdit
+nmap <unique> <leader>ps <Plug>PickerSplit
+nmap <unique> <leader>pv <Plug>PickerVsplit
+nmap <unique> <leader>pt <Plug>PickerTabedit
+nmap <unique> <leader>pb <Plug>PickerBuffer
+nmap <unique> <leader>p] <Plug>PickerTag
+nmap <unique> <leader>pw <Plug>PickerStag
+nmap <unique> <leader>po <Plug>PickerBufferTag
+nmap <unique> <leader>ph <Plug>PickerHelp
 
 " run previous command on the first window (and first pane) of the current tmux session
 " works well only if history is in-sync across all panes
