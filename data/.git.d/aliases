@@ -2,7 +2,9 @@
 # vim: filetype=gitconfig
 
 [alias]
-  # basics
+
+  # basics --------------------------------------------------------------------
+
   d   = diff
   ds  = diff --staged
   b   = branch
@@ -17,25 +19,34 @@
   cm  = commit -m
   cam = commit -a -m
 
-  # extras
-  rs   = reset --soft HEAD~1
-  rh   = reset --hard HEAD~1
+  # extras --------------------------------------------------------------------
+
   g    = grep --break --heading --line-number
   lg   = log --graph --pretty=format:'%Cred%h%Creset %Cgreen[%<(11,trunc)%cr]%Creset %C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit
+  ls   = ls-files
+  rh   = reset --hard HEAD~1
+  rs   = reset --soft HEAD~1
+
   root = rev-parse --show-toplevel
 
-  # for posting to reviewboard
-  rb  = "!MERGE_BASE=$(git merge-base origin HEAD); git diff --full-index $MERGE_BASE HEAD"
-  rbf = "!MERGE_BASE=$(git merge-base origin HEAD); git diff --name-only --full-index $MERGE_BASE HEAD"
+  # shell based ---------------------------------------------------------------
 
   # checkout branch with fuzzy search for names. depends on fzy
-  bc  = "!bc() { git checkout $(git branch | fzy -e $1); }; bc"
-
-  # update all the project code, including submodules
-  update = "!git pull; git submodule update --init --recursive"
+  bc = "!bc() { git checkout $(git branch | fzy -e $1); }; bc"
 
   # better diff to show word level changes
   #dw  = "!git diff --color | perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less -r -c"
 
   # useful for running commands from the git root (since shell aliases are always executed from there)
   exec = "!exec "
+
+  # list all files from git root (depends on the root alias)
+  lsr     = "!git ls-files $(git root)"
+  ls-root = "!git ls-files $(git root)"
+
+  # for generating review diffs (eg for reviewboard)
+  rb  = "!MERGE_BASE=$(git merge-base origin HEAD); git diff --full-index $MERGE_BASE HEAD"
+  rbf = "!MERGE_BASE=$(git merge-base origin HEAD); git diff --name-only --full-index $MERGE_BASE HEAD"
+
+  # update all the project code, including submodules
+  update = "!git pull; git submodule update --init --recursive"
