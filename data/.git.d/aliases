@@ -41,8 +41,8 @@
   exec = "!exec "
 
   # list all files from git root (depends on the root alias)
-  lsr     = "!git ls-files $(git root)"
-  ls-root = "!git ls-files $(git root)"
+  lsr     = "!cd -- ${GIT_PREFIX:-.}; git ls-files $(git root)" # execute from current dir
+  ls-root = "!git ls-files $(git root)"                         # execute from root dir
 
   # for generating review diffs (eg for reviewboard)
   rb  = "!MERGE_BASE=$(git merge-base origin HEAD); git diff --full-index $MERGE_BASE HEAD"
