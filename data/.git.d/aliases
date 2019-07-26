@@ -22,7 +22,7 @@
   # extras --------------------------------------------------------------------
 
   g    = grep --break --heading --line-number
-  lg   = log --graph --pretty=format:'%Cred%h%Creset %Cgreen[%<(11,trunc)%cr]%Creset %C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit
+  lg   = log --graph --pretty=format:'%Cred%h%Creset %Cgreen[%<(11,trunc)%cr]%Creset %C(yellow)%d%Creset %s %C(bold blue)<%an %ae>%Creset' --abbrev-commit
   ls   = ls-files
   rh   = reset --hard HEAD~1
   rs   = reset --soft HEAD~1
@@ -50,3 +50,6 @@
 
   # update all the project code, including submodules
   update = "!git pull; git submodule update --init --recursive"
+
+  # git add, commit and push
+  camp = "f() { git commit -a -m \"$1\"; git push }; f"
