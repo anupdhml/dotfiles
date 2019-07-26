@@ -9,5 +9,6 @@ data/.vim/.netrwhist
 data/.vim/sessions/*
 !data/.vim/sessions/README.md
 
-# slide ssh config
+# wf specific files
+data/.git.d/gitconfig_wf
 data/.ssh/SlideSSHConfig
