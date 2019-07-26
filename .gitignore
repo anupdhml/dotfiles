@@ -8,3 +8,6 @@ data/.vim/.netrwhist
 # need the folder in git so adding a dummy README as a placeholder
 data/.vim/sessions/*
 !data/.vim/sessions/README.md
+
+# slide ssh config
+data/.ssh/SlideSSHConfig
