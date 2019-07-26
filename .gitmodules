@@ -76,6 +76,10 @@
   path = data/.vim/plugged/vim-obsession
   url = https://github.com/tpope/vim-obsession.git
 
+[submodule "data/.vim/plugged/vim-picker"]
+	path = data/.vim/plugged/vim-picker
+	url = https://github.com/srstevenson/vim-picker.git
+
 [submodule "data/.vim/plugged/vim-puppet"]
   path = data/.vim/plugged/vim-puppet
   url = https://github.com/rodjek/vim-puppet.git
@@ -87,6 +91,10 @@
 [submodule "data/.vim/plugged/vim-surround"]
   path = data/.vim/plugged/vim-surround
   url = https://github.com/tpope/vim-surround.git
+
+[submodule "data/.vim/plugged/vim-terraform"]
+	path = data/.vim/plugged/vim-terraform
+	url = https://github.com/hashivim/vim-terraform.git
 
 [submodule "data/.vim/plugged/VimCompletesMe"]
   path = data/.vim/plugged/VimCompletesMe

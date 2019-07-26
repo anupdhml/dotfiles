@@ -82,7 +82,10 @@ Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 
+" TODO decide on this
 Plug 'srstevenson/vim-picker'
+
+Plug 'hashivim/vim-terraform'
 
 " on-demand loading
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -291,6 +294,11 @@ nmap <unique> <leader>pw <Plug>PickerStag
 nmap <unique> <leader>po <Plug>PickerBufferTag
 nmap <unique> <leader>ph <Plug>PickerHelp
 
+" TODO is this needed anymore?
+"if exists(':tnoremap') == 2
+"  tnoremap <buffer> <silent> <Esc> <C-\><C-n>:quit<CR>
+"endif
+
 " run previous command on the first window (and first pane) of the current tmux session
 " works well only if history is in-sync across all panes
 "nmap \r :!tmux send-keys -t "$(tmux display-message -p '\#S'):1.1" C-p C-j <CR><CR>
@@ -312,7 +320,7 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 
 " remove trailing whitespaces (for certain filetypes) automatically on file save
 autocmd FileType
-    \ awk,c,calendar,changelog,conf,config,cpp,css,desktop,dircolors,dockerfile,eruby,erlang,git,go,grub,haskell,html,java,javascript,jproperties,json,lua,make,man,markdown,perl,php,puppet,python,readline,ruby,scala,sh,sql,sshconfig,sudoers,systemd,tmux,vim,xdefaults,xml,yaml
+    \ awk,c,calendar,changelog,conf,config,cpp,css,desktop,dircolors,dockerfile,eruby,erlang,git,go,grub,haskell,html,java,javascript,jproperties,json,lua,make,man,markdown,perl,php,puppet,python,readline,ruby,scala,sh,sql,sshconfig,sudoers,systemd,terraform,tmux,vim,xdefaults,xml,yaml
     \ autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " override iskeword set from vim-puppet/ftplugin/puppet.vim, to ingnore ':'
