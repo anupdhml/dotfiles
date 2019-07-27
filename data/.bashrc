@@ -133,10 +133,15 @@ fi
 source "$fasd_cache"
 unset fasd_cache
 
+# wf specific vars
+if [ -f ~/.wf_vars ]; then
+  source ~/.wf_vars
+fi
+
 # alias definitions
 # making this the final item here, since aliases may utilize stuff already sourced
 if [ -f ~/.bash_aliases ]; then
-    source ~/.bash_aliases
+  source ~/.bash_aliases
 fi
 
 # ~/bin sources ################################################################

@@ -11,3 +11,4 @@ data/.vim/sessions/*
 
 # wf specific files
 data/.git.d/gitconfig_wf
+data/.vim/plugged/*tremor*

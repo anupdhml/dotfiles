@@ -87,6 +87,14 @@ Plug 'srstevenson/vim-picker'
 
 Plug 'hashivim/vim-terraform'
 
+" wf specific plugins
+if !empty($WF_GIT_DOMAIN)
+  " TODO adjust tremor-vim for better vim-plug support
+  "Plug 'git@'.$WF_GIT_DOMAIN.':tremor/tremor-vim.git'
+
+  Plug 'git@'.$WF_GIT_DOMAIN.':tremor/tremor-vim.git', { 'branch': 'fixes', 'do': 'ln -sf bundle/tremor.vim/* .' }
+endif
+
 " on-demand loading
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
@@ -320,7 +328,7 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 
 " remove trailing whitespaces (for certain filetypes) automatically on file save
 autocmd FileType
-    \ awk,c,calendar,changelog,conf,config,cpp,css,desktop,dircolors,dockerfile,eruby,erlang,git,go,grub,haskell,html,java,javascript,jproperties,json,lua,make,man,markdown,perl,php,puppet,python,readline,ruby,scala,sh,sql,sshconfig,sudoers,systemd,terraform,tmux,vim,xdefaults,xml,yaml
+    \ awk,c,calendar,changelog,conf,config,cpp,css,desktop,dircolors,dockerfile,eruby,erlang,git,go,grub,haskell,html,java,javascript,jproperties,json,lua,make,man,markdown,perl,php,puppet,python,readline,ruby,scala,sh,sql,sshconfig,sudoers,systemd,terraform,tremor,tmux,vim,xdefaults,xml,yaml
     \ autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " override iskeword set from vim-puppet/ftplugin/puppet.vim, to ingnore ':'
