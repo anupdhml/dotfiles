@@ -1,5 +1,5 @@
 " Vim color file
-" Maintainer: psimpalton@gmail.com	
+" Maintainer: psimpalton@gmail.com
 " Last Change:	2012 September 29
 
 " imroved from the default scheme
@@ -34,7 +34,7 @@ hi CursorLine cterm=NONE ctermbg=lightgrey guibg=lightgrey
 "hi CursorColumn cterm=bold
 hi CursorColumn cterm=NONE ctermbg=lightgrey guibg=lightgrey
 
-" line no 
+" line no
 "highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 "highlight LineNr term=bold cterm=NONE ctermfg=8 ctermbg=none
 highlight LineNr term=bold cterm=NONE ctermfg=8 ctermbg=7 guifg=#6C6C6C guibg=#D3D7CF
@@ -45,13 +45,13 @@ hi VertSplit ctermfg=black ctermbg=black cterm=NONE guifg=black guibg=black
 
 " status line
 "hi statusline ctermfg=darkgrey ctermbg=white
-"hi StatusLine ctermfg=black ctermbg=lightgrey cterm=bold,italic guifg=black guibg=lightgrey gui=bold,italic 
-"hi StatusLineNC ctermfg=black ctermbg=lightgrey cterm=italic guifg=black guibg=lightgrey gui=italic 
-"hi StatusLine ctermfg=lightgrey ctermbg=black cterm=bold,italic guifg=lightgrey guibg=black gui=bold,italic 
-"hi StatusLineNC ctermfg=lightgrey ctermbg=black cterm=italic guifg=lightgrey guibg=black gui=italic 
+"hi StatusLine ctermfg=black ctermbg=lightgrey cterm=bold,italic guifg=black guibg=lightgrey gui=bold,italic
+"hi StatusLineNC ctermfg=black ctermbg=lightgrey cterm=italic guifg=black guibg=lightgrey gui=italic
+"hi StatusLine ctermfg=lightgrey ctermbg=black cterm=bold,italic guifg=lightgrey guibg=black gui=bold,italic
+"hi StatusLineNC ctermfg=lightgrey ctermbg=black cterm=italic guifg=lightgrey guibg=black gui=italic
 " choice
-hi StatusLine ctermfg=lightgrey ctermbg=black cterm=italic guifg=lightgrey guibg=black gui=italic 
-hi StatusLineNC ctermfg=darkgrey ctermbg=black cterm=italic guifg=darkgrey guibg=black gui=italic 
+hi StatusLine ctermfg=lightgrey ctermbg=black cterm=italic guifg=lightgrey guibg=black gui=italic
+hi StatusLineNC ctermfg=darkgrey ctermbg=black cterm=italic guifg=darkgrey guibg=black gui=italic
 
 " keep consistent color when changing windows
 "au WinLeave * hi statusline ctermfg=darkgrey ctermbg=white
@@ -70,12 +70,15 @@ hi Folded term=standout cterm=italic ctermfg=8 ctermbg=7 guifg=#6C6C6C gui=itali
 "hi Folded term=standout cterm=italic ctermfg=4 ctermbg=7 gui=italic
 
 " for completion menus
-hi Pmenu ctermbg=7  guibg=lightgrey 
-hi PmenuSel ctermbg=248 guibg=grey 
+hi Pmenu ctermbg=7  guibg=lightgrey
+hi PmenuSel ctermbg=248 guibg=grey
 
-" for syntastic
+" for plugins like syntastic/ale
 hi SignColumn term=standout ctermfg=8 ctermbg=7 guifg=#6C6C6C guibg=#D3D7CF
 
+" for ale indicators on the sidebar
+hi ALEWarningSign ctermbg=lightgrey ctermfg=darkyellow
+hi ALEErrorSign ctermbg=lightgrey ctermfg=darkred
 
 " -------------------
 " Syntax Highlighting
@@ -83,9 +86,9 @@ hi SignColumn term=standout ctermfg=8 ctermbg=7 guifg=#6C6C6C guibg=#D3D7CF
 
 " comments
 if $TERM == "rxvt-unicode-256color" || $TERM == "rxvt-unicode" || $TERM == "xterm-256color" || $TERM == "screen-it"
-    highlight Comment cterm=italic ctermfg=8 guifg=#6C6C6C gui=italic 
+    highlight Comment cterm=italic ctermfg=8 guifg=#6C6C6C gui=italic
 else
-    highlight Comment cterm=none ctermfg=8 guifg=#6C6C6C gui=italic 
+    highlight Comment cterm=none ctermfg=8 guifg=#6C6C6C gui=italic
 endif
 
 " identifier and functions
