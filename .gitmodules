@@ -56,6 +56,10 @@
   path = data/.vim/plugged/nerdcommenter
   url = https://github.com/scrooloose/nerdcommenter.git
 
+[submodule "data/.vim/plugged/rust.vim"]
+	path = data/.vim/plugged/rust.vim
+	url = https://github.com/rust-lang/rust.vim.git
+
 [submodule "data/.vim/plugged/tmuxline.vim"]
   path = data/.vim/plugged/tmuxline.vim
   url = https://github.com/edkolev/tmuxline.vim.git

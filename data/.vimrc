@@ -87,6 +87,7 @@ Plug 'tpope/vim-endwise'
 Plug 'rodjek/vim-puppet'
 Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " TODO configure options here
+Plug 'rust-lang/rust.vim'
 
 " wf specific plugins
 if !empty($WF_GIT_DOMAIN)
@@ -199,15 +200,36 @@ let g:ale_sign_error = '✗✗'
 " active linters
 let g:ale_linters = {
 \   'puppet': ['puppetlint'],
+\   'rust': ['rls'],
 \}
 
 " active fixers
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'puppet': ['puppetlint'],
+\   'rust': ['rustfmt'],
 \}
 
+" ale rust settings, applicable when using rls as the ale linter
+" for avaialble params to rust language server, see: https://github.com/rust-lang/rls#configuration
+let g:ale_rust_rls_config = {
+\   'rust': {
+\     'clippy_preference': 'on',
+\   }
+\}
+
+" ale rust settings, applicable when using cargo as the ale linter
+"let g:ale_rust_cargo_check_tests = 1                         " lint rust tests too
+"let g:ale_rust_cargo_check_examples = 1                      " list rust examples too
+"let g:ale_rust_cargo_use_clippy = executable('cargo-clippy') " use cargo clippy for lints if present
+"let g:ale_rust_cargo_clippy_options = ''                     " options for cargo clippy
+
 " other plugin settings -------------------------------------------------------
+
+" for rust files, run rustfmt on buffer save
+" since ale can't fix on :wq, we choose rust.vim's functionality here:
+" https://github.com/w0rp/ale/issues/2014#issuecomment-493559554
+let g:rustfmt_autosave = 1
 
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
