@@ -52,6 +52,10 @@
   path = data/.vim/plugged/lightline-ale
   url = https://github.com/maximbaz/lightline-ale.git
 
+[submodule "data/.vim/plugged/ListToggle"]
+	path = data/.vim/plugged/ListToggle
+	url = https://github.com/Valloric/ListToggle.git
+
 [submodule "data/.vim/plugged/nerdcommenter"]
   path = data/.vim/plugged/nerdcommenter
   url = https://github.com/scrooloose/nerdcommenter.git
@@ -75,6 +79,10 @@
 [submodule "data/.vim/plugged/vim-go"]
   path = data/.vim/plugged/vim-go
   url = https://github.com/fatih/vim-go.git
+
+[submodule "data/.vim/plugged/vim-maximizer"]
+	path = data/.vim/plugged/vim-maximizer
+	url = https://github.com/szw/vim-maximizer.git
 
 [submodule "data/.vim/plugged/vim-obsession"]
   path = data/.vim/plugged/vim-obsession

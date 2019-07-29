@@ -80,6 +80,9 @@ hi SignColumn term=standout ctermfg=8 ctermbg=7 guifg=#6C6C6C guibg=#D3D7CF
 hi ALEWarningSign ctermbg=lightgrey ctermfg=darkyellow
 hi ALEErrorSign ctermbg=lightgrey ctermfg=darkred
 
+" for ale error lines
+"highlight link ALEErrorLine error
+
 " -------------------
 " Syntax Highlighting
 " -------------------

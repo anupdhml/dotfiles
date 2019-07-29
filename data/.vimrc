@@ -46,6 +46,11 @@ set autowrite " automatically save before commands like :next and :make
 set hidden    " hide buffers when they are abandoned
 set mouse=a   " enable mouse usage (all modes)
 
+" config for directory explorer (simulating nerdtree)
+let g:netrw_banner = 0    "do not display info on the top of window
+let g:netrw_liststyle = 3 " tree view
+let g:netrw_winsize = 25  " width of netrw window
+
 " other options
 set ttyfast " speed up scrolling in Vim
 set autochdir " change directory for each file opened
@@ -70,8 +75,7 @@ Plug 'maximbaz/lightline-ale'
 Plug 'w0rp/ale'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ajh17/VimCompletesMe'
-Plug 'srstevenson/vim-picker' " TODO decide on this
-"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " on-demand loading for nerdtree
+Plug 'srstevenson/vim-picker'
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -82,6 +86,8 @@ Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
+Plug 'szw/vim-maximizer'
+Plug 'Valloric/ListToggle'
 
 " language support
 Plug 'rodjek/vim-puppet'
@@ -173,6 +179,11 @@ set omnifunc=ale#completion#OmniFunc
 " TODO remove
 "set completeopt=menu,menuone,preview,noselect,noinsert
 
+" show hover information on mouse over (vim mouse support should be turned on)
+" xterm2 makes hover work with tmux as well
+let g:ale_set_balloons = 1
+set ttymouse=xterm2
+
 " only run linters named in ale_linters settings
 let g:ale_linters_explicit = 1
 
@@ -238,8 +249,11 @@ let g:NERDDefaultAlign = 'left'
 let g:fugitive_gitlab_domains = [ 'https://'.$WF_GIT_DOMAIN ]
 
 " vim picker
-let g:picker_find_executable = 'fd'
-let g:picker_find_flags = '--type file --follow --hidden --exclude .git'
+let g:picker_custom_find_executable = 'fd'
+let g:picker_custom_find_flags = '--type file --follow --hidden --exclude .git'
+
+" list toggle
+let g:lt_height = 10
 
 " theme -----------------------------------------------------------------------
 
@@ -302,19 +316,16 @@ vnoremap cy "+y
 nnoremap cp "+p<cr>
 vnoremap cp "+p<cr>
 
-" TODO is this needed anymore?
-"if exists(':tnoremap') == 2
-"  tnoremap <buffer> <silent> <Esc> <C-\><C-n>:quit<CR>
-"endif
-
 " run previous command on the first window (and first pane) of the current tmux session
 " works well only if history is in-sync across all panes
 "nmap \r :!tmux send-keys -t "$(tmux display-message -p '\#S'):1.1" C-p C-j <CR><CR>
 
 " key bindings (function keys) ------------------------------------------------
 
-" toggle the statusline
-nmap <silent> <F2> :if &laststatus == 1<bar>
+" F1 - standard help
+
+" F2 - toggle the statusline
+map <silent> <F2> :if &laststatus == 1<bar>
                       \set laststatus=2<bar>
                       \set noshowmode<bar>
                       \echo<bar>
@@ -323,26 +334,38 @@ nmap <silent> <F2> :if &laststatus == 1<bar>
                       \set showmode<bar>
                     \endif<CR>
 
-" toggle linenumbers and cursor lines
+" F3 - toggle linenumbers
 map <silent> <F3> :set nonumber!<CR>
 
-" toggle file explorer (depends on nerdtree)
-"map  <silent> <F4>      :NERDTreeToggle<CR>
-"imap <silent> <F4> <Esc>:NERDTreeToggle<CR>
-map  <silent> <F4>      :Explore<CR>
-imap <silent> <F4> <Esc>:Explore<CR>
+" F4 - toggle file explorer
+map  <silent> <F4> :Lexplore<CR>
 
-" toggle cursor lines
+" F5 - toggle cursor column
 map <silent> <F5> :set cursorcolumn!<CR>
+
+" F6 - toggle cursor line
 map <silent> <F6> :set cursorline!<CR>
 
-" toggle comment (depends on nerdcommenter)
+" F7 - TODO
+
+" F8 - toggle comment (depends on nerdcommenter)
 map  <silent> <F8>         ,c<Space>
 map  <silent> <S-F8>       ,cs
 map  <silent> <C-F8>       ,cm
 imap <silent> <F8>    <Esc>,c<Space>
 imap <silent> <S-F8>  <Esc>,cs
 imap <silent> <C-F8>  <Esc>,cm
+
+" F9 - TODO
+
+" F10 - TODO
+
+" F11 - maximize window (depends on vim-maximizer)
+let g:maximizer_default_mapping_key = '<F11>'
+
+" F12 - toggle location list/quicklist (depends on listtoggle)
+let g:lt_location_list_toggle_map = '<F12>'
+let g:lt_quickfix_list_toggle_map = '<S-F12>'
 
 " key bindings (leader based) -------------------------------------------------
 
@@ -353,14 +376,24 @@ let g:mapleader = ","
 " toggle paste mode
 set pastetoggle=<leader>P
 
-" move between ale warnings and errors quickly
-"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-"nmap <silent> <C-j> <Plug>(ale_next_wrap)
-nmap <silent> <leader>k <Plug>(ale_previous_wrap)
+" for ale
 nmap <silent> <leader>j <Plug>(ale_next_wrap)
-
-" other ale mappings
+nmap <silent> <leader>k <Plug>(ale_previous_wrap)
+nmap <silent> <leader>/ <Plug>(ale_hover)
 nmap <silent> <leader>? <Plug>(ale_detail)
+nmap <silent> <leader>] <Plug>(ale_go_to_definition)
+nmap <silent> <leader># <Plug>(ale_find_references)
+
+" for vim-picker
+nmap <unique> <leader>pe <Plug>(PickerEdit)
+nmap <unique> <leader>ps <Plug>(PickerSplit)
+nmap <unique> <leader>pt <Plug>(PickerTabedit)
+nmap <unique> <leader>pv <Plug>(PickerVsplit)
+nmap <unique> <leader>pb <Plug>(PickerBuffer)
+nmap <unique> <leader>p] <Plug>(PickerTag)
+nmap <unique> <leader>pw <Plug>(PickerStag)
+nmap <unique> <leader>po <Plug>(PickerBufferTag)
+nmap <unique> <leader>ph <Plug>(PickerHelp)
 
 " fzy integration (when opening files from vim)
 function! FzyCommand(choice_command, vim_command)
@@ -378,17 +411,6 @@ endfunction
 "nnoremap <leader>fe :call FzyCommand("fd --type file --follow --hidden --exclude .git . $(git rev-parse --show-toplevel 2>/dev/null)", ":e")<cr>
 nnoremap <leader>fe :call FzyCommand("fd --type file --follow --hidden --exclude .git", ":e")<cr>
 nnoremap <leader>fg :call FzyCommand("git ls-files $(git rev-parse --show-toplevel)", ":e")<cr>
-
-" for vim-picker
-nmap <unique> <leader>pe <Plug>PickerEdit
-nmap <unique> <leader>ps <Plug>PickerSplit
-nmap <unique> <leader>pv <Plug>PickerVsplit
-nmap <unique> <leader>pt <Plug>PickerTabedit
-nmap <unique> <leader>pb <Plug>PickerBuffer
-nmap <unique> <leader>p] <Plug>PickerTag
-nmap <unique> <leader>pw <Plug>PickerStag
-nmap <unique> <leader>po <Plug>PickerBufferTag
-nmap <unique> <leader>ph <Plug>PickerHelp
 
 " for running git commands on current file
 " TODO make it work as a :Git command. or as :Gblame...
@@ -410,9 +432,20 @@ autocmd FileType
     \ awk,c,calendar,changelog,conf,config,cpp,css,desktop,dircolors,dockerfile,eruby,erlang,git,go,grub,haskell,html,java,javascript,jproperties,json,lua,make,man,markdown,perl,php,puppet,python,readline,ruby,scala,sh,sql,sshconfig,sudoers,systemd,terraform,tremor,tmux,vim,xdefaults,xml,yaml
     \ autocmd BufWritePre <buffer> :%s/\s\+$//e
 
+" open help files in a vertical split
+autocmd FileType help wincmd L
+
+" override <CR> mapping defined earlier in the file, for quickfix/loclist
+" window (since <CR> is used to jump to the error under the cursor there)
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+
+" debug line
+"autocmd FileType picker redir >>/tmp/test|echo "name: ".@%|redir END
+
+" override Esc mapping from vim-picker/ftplugin/picker.vim, since that was
+" causing issues for up/down naviagtion in the picker window
+autocmd FileType picker tnoremap <buffer> <Esc> <Esc>
+
 " override iskeword set from vim-puppet/ftplugin/puppet.vim, to ingnore ':'
 " (so that we can do things like word matches on module variable's word parts
 autocmd FileType puppet setl iskeyword=-,@,48-57,_,192-255
-
-" open help files in a vertical split
-autocmd FileType help wincmd L
