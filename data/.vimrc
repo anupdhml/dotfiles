@@ -94,13 +94,12 @@ Plug 'rodjek/vim-puppet'
 Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " TODO configure options here
 Plug 'rust-lang/rust.vim'
+Plug 'wayfair-incubator/tremor-vim', { 'do': 'ln -sf bundle/tremor.vim/* .' }
 
 " wf specific plugins
-if !empty($WF_GIT_DOMAIN)
-  " TODO adjust tremor-vim for better vim-plug support
-  "Plug 'git@'.$WF_GIT_DOMAIN.':tremor/tremor-vim.git'
-  Plug 'git@'.$WF_GIT_DOMAIN.':tremor/tremor-vim.git', { 'branch': 'fixes', 'do': 'ln -sf bundle/tremor.vim/* .' }
-endif
+"if !empty($WF_GIT_DOMAIN)
+"  "Plug 'git@'.$WF_GIT_DOMAIN.':tremor/tremor-vim.git', { 'branch': 'fixes', 'do': 'ln -sf bundle/tremor.vim/* .' }
+"endif
 
 " initialize plugin system
 call plug#end()

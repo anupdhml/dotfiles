@@ -40,6 +40,10 @@
 [color]
   ui = true
 
+# always use ssh for github
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
+
 # file includes ----------------------------------------------------------------
 
 # git aliases

@@ -68,6 +68,11 @@
   path = data/.vim/plugged/tmuxline.vim
   url = https://github.com/edkolev/tmuxline.vim.git
 
+[submodule "data/.vim/plugged/tremor-vim"]
+	path = data/.vim/plugged/tremor-vim
+	url = ssh://git@github.com/wayfair-incubator/tremor-vim.git
+	ignore = untracked # until we officially add these untracked files
+
 [submodule "data/.vim/plugged/vim-endwise"]
   path = data/.vim/plugged/vim-endwise
   url = https://github.com/tpope/vim-endwise.git
