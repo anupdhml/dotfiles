@@ -189,13 +189,12 @@ let g:ale_linters_explicit = 1
 
 " when to run linting/fixing
 "let g:ale_fix_on_save = 1
-let g:ale_lint_on_text_changed = 'always'
-let g:ale_lint_on_enter = 1
-let g:ale_lint_on_insert_leave = 1
-" TODO enable after testing
-"let g:ale_lint_on_text_changed = 'never'
-"let g:ale_lint_on_enter = 0
-"let g:ale_lint_on_insert_leave = 0
+"let g:ale_lint_on_text_changed = 'always'
+"let g:ale_lint_on_enter = 1
+"let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_insert_leave = 0
 
 " ale indicators (aligned with indicators used in lightline-ale)
 " 2 chars to cover the full sign width
