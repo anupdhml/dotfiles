@@ -72,7 +72,8 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'maximbaz/lightline-ale'
 
 " essentials
-Plug 'w0rp/ale'
+"Plug 'dense-analysis/ale' " enable after submitting fork changes upstream
+Plug 'wayfair-incubator/ale', { 'branch': 'tremor' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'ajh17/VimCompletesMe'
 Plug 'srstevenson/vim-picker'
@@ -210,6 +211,7 @@ let g:ale_sign_error = '✗✗'
 let g:ale_linters = {
 \   'puppet': ['puppetlint'],
 \   'rust': ['rls'],
+\   'tremor': ['tremor-language-server'],
 \}
 
 " active fixers

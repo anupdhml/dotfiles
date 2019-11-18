@@ -38,7 +38,7 @@
 
 [submodule "data/.vim/plugged/ale"]
   path = data/.vim/plugged/ale
-  url = https://github.com/w0rp/ale.git
+  url = ssh://git@github.com/wayfair-incubator/ale.git
 
 [submodule "data/.vim/plugged/fugitive-gitlab.vim"]
   path = data/.vim/plugged/fugitive-gitlab.vim
