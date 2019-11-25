@@ -212,6 +212,7 @@ let g:ale_linters = {
 \   'puppet': ['puppetlint'],
 \   'rust': ['rls'],
 \   'tremor': ['tremor-language-server'],
+\   'trickle': ['tremor-language-server'],
 \}
 
 " active fixers
