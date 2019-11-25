@@ -95,7 +95,7 @@ Plug 'rodjek/vim-puppet'
 Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " TODO configure options here
 Plug 'rust-lang/rust.vim'
-Plug 'wayfair-incubator/tremor-vim', { 'do': 'ln -sf bundle/tremor.vim/* .' }
+Plug 'wayfair-incubator/tremor-vim'
 
 " wf specific plugins
 "if !empty($WF_GIT_DOMAIN)

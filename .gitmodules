@@ -71,7 +71,6 @@
 [submodule "data/.vim/plugged/tremor-vim"]
 	path = data/.vim/plugged/tremor-vim
 	url = ssh://git@github.com/wayfair-incubator/tremor-vim.git
-	ignore = untracked # until we officially add these untracked files
 
 [submodule "data/.vim/plugged/vim-endwise"]
   path = data/.vim/plugged/vim-endwise
