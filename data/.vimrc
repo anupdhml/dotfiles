@@ -211,8 +211,8 @@ let g:ale_sign_error = '✗✗'
 let g:ale_linters = {
 \   'puppet': ['puppetlint'],
 \   'rust': ['rls'],
-\   'tremor': ['tremor-language-server'],
-\   'trickle': ['tremor-language-server'],
+\   'tremor-script': ['tremor-language-server'],
+\   'tremor-query': ['tremor-language-server'],
 \}
 
 " active fixers
@@ -220,6 +220,7 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'puppet': ['puppetlint'],
 \   'rust': ['rustfmt'],
+\   'go': ['gofmt'],
 \}
 
 " ale rust settings, applicable when using rls as the ale linter
@@ -320,6 +321,16 @@ vnoremap cp "+p<cr>
 " run previous command on the first window (and first pane) of the current tmux session
 " works well only if history is in-sync across all panes
 "nmap \r :!tmux send-keys -t "$(tmux display-message -p '\#S'):1.1" C-p C-j <CR><CR>
+
+" auto-closing pairs in insert mode
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+" these are disabled because they can be annoying with auto-indents
+"inoremap { {}<left>
+"inoremap {<CR> {<CR>}<ESC>O
+"inoremap {;<CR> {<CR>};<ESC>O
 
 " key bindings (function keys) ------------------------------------------------
 
@@ -423,6 +434,21 @@ map <leader>gb :call GitCommand("blame") <CR><CR>
 map <leader>gd :call GitCommand("diff") <CR><CR>
 map <leader>gl :call GitCommand("log -p") <CR><CR>
 
+" for quickly retrieving the syntax highlight group active under the cursor
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunction
+function! SynGroup()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfunction
+map <leader>sg :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
 " autocmd ----------------------------------------------------------------------
 
 " have vim jump to the last position when reopening a file
@@ -430,7 +456,7 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 
 " remove trailing whitespaces (for certain filetypes) automatically on file save
 autocmd FileType
-    \ awk,c,calendar,changelog,conf,config,cpp,css,desktop,dircolors,dockerfile,eruby,erlang,git,go,grub,haskell,html,java,javascript,jproperties,json,lua,make,man,markdown,perl,php,puppet,python,readline,ruby,scala,sh,sql,sshconfig,sudoers,systemd,terraform,tremor,tmux,vim,xdefaults,xml,yaml
+    \ awk,c,calendar,changelog,coffee,conf,config,cpp,css,desktop,dircolors,dockerfile,eruby,erlang,git,go,grub,haskell,html,java,javascript,jproperties,json,lua,make,man,markdown,perl,php,puppet,python,readline,ruby,scala,sh,sql,sshconfig,sudoers,systemd,terraform,tremor-script,tremor-query,tmux,vim,xdefaults,xml,yaml
     \ autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " open help files in a vertical split
