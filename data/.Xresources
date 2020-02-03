@@ -1,3 +1,7 @@
 ! Configuration params for X client applications
 
+! 200% scaling of fonts for better display in hdpi monitors
+! matches the 2 times scaling we apply from xfce appearance settings
+Xft.dpi: 192
+
 #include ".Xresources.d/urxvt"

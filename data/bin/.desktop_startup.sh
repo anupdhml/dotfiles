@@ -2,6 +2,11 @@
 # Script meant to be run during desktop startup, for starting GUI applications
 # By anupdhml
 
+# make sure we pick up changes in Xresources file
+# TODO this should not be necessary but leaving it here for now since Xft.dpi changes
+# here are not being picked up without it.
+xrdb -merge ~/.Xresources
+
 # launcher
 synapse --startup &
 
