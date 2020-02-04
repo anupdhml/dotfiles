@@ -211,8 +211,8 @@ let g:ale_sign_error = '✗✗'
 let g:ale_linters = {
 \   'puppet': ['puppetlint'],
 \   'rust': ['rls'],
-\   'tremor-script': ['tremor-language-server'],
-\   'tremor-query': ['tremor-language-server'],
+\   'tremor': ['tremor-language-server'],
+\   'trickle': ['tremor-language-server'],
 \}
 
 " active fixers
@@ -256,6 +256,9 @@ let g:picker_custom_find_flags = '--type file --follow --hidden --exclude .git'
 
 " list toggle
 let g:lt_height = 10
+
+" enable fenced code block syntax highlighting in markdown files for these languages
+let g:markdown_fenced_languages = ['tremor', 'trickle']
 
 " theme -----------------------------------------------------------------------
 
