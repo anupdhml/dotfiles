@@ -59,11 +59,6 @@ export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:~/.local/lib"
 #COW_BASE_DIR="~/data/cows"
 #export COWPATH="${COW_BASE_DIR}/my_cows:${COW_BASE_DIR}/other_cows:${COW_BASE_DIR}/aur_cows:${COW_BASE_DIR}/ubuntu_cows"
 
-# airflow
-if [ -d "/wayfair/app/airflow" ]; then
-  export AIRFLOW_HOME="/wayfair/app/airflow"
-fi
-
 # java
 export JAVA_HOME="/usr/lib/jvm/default-java"
 
@@ -73,6 +68,9 @@ export PATH="${PATH}:${GOPATH}/bin:/usr/local/go/bin"
 
 # haskell
 export PATH="${PATH}:~/.cabal/bin"
+
+# tremor-script
+export TREMOR_PATH=~/repos/TREMOR/tremor-runtime/tremor-script/lib
 
 # color vars ###################################################################
 

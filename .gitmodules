@@ -38,7 +38,7 @@
 
 [submodule "data/.vim/plugged/ale"]
   path = data/.vim/plugged/ale
-  url = ssh://git@github.com/wayfair-incubator/ale.git
+  url = ssh://git@github.com/anupdhml/ale.git
 
 [submodule "data/.vim/plugged/fugitive-gitlab.vim"]
   path = data/.vim/plugged/fugitive-gitlab.vim
@@ -53,24 +53,24 @@
   url = https://github.com/maximbaz/lightline-ale.git
 
 [submodule "data/.vim/plugged/ListToggle"]
-	path = data/.vim/plugged/ListToggle
-	url = https://github.com/Valloric/ListToggle.git
+  path = data/.vim/plugged/ListToggle
+  url = https://github.com/Valloric/ListToggle.git
 
 [submodule "data/.vim/plugged/nerdcommenter"]
   path = data/.vim/plugged/nerdcommenter
   url = https://github.com/scrooloose/nerdcommenter.git
 
 [submodule "data/.vim/plugged/rust.vim"]
-	path = data/.vim/plugged/rust.vim
-	url = https://github.com/rust-lang/rust.vim.git
+  path = data/.vim/plugged/rust.vim
+  url = https://github.com/rust-lang/rust.vim.git
 
 [submodule "data/.vim/plugged/tmuxline.vim"]
   path = data/.vim/plugged/tmuxline.vim
   url = https://github.com/edkolev/tmuxline.vim.git
 
 [submodule "data/.vim/plugged/tremor-vim"]
-	path = data/.vim/plugged/tremor-vim
-	url = ssh://git@github.com/wayfair-incubator/tremor-vim.git
+  path = data/.vim/plugged/tremor-vim
+  url = ssh://git@github.com/wayfair-tremor/tremor-vim.git
 
 [submodule "data/.vim/plugged/vim-endwise"]
   path = data/.vim/plugged/vim-endwise
@@ -85,16 +85,16 @@
   url = https://github.com/fatih/vim-go.git
 
 [submodule "data/.vim/plugged/vim-maximizer"]
-	path = data/.vim/plugged/vim-maximizer
-	url = https://github.com/szw/vim-maximizer.git
+  path = data/.vim/plugged/vim-maximizer
+  url = https://github.com/szw/vim-maximizer.git
 
 [submodule "data/.vim/plugged/vim-obsession"]
   path = data/.vim/plugged/vim-obsession
   url = https://github.com/tpope/vim-obsession.git
 
 [submodule "data/.vim/plugged/vim-picker"]
-	path = data/.vim/plugged/vim-picker
-	url = https://github.com/srstevenson/vim-picker.git
+  path = data/.vim/plugged/vim-picker
+  url = https://github.com/srstevenson/vim-picker.git
 
 [submodule "data/.vim/plugged/vim-puppet"]
   path = data/.vim/plugged/vim-puppet
@@ -109,8 +109,8 @@
   url = https://github.com/tpope/vim-surround.git
 
 [submodule "data/.vim/plugged/vim-terraform"]
-	path = data/.vim/plugged/vim-terraform
-	url = https://github.com/hashivim/vim-terraform.git
+  path = data/.vim/plugged/vim-terraform
+  url = https://github.com/hashivim/vim-terraform.git
 
 [submodule "data/.vim/plugged/VimCompletesMe"]
   path = data/.vim/plugged/VimCompletesMe

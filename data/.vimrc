@@ -34,7 +34,8 @@ set wildchar=<Tab>                  " expand the command line using tab
 set wildignore=*.o,*.e,*~           " ignore these extensions for completion
 
 " completion menu
-set completeopt=menuone,longest " always show the menu, insert longest match
+set completeopt=menuone,longest,popup " always show the menu, insert longest match, use popup window for extra info
+"set completepopup=border:off          " remove the border from the completion popup window
 
 " turn on omnicomplete. we set this based on ale plugin later
 "set omnifunc=syntaxcomplete#Complete " vim default
@@ -72,8 +73,8 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'maximbaz/lightline-ale'
 
 " essentials
-"Plug 'dense-analysis/ale' " enable after submitting fork changes upstream
-Plug 'wayfair-incubator/ale', { 'branch': 'tremor' }
+"Plug 'dense-analysis/ale' " enable after the fork branch is merged upstream
+Plug 'anupdhml/ale', { 'branch': 'tremor_integration' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'ajh17/VimCompletesMe'
 Plug 'srstevenson/vim-picker'
@@ -95,7 +96,7 @@ Plug 'rodjek/vim-puppet'
 Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " TODO configure options here
 Plug 'rust-lang/rust.vim'
-Plug 'wayfair-incubator/tremor-vim'
+Plug 'wayfair-tremor/tremor-vim'
 
 " wf specific plugins
 "if !empty($WF_GIT_DOMAIN)
@@ -326,10 +327,10 @@ vnoremap cp "+p<cr>
 "nmap \r :!tmux send-keys -t "$(tmux display-message -p '\#S'):1.1" C-p C-j <CR><CR>
 
 " auto-closing pairs in insert mode
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
+"inoremap " ""<left>
+"inoremap ' ''<left>
+"inoremap ( ()<left>
+"inoremap [ []<left>
 " these are disabled because they can be annoying with auto-indents
 "inoremap { {}<left>
 "inoremap {<CR> {<CR>}<ESC>O
