@@ -211,7 +211,7 @@ let g:ale_sign_error = '✗✗'
 " active linters
 let g:ale_linters = {
 \   'puppet': ['puppetlint'],
-\   'rust': ['rls'],
+\   'rust': ['analyzer'],
 \   'tremor': ['tremor-language-server'],
 \   'trickle': ['tremor-language-server'],
 \}
@@ -226,11 +226,11 @@ let g:ale_fixers = {
 
 " ale rust settings, applicable when using rls as the ale linter
 " for avaialble params to rust language server, see: https://github.com/rust-lang/rls#configuration
-let g:ale_rust_rls_config = {
-\   'rust': {
-\     'clippy_preference': 'on',
-\   }
-\}
+"let g:ale_rust_rls_config = {
+"\   'rust': {
+"\     'clippy_preference': 'on',
+"\   }
+"\}
 
 " ale rust settings, applicable when using cargo as the ale linter
 "let g:ale_rust_cargo_check_tests = 1                         " lint rust tests too
