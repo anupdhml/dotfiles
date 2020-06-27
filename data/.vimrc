@@ -97,6 +97,7 @@ Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " TODO configure options here
 Plug 'rust-lang/rust.vim'
 Plug 'wayfair-tremor/tremor-vim'
+Plug 'junegunn/vader.vim'
 
 " wf specific plugins
 "if !empty($WF_GIT_DOMAIN)
@@ -460,7 +461,7 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 
 " remove trailing whitespaces (for certain filetypes) automatically on file save
 autocmd FileType
-    \ awk,c,calendar,changelog,coffee,conf,config,cpp,css,desktop,dircolors,dockerfile,eruby,erlang,git,go,grub,haskell,html,java,javascript,jproperties,json,lua,make,man,markdown,perl,php,puppet,python,readline,ruby,scala,sh,sql,sshconfig,sudoers,systemd,terraform,tremor-script,tremor-query,tmux,vim,xdefaults,xml,yaml
+    \ awk,c,calendar,changelog,coffee,conf,config,cpp,css,desktop,dircolors,dockerfile,eruby,erlang,git,go,grub,haskell,html,java,javascript,jproperties,json,lua,make,man,markdown,perl,php,puppet,python,readline,ruby,scala,sh,sql,sshconfig,sudoers,systemd,terraform,tremor-script,tremor-query,tmux,vader,vim,xdefaults,xml,yaml
     \ autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " open help files in a vertical split

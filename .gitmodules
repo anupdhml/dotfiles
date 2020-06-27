@@ -72,6 +72,10 @@
   path = data/.vim/plugged/tremor-vim
   url = ssh://git@github.com/wayfair-tremor/tremor-vim.git
 
+[submodule "data/.vim/plugged/vader.vim"]
+  path = data/.vim/plugged/vader.vim
+  url = ssh://git@github.com/junegunn/vader.vim.git
+
 [submodule "data/.vim/plugged/vim-endwise"]
   path = data/.vim/plugged/vim-endwise
   url = https://github.com/tpope/vim-endwise.git
