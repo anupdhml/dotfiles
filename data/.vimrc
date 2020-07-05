@@ -82,7 +82,6 @@ Plug 'srstevenson/vim-picker'
 " git
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'shumphrey/fugitive-gitlab.vim'
 
 " utilities
 Plug 'tpope/vim-obsession'
@@ -249,12 +248,11 @@ let g:rustfmt_autosave = 1
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 
-" fugitive gitlab
-let g:fugitive_gitlab_domains = [ 'https://'.$WF_GIT_DOMAIN ]
-
 " vim picker
-let g:picker_custom_find_executable = 'fd'
+let g:picker_custom_find_executable = 'fdfind'
 let g:picker_custom_find_flags = '--type file --follow --hidden --exclude .git'
+" TODO this does not open files correctly (assumes it's in current dir)
+"let g:picker_custom_find_flags = '--type file --follow --hidden --exclude .git . $(git rev-parse --show-toplevel 2>/dev/null)'
 
 " list toggle
 let g:lt_height = 10
@@ -291,6 +289,14 @@ endif
 " command maps -----------------------------------------------------------------
 
 command S Obsession
+
+" via vim-picker: search for pattern using ripgrep and open it
+function! PickerRgLineHandler(selection) abort
+    let parts = split(a:selection, ':')
+    return {'filename': parts[0], 'line': parts[1], 'column': parts[2]}
+endfunction
+command! -nargs=? PickerRg
+    \ call picker#File('rg --color never --line-number --column '.shellescape(<q-args>), "edit", {'line_handler': 'PickerRgLineHandler'})
 
 " key bindings -----------------------------------------------------------------
 
@@ -339,29 +345,24 @@ vnoremap cp "+p<cr>
 
 " key bindings (function keys) ------------------------------------------------
 
-" F1 - standard help
+" F1 - toggle linenumbers
+map <silent> <F1> :set nonumber!<CR>
 
-" F2 - toggle the statusline
-map <silent> <F2> :if &laststatus == 1<bar>
-                      \set laststatus=2<bar>
-                      \set noshowmode<bar>
-                      \echo<bar>
-                    \else<bar>
-                      \set laststatus=1<bar>
-                      \set showmode<bar>
-                    \endif<CR>
+" F2 - toggle cursor line
+map <silent> <F2> :set cursorline!<CR>
 
-" F3 - toggle linenumbers
-map <silent> <F3> :set nonumber!<CR>
+" F3 - toggle cursor column
+map <silent> <F3> :set cursorcolumn!<CR>
 
 " F4 - toggle file explorer
 map  <silent> <F4> :Lexplore<CR>
 
-" F5 - toggle cursor column
-map <silent> <F5> :set cursorcolumn!<CR>
+" F5 - open fuzzy file picker
+" TODO pin this at the bottom always
+"map  <silent> <F5> ,fe
+map  <silent> <F5> ,pe
 
-" F6 - toggle cursor line
-map <silent> <F6> :set cursorline!<CR>
+" F6 - TODO
 
 " F7 - TODO
 
@@ -375,7 +376,15 @@ imap <silent> <C-F8>  <Esc>,cm
 
 " F9 - TODO
 
-" F10 - TODO
+" F10 - toggle the statusline
+map <silent> <F10> :if &laststatus == 1<bar>
+                      \set laststatus=2<bar>
+                      \set noshowmode<bar>
+                      \echo<bar>
+                    \else<bar>
+                      \set laststatus=1<bar>
+                      \set showmode<bar>
+                    \endif<CR>
 
 " F11 - maximize window (depends on vim-maximizer)
 let g:maximizer_default_mapping_key = '<F11>'
@@ -424,9 +433,8 @@ function! FzyCommand(choice_command, vim_command)
     exec a:vim_command . ' ' . output
   endif
 endfunction
-" TODO close picker window on escape
-"nnoremap <leader>fe :call FzyCommand("fd --type file --follow --hidden --exclude .git . $(git rev-parse --show-toplevel 2>/dev/null)", ":e")<cr>
-nnoremap <leader>fe :call FzyCommand("fd --type file --follow --hidden --exclude .git", ":e")<cr>
+nnoremap <leader>fe :call FzyCommand("fdfind --type file --follow --hidden --exclude .git . $(git rev-parse --show-toplevel 2>/dev/null)", ":e")<cr>
+"nnoremap <leader>fe :call FzyCommand("fdfind --type file --follow --hidden --exclude .git", ":e")<cr>
 nnoremap <leader>fg :call FzyCommand("git ls-files $(git rev-parse --show-toplevel)", ":e")<cr>
 
 " for running git commands on current file

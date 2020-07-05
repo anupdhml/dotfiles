@@ -40,10 +40,6 @@
   path = data/.vim/plugged/ale
   url = ssh://git@github.com/anupdhml/ale.git
 
-[submodule "data/.vim/plugged/fugitive-gitlab.vim"]
-  path = data/.vim/plugged/fugitive-gitlab.vim
-  url = https://github.com/shumphrey/fugitive-gitlab.vim.git
-
 [submodule "data/.vim/plugged/lightline.vim"]
   path = data/.vim/plugged/lightline.vim
   url = https://github.com/itchyny/lightline.vim.git

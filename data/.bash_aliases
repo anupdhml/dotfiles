@@ -114,6 +114,9 @@ alias xfce4-terminal-tmux='xfce4-terminal --maximize -e "bash -c ~/bin/tmux_star
 alias urxvt-tmux='~/bin/urxvtcd -e bash -c "~/bin/tmux_start.sh"'
 #alias urxvt-tmux='~/bin/urxvtcd -e bash -c "(tmux -q has-session &> /dev/null && exec tmux attach-session -d) || (exec tmux new-session)"'
 
+# better find
+alias fd='fdfind'
+
 # utilities ##########################################################
 
 # Add an "alert" alias for long running commands.  Use like so: sleep 10; alert
