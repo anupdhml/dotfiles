@@ -77,7 +77,7 @@ Plug 'maximbaz/lightline-ale'
 Plug 'anupdhml/ale', { 'branch': 'tremor_integration' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'ajh17/VimCompletesMe'
-Plug 'srstevenson/vim-picker'
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -248,17 +248,24 @@ let g:rustfmt_autosave = 1
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 
-" vim picker
-let g:picker_custom_find_executable = 'fdfind'
-let g:picker_custom_find_flags = '--type file --follow --hidden --exclude .git'
-" TODO this does not open files correctly (assumes it's in current dir)
-"let g:picker_custom_find_flags = '--type file --follow --hidden --exclude .git . $(git rev-parse --show-toplevel 2>/dev/null)'
-
 " list toggle
 let g:lt_height = 10
 
 " enable fenced code block syntax highlighting in markdown files for these languages
 let g:markdown_fenced_languages = ['tremor', 'trickle']
+
+" for vim-clap (with rg). via `:h clap-grep-options`
+let g:clap_provider_grep_opts = '--with-filename --no-heading --vimgrep --smart-case --hidden'
+" does not work as expected so disabled
+"let g:clap_provider_grep_opts = '--with-filename --no-heading --vimgrep --smart-case --hidden --glob "!.git/"'
+
+" enable rainbow parentheses
+" more options at: https://github.com/luochen1990/rainbow#configure
+let g:rainbow_active = 1
+" choosing colors appropritate for light colorscheme
+let g:rainbow_conf = {
+\	'ctermfgs': ['darkblue', 'darkyellow', 'darkcyan', 'darkmagenta'],
+\}
 
 " theme -----------------------------------------------------------------------
 
@@ -272,6 +279,24 @@ set background=light
 if $TERM == "rxvt-unicode-256color" && !has('gui_running')
   " only on terminal vim
   colorscheme default_improved
+
+  " for vim-clap
+  "
+  " TODO show icons on urxvt too
+  "let g:clap_enable_icon = 1
+  "let g:clap_provider_grep_enable_icon = 1
+  "
+  " TODO support spinner symbol rendering in urxvt. can then use it in the prompt
+  "let g:clap_prompt_format = '%spinner%%forerunner_status%%provider_id%:' "default
+  let g:clap_prompt_format = '%forerunner_status%%provider_id%:'
+  "
+  " colors for fuzzy matches on places like `:Clap files`
+  let g:clap_fuzzy_match_hl_groups = [
+      \ [24, 'darkblue'],
+      \ [4, 'blue'],
+      \]
+  " cursor char on clap prompt
+  let g:clap_popup_cursor_shape = '|'
 else
   "set termguicolors
   "set background=light
@@ -284,19 +309,18 @@ else
   else
     highlight Comment cterm=italic
   endif
+
+  " for vim-clap
+  " icons work well in gvim and xfce4-terminal (as long as nerd fonts are
+  " installed), so enable it too
+  let g:clap_enable_icon = 1
+  let g:clap_provider_grep_enable_icon = 1
+  let g:clap_theme = 'solarized_light'
 endif
 
 " command maps -----------------------------------------------------------------
 
 command S Obsession
-
-" via vim-picker: search for pattern using ripgrep and open it
-function! PickerRgLineHandler(selection) abort
-    let parts = split(a:selection, ':')
-    return {'filename': parts[0], 'line': parts[1], 'column': parts[2]}
-endfunction
-command! -nargs=? PickerRg
-    \ call picker#File('rg --color never --line-number --column '.shellescape(<q-args>), "edit", {'line_handler': 'PickerRgLineHandler'})
 
 " key bindings -----------------------------------------------------------------
 
@@ -345,26 +369,27 @@ vnoremap cp "+p<cr>
 
 " key bindings (function keys) ------------------------------------------------
 
-" F1 - toggle linenumbers
-map <silent> <F1> :set nonumber!<CR>
+" F1 - open file picker
+"map  <silent> <F1> ,fe
+map  <silent> <F1> :Clap files --hidden<CR>
 
-" F2 - toggle cursor line
-map <silent> <F2> :set cursorline!<CR>
+" F2 - open grep picker
+map  <silent> <F2> :Clap grep<CR>
 
-" F3 - toggle cursor column
-map <silent> <F3> :set cursorcolumn!<CR>
+" F3 - open buffer picker
+map  <silent> <F3> :Clap buffers<CR>
 
 " F4 - toggle file explorer
 map  <silent> <F4> :Lexplore<CR>
 
-" F5 - open fuzzy file picker
-" TODO pin this at the bottom always
-"map  <silent> <F5> ,fe
-map  <silent> <F5> ,pe
+" F5 - toggle linenumbers
+map <silent> <F5> :set nonumber!<CR>
 
-" F6 - TODO
+" F6 - toggle cursor line
+map <silent> <F6> :set cursorline!<CR>
 
-" F7 - TODO
+" F7 - toggle cursor column
+map <silent> <F7> :set cursorcolumn!<CR>
 
 " F8 - toggle comment (depends on nerdcommenter)
 map  <silent> <F8>         ,c<Space>
@@ -409,17 +434,6 @@ nmap <silent> <leader>/ <Plug>(ale_hover)
 nmap <silent> <leader>? <Plug>(ale_detail)
 nmap <silent> <leader>] <Plug>(ale_go_to_definition)
 nmap <silent> <leader># <Plug>(ale_find_references)
-
-" for vim-picker
-nmap <unique> <leader>pe <Plug>(PickerEdit)
-nmap <unique> <leader>ps <Plug>(PickerSplit)
-nmap <unique> <leader>pt <Plug>(PickerTabedit)
-nmap <unique> <leader>pv <Plug>(PickerVsplit)
-nmap <unique> <leader>pb <Plug>(PickerBuffer)
-nmap <unique> <leader>p] <Plug>(PickerTag)
-nmap <unique> <leader>pw <Plug>(PickerStag)
-nmap <unique> <leader>po <Plug>(PickerBufferTag)
-nmap <unique> <leader>ph <Plug>(PickerHelp)
 
 " fzy integration (when opening files from vim)
 function! FzyCommand(choice_command, vim_command)
@@ -478,13 +492,6 @@ autocmd FileType help wincmd L
 " override <CR> mapping defined earlier in the file, for quickfix/loclist
 " window (since <CR> is used to jump to the error under the cursor there)
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
-
-" debug line
-"autocmd FileType picker redir >>/tmp/test|echo "name: ".@%|redir END
-
-" override Esc mapping from vim-picker/ftplugin/picker.vim, since that was
-" causing issues for up/down naviagtion in the picker window
-autocmd FileType picker tnoremap <buffer> <Esc> <Esc>
 
 " override iskeword set from vim-puppet/ftplugin/puppet.vim, to ingnore ':'
 " (so that we can do things like word matches on module variable's word parts

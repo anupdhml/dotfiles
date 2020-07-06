@@ -76,6 +76,10 @@ alias xfce4-terminal='xfce4-terminal --maximize'
 # ssh with fuzzy host finding (see ssh-fuzzy function)
 alias ssh='ssh-fuzzy'
 
+# always include hidden files for rg and fd
+alias rg='rg --hidden --glob "!.git/"'
+alias fdfind='fdfind --hidden --exclude .git'
+
 # command extensions ##########################################################
 
 # useful ls aliases

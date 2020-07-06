@@ -93,6 +93,11 @@ urxvt*font:           xft:Dejavu Sans Mono:style=Book:size=16:antialias=true:hin
 urxvt*Boldfont:       xft:Dejavu Sans Mono:style=Bold:size=16:antialias=true:hinting=true
 urxvt*Italicfont:     xft:Dejavu Sans Mono:style=Oblique:size=16:antialias=true:hinting=true
 urxvt*boldItalicfont: xft:Dejavu Sans Mono:style=Oblique:size=16:antialias=true:hinting=true
+! TODO fix display of nerd fonts for urxvt
+!urxvt*font:           xft:DejavuSansMono Nerd Font:style=Book:size=16:antialias=true:hinting=true,xft:Noto Sans Devanagari
+!urxvt*Boldfont:       xft:DejavuSansMono Nerd Font:style=Bold:size=16:antialias=true:hinting=true
+!urxvt*Italicfont:     xft:DejavuSansMono Nerd Font:style=Oblique:size=16:antialias=true:hinting=true
+!urxvt*boldItalicfont: xft:DejavuSansMono Nerd Font:style=Oblique:size=16:antialias=true:hinting=true
 
 ! fix font width
 URxvt*letterSpace: -1

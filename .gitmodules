@@ -72,6 +72,10 @@
   path = data/.vim/plugged/vader.vim
   url = ssh://git@github.com/junegunn/vader.vim.git
 
+[submodule "data/.vim/plugged/vim-clap"]
+  path = data/.vim/plugged/vim-clap
+  url = ssh://git@github.com/liuchengxu/vim-clap.git
+
 [submodule "data/.vim/plugged/vim-endwise"]
   path = data/.vim/plugged/vim-endwise
   url = https://github.com/tpope/vim-endwise.git
@@ -91,10 +95,6 @@
 [submodule "data/.vim/plugged/vim-obsession"]
   path = data/.vim/plugged/vim-obsession
   url = https://github.com/tpope/vim-obsession.git
-
-[submodule "data/.vim/plugged/vim-picker"]
-  path = data/.vim/plugged/vim-picker
-  url = https://github.com/srstevenson/vim-picker.git
 
 [submodule "data/.vim/plugged/vim-puppet"]
   path = data/.vim/plugged/vim-puppet

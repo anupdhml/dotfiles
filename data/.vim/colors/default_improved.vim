@@ -70,8 +70,23 @@ hi Folded term=standout cterm=italic ctermfg=8 ctermbg=7 guifg=#6C6C6C gui=itali
 "hi Folded term=standout cterm=italic ctermfg=4 ctermbg=7 gui=italic
 
 " for completion menus
-hi Pmenu ctermbg=7  guibg=lightgrey
+hi Pmenu ctermbg=7 guibg=lightgrey
 hi PmenuSel ctermbg=248 guibg=grey
+
+" for vim-clap popups
+" search bar. matches PmenuSel, with term adjustments mainly
+hi ClapInput term=reverse ctermbg=248 guibg=grey
+hi ClapSearchText cterm=bold ctermbg=248 gui=bold guibg=grey
+hi ClapSpinner cterm=bold ctermfg=24 gui=bold ctermbg=248 guifg=darkblue guibg=grey
+" entry selection. matches PmenuSel
+hi ClapCurrentSelection ctermbg=248 guibg=grey
+hi ClapCurrentSelectionSign ctermbg=248 guibg=grey
+hi ClapSelected ctermbg=248 guibg=grey
+hi ClapSelectedSign ctermbg=248 guibg=grey
+" results for `:Clap files`. matches Pmenu
+hi ClapFile ctermbg=7 guibg=lightgrey
+" cursor at the search bar. matches terminal (urxvt) cursor color
+hi ClapPopupCursor cterm=bold ctermfg=8 gui=bold guifg=black
 
 " for plugins like syntastic/ale
 hi SignColumn term=standout ctermfg=8 ctermbg=7 guifg=#6C6C6C guibg=#D3D7CF
