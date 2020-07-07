@@ -78,6 +78,7 @@ Plug 'anupdhml/ale', { 'branch': 'tremor_integration' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'ajh17/VimCompletesMe'
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
+Plug 'liuchengxu/vista.vim'
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -119,9 +120,16 @@ let g:lightline = {}
 " aligned with tmuxline theme
 let g:lightline.colorscheme = 'powerline'
 
-" for showing git branch info. depends on vim-fugitive
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+
+" for showing following extra info on the statusline:
+"   * git branch: depends on vim-fugitive
+"   * nearest method: gdepends on vista.vim
 let g:lightline.component_function = {
     \   'fugitive': 'fugitive#head',
+    \   'method': 'NearestMethodOrFunction',
     \ }
 
 " for showing linter errrors/warnings. depends on lightline-ale
@@ -145,7 +153,7 @@ let g:lightline#ale#indicator_ok = '✓'
 " configure lightline components
 let g:lightline.active = {
     \   'left':  [ ['mode', 'paste'],
-    \              ['fugitive', 'readonly', 'filename', 'modified'] ],
+    \              ['fugitive', 'readonly', 'filename', 'modified', 'method'] ],
     \   'right': [ [ 'lineinfo' ],
     \              [ 'percent' ],
     \              [ 'fileformat', 'fileencoding', 'filetype' ],
@@ -254,6 +262,11 @@ let g:lt_height = 10
 " enable fenced code block syntax highlighting in markdown files for these languages
 let g:markdown_fenced_languages = ['tremor', 'trickle']
 
+" override default vista executive (ctags) for these filetypes
+"let g:vista_executive_for = {
+"  \ 'rust': 'ale',
+"  \ }
+
 " for vim-clap (with rg). via `:h clap-grep-options`
 let g:clap_provider_grep_opts = '--with-filename --no-heading --vimgrep --smart-case --hidden'
 " does not work as expected so disabled
@@ -282,7 +295,7 @@ if $TERM == "rxvt-unicode-256color" && !has('gui_running')
 
   " for vim-clap
   "
-  " TODO show icons on urxvt too
+  " TODO show icons for urxvt
   "let g:clap_enable_icon = 1
   "let g:clap_provider_grep_enable_icon = 1
   "
@@ -297,6 +310,10 @@ if $TERM == "rxvt-unicode-256color" && !has('gui_running')
       \]
   " cursor char on clap prompt
   let g:clap_popup_cursor_shape = '|'
+
+  " for vista.vim
+  " TODO show icons for urxvt
+  let g:vista#renderer#enable_icon = 0
 else
   "set termguicolors
   "set background=light
@@ -372,6 +389,7 @@ vnoremap cp "+p<cr>
 " F1 - open file picker
 "map  <silent> <F1> ,fe
 map  <silent> <F1> :Clap files --hidden<CR>
+map  <silent> ,<F1> :Clap filer<CR>
 
 " F2 - open grep picker
 map  <silent> <F2> :Clap grep<CR>
@@ -382,14 +400,17 @@ map  <silent> <F3> :Clap buffers<CR>
 " F4 - toggle file explorer
 map  <silent> <F4> :Lexplore<CR>
 
-" F5 - toggle linenumbers
-map <silent> <F5> :set nonumber!<CR>
+" F5 - toggle vista view window
+map  <silent> <F5> :Vista!!<CR>
+map  <silent> ,<F5> :Clap tags<CR>
+"map  <silent> ,<F5> :Clap proj_tags<CR>
 
-" F6 - toggle cursor line
-map <silent> <F6> :set cursorline!<CR>
+" F6 - toggle linenumbers
+map <silent> <F6> :set nonumber!<CR>
 
-" F7 - toggle cursor column
-map <silent> <F7> :set cursorcolumn!<CR>
+" F7 - toggle cursor line/column
+map <silent> <F7> :set cursorline!<CR>
+map <silent> <S-F7> :set cursorcolumn!<CR>
 
 " F8 - toggle comment (depends on nerdcommenter)
 map  <silent> <F8>         ,c<Space>
@@ -496,3 +517,6 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 " override iskeword set from vim-puppet/ftplugin/puppet.vim, to ingnore ':'
 " (so that we can do things like word matches on module variable's word parts
 autocmd FileType puppet setl iskeyword=-,@,48-57,_,192-255
+
+" needed to show the nearest function in statusline automatically (via vista.vim)
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()

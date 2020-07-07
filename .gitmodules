@@ -115,3 +115,7 @@
 [submodule "data/.vim/plugged/VimCompletesMe"]
   path = data/.vim/plugged/VimCompletesMe
   url = https://github.com/ajh17/VimCompletesMe.git
+
+[submodule "data/.vim/plugged/vista.vim"]
+  path = data/.vim/plugged/vista.vim
+  url = ssh://git@github.com/liuchengxu/vista.vim.git
