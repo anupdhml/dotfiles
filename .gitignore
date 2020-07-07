@@ -10,5 +10,8 @@ data/.vim/view
 data/.vim/sessions/*
 !data/.vim/sessions/README.md
 
+# ctags file
+/tags
+
 # wf specific files
 data/.git.d/gitconfig_wf

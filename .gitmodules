@@ -88,6 +88,10 @@
   path = data/.vim/plugged/vim-go
   url = https://github.com/fatih/vim-go.git
 
+[submodule "data/.vim/plugged/vim-gutentags"]
+  path = data/.vim/plugged/vim-gutentags
+  url = ssh://git@github.com/ludovicchabant/vim-gutentags.git
+
 [submodule "data/.vim/plugged/vim-maximizer"]
   path = data/.vim/plugged/vim-maximizer
   url = https://github.com/szw/vim-maximizer.git

@@ -79,6 +79,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'ajh17/VimCompletesMe'
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 Plug 'liuchengxu/vista.vim'
+Plug 'ludovicchabant/vim-gutentags'
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -402,8 +403,8 @@ map  <silent> <F4> :Lexplore<CR>
 
 " F5 - toggle vista view window
 map  <silent> <F5> :Vista!!<CR>
-map  <silent> ,<F5> :Clap tags<CR>
-"map  <silent> ,<F5> :Clap proj_tags<CR>
+map  <silent> ,<F5> :Clap proj_tags<CR>
+"map  <silent> ,<F5> :Clap tags<CR>
 
 " F6 - toggle linenumbers
 map <silent> <F6> :set nonumber!<CR>
