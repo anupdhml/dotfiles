@@ -89,7 +89,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
-Plug 'szw/vim-maximizer'
 Plug 'Valloric/ListToggle'
 
 " language support
@@ -264,6 +263,7 @@ let g:lt_height = 10
 let g:markdown_fenced_languages = ['tremor', 'trickle']
 
 " override default vista executive (ctags) for these filetypes
+" useful when other executives (eg: lsp servers) give better results than ctags
 "let g:vista_executive_for = {
 "  \ 'rust': 'ale',
 "  \ }
@@ -388,43 +388,28 @@ vnoremap cp "+p<cr>
 " key bindings (function keys) ------------------------------------------------
 
 " F1 - open file picker
-"map  <silent> <F1> ,fe
 map  <silent> <F1> :Clap files --hidden<CR>
-map  <silent> ,<F1> :Clap filer<CR>
+map  <silent> ,<F1> :Clap!! files --hidden<CR>
 
 " F2 - open grep picker
 map  <silent> <F2> :Clap grep<CR>
+map  <silent> ,<F2> :Clap!! grep<CR>
 
-" F3 - open buffer picker
-map  <silent> <F3> :Clap buffers<CR>
+" F3 - open tags picker
+map  <silent> <F3> :Clap tags<CR>
+map  <silent> ,<F3> :Clap proj_tags<CR>
 
 " F4 - toggle file explorer
 map  <silent> <F4> :Lexplore<CR>
+map  <silent> ,<F4> :Clap filer<CR>
 
-" F5 - toggle vista view window
+" F5 - toggle tags explorer (via vim-vista)
 map  <silent> <F5> :Vista!!<CR>
-map  <silent> ,<F5> :Clap proj_tags<CR>
-"map  <silent> ,<F5> :Clap tags<CR>
+map  <silent> ,<F5> :Vista ale<CR>
 
-" F6 - toggle linenumbers
+" F6 - toggle linenumbers/statusline
 map <silent> <F6> :set nonumber!<CR>
-
-" F7 - toggle cursor line/column
-map <silent> <F7> :set cursorline!<CR>
-map <silent> <S-F7> :set cursorcolumn!<CR>
-
-" F8 - toggle comment (depends on nerdcommenter)
-map  <silent> <F8>         ,c<Space>
-map  <silent> <S-F8>       ,cs
-map  <silent> <C-F8>       ,cm
-imap <silent> <F8>    <Esc>,c<Space>
-imap <silent> <S-F8>  <Esc>,cs
-imap <silent> <C-F8>  <Esc>,cm
-
-" F9 - TODO
-
-" F10 - toggle the statusline
-map <silent> <F10> :if &laststatus == 1<bar>
+map <silent> ,<F6> :if &laststatus == 1<bar>
                       \set laststatus=2<bar>
                       \set noshowmode<bar>
                       \echo<bar>
@@ -433,12 +418,31 @@ map <silent> <F10> :if &laststatus == 1<bar>
                       \set showmode<bar>
                     \endif<CR>
 
-" F11 - maximize window (depends on vim-maximizer)
-let g:maximizer_default_mapping_key = '<F11>'
+" F7 - toggle cursor line/column
+map <silent> <F7> :set cursorline!<CR>
+map <silent> ,<F7> :set cursorcolumn!<CR>
 
-" F12 - toggle location list/quicklist (depends on listtoggle)
-let g:lt_location_list_toggle_map = '<F12>'
-let g:lt_quickfix_list_toggle_map = '<S-F12>'
+" F8 - toggle comment (depends on nerdcommenter)
+map  <silent> <F8>       ,c<Space>
+imap <silent> <F8>  <Esc>,c<Space>
+map  <silent> ,<F8>      ,cs
+imap <silent> ,<F8> <Esc>,cs
+
+" F9 - open git diff picker
+map  <silent> <F9> :Clap git_diff_files<CR>
+map  <silent> ,<F9> :Clap bcommits<CR>
+
+" F10 - open buffers/windows picker
+map  <silent> <F10> :Clap buffers<CR>
+map  <silent> ,<F0> :Clap windows<CR>
+
+" F11 - open quickfix list (toggle depends on listtoggle)
+map  <silent> <F11> :Clap quickfix<CR>
+let g:lt_quickfix_list_toggle_map = ',<F11>'
+
+" F12 - open location list (toggle depends on listtoggle)
+map  <silent> <F12> :Clap loclist<CR>
+let g:lt_location_list_toggle_map = ',<F12>'
 
 " key bindings (leader based) -------------------------------------------------
 
@@ -456,6 +460,9 @@ nmap <silent> <leader>/ <Plug>(ale_hover)
 nmap <silent> <leader>? <Plug>(ale_detail)
 nmap <silent> <leader>] <Plug>(ale_go_to_definition)
 nmap <silent> <leader># <Plug>(ale_find_references)
+" extra mapping for getting documentation, matching plugins like
+" vim-iced (or vim native man functionality)
+nmap <silent> K         <Plug>(ale_hover)
 
 " fzy integration (when opening files from vim)
 function! FzyCommand(choice_command, vim_command)
@@ -514,9 +521,6 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 autocmd FileType
     \ awk,c,calendar,changelog,coffee,conf,config,cpp,css,desktop,dircolors,dockerfile,eruby,erlang,git,go,grub,haskell,html,java,javascript,jproperties,json,lua,make,man,markdown,perl,php,puppet,python,readline,ruby,scala,sh,sql,sshconfig,sudoers,systemd,terraform,tremor-script,tremor-query,tmux,vader,vim,xdefaults,xml,yaml
     \ autocmd BufWritePre <buffer> :%s/\s\+$//e
-
-" open help files in a vertical split
-autocmd FileType help wincmd L
 
 " override iskeword set from vim-puppet/ftplugin/puppet.vim, to ingnore ':'
 " (so that we can do things like word matches on module variable's word parts
