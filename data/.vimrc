@@ -500,8 +500,15 @@ map <leader>sg :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 
 " autocmd ----------------------------------------------------------------------
 
+" needed to show the nearest function in statusline automatically (via vista.vim)
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
 " have vim jump to the last position when reopening a file
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" override <CR> mapping defined earlier in the file, for quickfix/loclist
+" window (since <CR> is used to jump to the error under the cursor there)
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
 " remove trailing whitespaces (for certain filetypes) automatically on file save
 autocmd FileType
@@ -511,13 +518,6 @@ autocmd FileType
 " open help files in a vertical split
 autocmd FileType help wincmd L
 
-" override <CR> mapping defined earlier in the file, for quickfix/loclist
-" window (since <CR> is used to jump to the error under the cursor there)
-autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
-
 " override iskeword set from vim-puppet/ftplugin/puppet.vim, to ingnore ':'
 " (so that we can do things like word matches on module variable's word parts
 autocmd FileType puppet setl iskeyword=-,@,48-57,_,192-255
-
-" needed to show the nearest function in statusline automatically (via vista.vim)
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
