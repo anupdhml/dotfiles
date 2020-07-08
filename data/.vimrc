@@ -92,17 +92,12 @@ Plug 'tpope/vim-endwise'
 Plug 'Valloric/ListToggle'
 
 " language support
-Plug 'rodjek/vim-puppet'
-Plug 'hashivim/vim-terraform'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " TODO configure options here
-Plug 'rust-lang/rust.vim'
-Plug 'wayfair-tremor/tremor-vim'
-Plug 'junegunn/vader.vim'
-
-" wf specific plugins
-"if !empty($WF_GIT_DOMAIN)
-"  "Plug 'git@'.$WF_GIT_DOMAIN.':tremor/tremor-vim.git', { 'branch': 'fixes', 'do': 'ln -sf bundle/tremor.vim/* .' }
-"endif
+Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
+Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
+Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' } " TODO configure options here
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'wayfair-tremor/tremor-vim', { 'for': 'tremor,trickle' }
+Plug 'junegunn/vader.vim', { 'for': 'vader' }
 
 " initialize plugin system
 call plug#end()
@@ -227,9 +222,9 @@ let g:ale_linters = {
 " active fixers
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'go': ['gofmt'],
 \   'puppet': ['puppetlint'],
 \   'rust': ['rustfmt'],
-\   'go': ['gofmt'],
 \}
 
 " ale rust settings, applicable when using rls as the ale linter
