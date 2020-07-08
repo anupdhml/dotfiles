@@ -514,7 +514,7 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
 " remove trailing whitespaces (for certain filetypes) automatically on file save
 autocmd FileType
-    \ awk,c,calendar,changelog,coffee,conf,config,cpp,css,desktop,dircolors,dockerfile,eruby,erlang,git,go,grub,haskell,html,java,javascript,jproperties,json,lua,make,man,markdown,perl,php,puppet,python,readline,ruby,scala,sh,sql,sshconfig,sudoers,systemd,terraform,tremor-script,tremor-query,tmux,vader,vim,xdefaults,xml,yaml
+    \ awk,c,calendar,changelog,coffee,conf,config,cpp,css,desktop,dircolors,dockerfile,eruby,erlang,git,go,grub,haskell,html,java,javascript,jproperties,json,lua,make,man,markdown,perl,php,puppet,python,readline,ruby,scala,sh,sql,sshconfig,sudoers,systemd,terraform,tremor,trickle,tmux,vader,vim,xdefaults,xml,yaml
     \ autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " override iskeword set from vim-puppet/ftplugin/puppet.vim, to ingnore ':'
