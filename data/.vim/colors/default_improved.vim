@@ -88,17 +88,22 @@ hi ClapFile ctermbg=7 guibg=lightgrey
 " cursor at the search bar. matches terminal (urxvt) cursor color
 hi ClapPopupCursor cterm=bold ctermfg=8 gui=bold guifg=black
 
+" better highlighting for selection in quickfix/location list
+hi QuickFixLine ctermbg=lightgrey
+
 " for plugins like syntastic/ale
 hi SignColumn term=standout ctermfg=8 ctermbg=7 guifg=#6C6C6C guibg=#D3D7CF
 
-" for ale indicators on the sidebar
+" for vim-ale
+" error/warn indicators on the sidebar
 hi ALEWarningSign ctermbg=lightgrey ctermfg=darkyellow
 hi ALEErrorSign ctermbg=lightgrey ctermfg=darkred
-
-" for ale error lines
-"highlight link ALEErrorLine error
+" error positions
+hi ALEWarning term=reverse ctermbg=lightyellow gui=undercurl guisp=lightyellow
+hi ALEError term=reverse ctermbg=lightred gui=undercurl guisp=red
 
 " -------------------
+"
 " Syntax Highlighting
 " -------------------
 

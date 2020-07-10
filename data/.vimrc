@@ -213,6 +213,7 @@ let g:ale_sign_warning = '▲▲'
 let g:ale_sign_error = '✗✗'
 
 " appearance settings
+let g:ale_set_signs = 0                " no gutter ever. we rely on highlights/statusline
 "let g:ale_sign_column_always = 1      " always show the gutter
 "let g:ale_open_list = 1               " show window for error list
 "let g:ale_list_window_size = 10       " height of the window for error list
