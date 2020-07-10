@@ -56,6 +56,14 @@
   path = data/.vim/plugged/nerdcommenter
   url = https://github.com/scrooloose/nerdcommenter.git
 
+[submodule "data/.vim/plugged/parinfer-rust"]
+  path = data/.vim/plugged/parinfer-rust
+  url = ssh://git@github.com/eraserhd/parinfer-rust.git
+
+[submodule "data/.vim/plugged/rainbow"]
+  path = data/.vim/plugged/rainbow
+  url = ssh://git@github.com/luochen1990/rainbow.git
+
 [submodule "data/.vim/plugged/rust.vim"]
   path = data/.vim/plugged/rust.vim
   url = https://github.com/rust-lang/rust.vim.git
@@ -76,6 +84,10 @@
   path = data/.vim/plugged/vim-clap
   url = ssh://git@github.com/liuchengxu/vim-clap.git
 
+[submodule "data/.vim/plugged/vim-clojure-static"]
+  path = data/.vim/plugged/vim-clojure-static
+  url = ssh://git@github.com/guns/vim-clojure-static.git
+
 [submodule "data/.vim/plugged/vim-endwise"]
   path = data/.vim/plugged/vim-endwise
   url = https://github.com/tpope/vim-endwise.git
@@ -92,6 +104,10 @@
   path = data/.vim/plugged/vim-gutentags
   url = ssh://git@github.com/ludovicchabant/vim-gutentags.git
 
+[submodule "data/.vim/plugged/vim-iced"]
+  path = data/.vim/plugged/vim-iced
+  url = ssh://git@github.com/liquidz/vim-iced.git
+
 [submodule "data/.vim/plugged/vim-obsession"]
   path = data/.vim/plugged/vim-obsession
   url = https://github.com/tpope/vim-obsession.git
@@ -103,6 +119,14 @@
 [submodule "data/.vim/plugged/vim-rhubarb"]
   path = data/.vim/plugged/vim-rhubarb
   url = https://github.com/tpope/vim-rhubarb.git
+
+[submodule "data/.vim/plugged/vim-sexp"]
+  path = data/.vim/plugged/vim-sexp
+  url = ssh://git@github.com/guns/vim-sexp.git
+
+[submodule "data/.vim/plugged/vim-sexp-mappings-for-regular-people"]
+  path = data/.vim/plugged/vim-sexp-mappings-for-regular-people
+  url = ssh://git@github.com/tpope/vim-sexp-mappings-for-regular-people.git
 
 [submodule "data/.vim/plugged/vim-surround"]
   path = data/.vim/plugged/vim-surround
@@ -119,3 +143,7 @@
 [submodule "data/.vim/plugged/vista.vim"]
   path = data/.vim/plugged/vista.vim
   url = ssh://git@github.com/liuchengxu/vista.vim.git
+
+[submodule "data/.vim/plugged/zprint.vim"]
+  path = data/.vim/plugged/zprint.vim
+  url = ssh://git@github.com/bfontaine/zprint.vim.git

@@ -98,6 +98,13 @@ Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' } " TODO configure
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'wayfair-tremor/tremor-vim', { 'for': 'tremor,trickle' }
 Plug 'junegunn/vader.vim', { 'for': 'vader' }
+Plug 'luochen1990/rainbow', { 'for': 'clojure,html,xml' }
+Plug 'eraserhd/parinfer-rust', { 'for': 'clojure', 'do': 'cargo build --release' }
+Plug 'guns/vim-sexp', { 'for': 'clojure' }
+Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
+Plug 'liquidz/vim-iced', { 'for': 'clojure' }
+Plug 'bfontaine/zprint.vim', { 'for': 'clojure' }
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
 
 " initialize plugin system
 call plug#end()
@@ -213,6 +220,7 @@ let g:ale_sign_error = '✗✗'
 
 " active linters
 let g:ale_linters = {
+\   'clojure': ['clj-kondo'],
 \   'puppet': ['puppetlint'],
 \   'rust': ['analyzer'],
 \   'tremor': ['tremor-language-server'],
@@ -257,6 +265,14 @@ let g:lt_height = 10
 " enable fenced code block syntax highlighting in markdown files for these languages
 let g:markdown_fenced_languages = ['tremor', 'trickle']
 
+" syntax highlighting for certain clojurescript elements
+"let g:clojure_syntax_keywords = {
+"    \ 'clojureFunc': [
+"    \   ".indexOf", ".lastIndexOf",
+"    \   ".render", ".createElement", ".getElementById"
+"    \ ]
+"    \ }
+
 " override default vista executive (ctags) for these filetypes
 " useful when other executives (eg: lsp servers) give better results than ctags
 "let g:vista_executive_for = {
@@ -267,6 +283,16 @@ let g:markdown_fenced_languages = ['tremor', 'trickle']
 let g:clap_provider_grep_opts = '--with-filename --no-heading --vimgrep --smart-case --hidden'
 " does not work as expected so disabled
 "let g:clap_provider_grep_opts = '--with-filename --no-heading --vimgrep --smart-case --hidden --glob "!.git/"'
+
+" for vim-iced (clojure support)
+let g:iced_enable_default_key_mappings = v:true
+"let g:iced_formatter = 'zprint'
+" enables use of vim-iced formatting function
+let g:sexp_mappings = {'sexp_indent': '', 'sexp_indent_top': ''}
+
+" for parinfer-rust (clojure/lisp support)
+" enables typing of brackets in insert mode (without annoying errors)
+let g:sexp_enable_insert_mode_mappings = 0
 
 " enable rainbow parentheses
 " more options at: https://github.com/luochen1990/rainbow#configure
@@ -334,6 +360,10 @@ endif
 " command maps -----------------------------------------------------------------
 
 command S Obsession
+
+" connnect to shadow-clsj repl easily, for clojurescript projects
+" takes the build-id as argument. eg: `:IcedShadow app`
+command -nargs=1 IcedShadow IcedStartCljsRepl shadow-cljs <args>
 
 " key bindings -----------------------------------------------------------------
 
@@ -514,9 +544,33 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
 " remove trailing whitespaces (for certain filetypes) automatically on file save
 autocmd FileType
-    \ awk,c,calendar,changelog,coffee,conf,config,cpp,css,desktop,dircolors,dockerfile,eruby,erlang,git,go,grub,haskell,html,java,javascript,jproperties,json,lua,make,man,markdown,perl,php,puppet,python,readline,ruby,scala,sh,sql,sshconfig,sudoers,systemd,terraform,tremor,trickle,tmux,vader,vim,xdefaults,xml,yaml
+    \ awk,c,calendar,changelog,clojure,coffee,conf,config,cpp,css,desktop,dircolors,dockerfile,eruby,erlang,git,go,grub,haskell,html,java,javascript,jproperties,json,lua,make,man,markdown,perl,php,puppet,python,readline,ruby,scala,sh,sql,sshconfig,sudoers,systemd,terraform,tremor,trickle,tmux,vader,vim,xdefaults,xml,yaml
     \ autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " override iskeword set from vim-puppet/ftplugin/puppet.vim, to ingnore ':'
 " (so that we can do things like word matches on module variable's word parts
 autocmd FileType puppet setl iskeyword=-,@,48-57,_,192-255
+
+augroup filetype_clojure
+  autocmd!
+
+  " start repl connection automatically for clojure files. needed for vim-iced
+  function! s:iced_auto_connect() abort
+    if expand('%:e') ==# 'cljs'
+      " assumes that 'app' is the id used for cljs projects
+      " `shadow-cljs watch` must already be running for this to work
+      silent IcedStartCljsRepl shadow-cljs app
+    else
+      silent IcedConnect
+    endif
+  endfunction
+  " ++nested fixes initial lightline rendering issues
+  " https://github.com/itchyny/lightline.vim/issues/406#issuecomment-570141322"
+  autocmd FileType clojure
+      \ autocmd VimEnter * ++nested call s:iced_auto_connect()
+
+  " run formatter on clojure file writes (via vim-iced)
+  " TODO fix this. not working reliably. for now, we rely on formatting via zprint.vim
+  "autocmd FileType clojure
+  "    \ autocmd BufWritePre <buffer> :IcedFormat
+augroup END

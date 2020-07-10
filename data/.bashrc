@@ -69,6 +69,9 @@ export PATH="${PATH}:${GOPATH}/bin:/usr/local/go/bin"
 # haskell
 export PATH="${PATH}:~/.cabal/bin"
 
+# needed for vim-iced (clojure support)
+export PATH="${PATH}:~/.vim/plugged/vim-iced/bin"
+
 # tremor-script
 export TREMOR_PATH=~/repos/TREMOR/tremor-runtime/tremor-script/lib
 
