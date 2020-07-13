@@ -222,6 +222,7 @@ let g:ale_set_signs = 0                " no gutter ever. we rely on highlights/s
 " active linters
 let g:ale_linters = {
 \   'clojure': ['clj-kondo'],
+\   'css': ['stylelint'],
 \   'puppet': ['puppetlint'],
 \   'rust': ['analyzer'],
 \   'tremor': ['tremor-language-server'],
@@ -231,6 +232,7 @@ let g:ale_linters = {
 " active fixers
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'css': ['stylelint'],
 \   'go': ['gofmt'],
 \   'puppet': ['puppetlint'],
 \   'rust': ['rustfmt'],
