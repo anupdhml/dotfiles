@@ -105,6 +105,7 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
 Plug 'liquidz/vim-iced', { 'for': 'clojure' }
 Plug 'bfontaine/zprint.vim', { 'for': 'clojure' }
 Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 " initialize plugin system
 call plug#end()
