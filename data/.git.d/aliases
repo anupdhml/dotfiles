@@ -16,8 +16,8 @@
   ps  = push
   c   = checkout
   cb  = checkout -b
-  cm  = commit -m
-  cam = commit -a -m
+  cm  = commit -s -m
+  cam = commit -s -a -m
 
   # extras --------------------------------------------------------------------
 
@@ -52,4 +52,4 @@
   update = "!git pull; git submodule update --init --recursive"
 
   # git add, commit and push
-  camp = "f() { git commit -a -m \"$1\"; git push }; f"
+  camp = "f() { git commit -s -a -m \"$1\"; git push }; f"
